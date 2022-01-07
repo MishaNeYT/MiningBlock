@@ -1,0 +1,96 @@
+# Зависимость Vault и PlaceholderAPI
+# Свои placeholder-ы - %money% и %player%.
+
+Settings:
+  enableSoundPickup: true # Производится звук сломанной руды.
+  soundPickup: ENTITY_EXPERIENCE_ORB_PICKUP # Сам звук https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+  enableSilkTouch: true # Включить или отключить использование кирки на Шёлковое касание. Для Iron и Gold не сработает.
+  enableWorld: # Разрешённые миры - в которых будет работать шахта.
+  - world
+  - miner
+
+# Сообщение в экран (Титл).
+TitleOnPickup:
+  enableTitles: true
+  title: '&aУспешно'
+  subtitle: '&fВы заработали &e+%money%$'
+  fadeIn: 10
+  stay: 20
+  fadeOut: 10
+
+# Сообщение снизу (Нижний бар).
+Actionbar:
+  enableActionbar: true
+  message: '&e+%money%$ монеты'
+
+# Сообщение в чате.
+MessageToChat:
+  enableMessageToChat: true
+  message: '&a(!) &fВы заработали с этого блока &e+%money%$'
+
+Mining:
+  coal:
+    enable: true
+    delay: 5 # Задержка респавна руды.
+    moneyDrop: 2 # После добычи блока, игрок получит денги на свой баланс | 0 - отключить.
+    expDrop: 2 # После добычи блока, игрок получит опыт | 0 - отключить.
+    replaceBlock: BEDROCK # Блок, который будет появляться после добычи этой руды. А после него AIR.
+    particleBreak: # Воспроизводится частица, когда блок сломан https://helpch.at/docs/1.12.2/org/bukkit/Particle.html
+      enable: true
+      particle: HEART
+    commandBreak:
+      enable: true
+      # Placeholder, чтобы указать ник игрока - %player%
+      command: 'tell %player% Привет, меня зовут Coal!'
+  iron:
+    enable: true
+    delay: 7
+    moneyDrop: 5
+    expDrop: 5
+    replaceBlock: BEDROCK
+    particleBreak:
+      enable: true
+      particle: HEART
+    commandBreak:
+      enable: true
+      command: 'tell %player% Привет, меня зовут Iron!'
+  gold:
+    enable: true
+    delay: 9
+    moneyDrop: 8
+    expDrop: 9
+    replaceBlock: BEDROCK
+    particleBreak:
+      enable: true
+      particle: HEART
+    commandBreak:
+      enable: true
+      command: 'tell %player% Привет, меня зовут Gold!'
+  diamond:
+    enable: true
+    delay: 12
+    moneyDrop: 10
+    expDrop: 15
+    replaceBlock: BEDROCK
+    particleBreak:
+      enable: true
+      particle: HEART
+    commandBreak:
+      enable: true
+      command: 'tell %player% Привет, меня зовут Diamond!'
+  emerald:
+    enable: true
+    delay: 15
+    moneyDrop: 15
+    expDrop: 25
+    replaceBlock: BEDROCK
+    particleBreak:
+      enable: true
+      particle: HEART
+    commandBreak:
+      enable: true
+      command: 'tell %player% Привет, меня зовут Emerald!'
+
+Messages:
+  reload: '&aПлагин успешно перезагружен!'
+  noPerm: '&cУ вас нет прав!'

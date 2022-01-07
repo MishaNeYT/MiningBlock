@@ -1,0 +1,8 @@
+name: MiningBlock
+version: 1.3
+main: ru.mishaneyt.miningblock.Main
+authors: [ GhostSetuper ]
+softdepend: [ Vault, PlaceholderAPI ]
+commands:
+  miningblock:
+    description: Main command
