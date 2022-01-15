@@ -1,5 +1,5 @@
 name: MiningBlock
-version: 1.3
+version: 1.4.1
 main: ru.mishaneyt.miningblock.Main
 authors: [ GhostSetuper ]
 softdepend: [ Vault, PlaceholderAPI ]
