@@ -4,7 +4,6 @@
 Settings:
   enableSoundPickup: true # Производится звук сломанной руды.
   soundPickup: ENTITY_EXPERIENCE_ORB_PICKUP # Сам звук https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
-  enableSilkTouch: true # Включить или отключить использование кирки на Шёлковое касание. Для Iron и Gold не сработает.
   enableVault: true # Если багает. То можете включить или отключить Vault.
   enableWorld: # Разрешённые миры - в которых будет работать шахта.
     - world

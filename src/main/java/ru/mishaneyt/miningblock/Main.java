@@ -9,6 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -27,7 +28,6 @@ public class Main extends JavaPlugin implements Listener, CommandExecutor {
     public static Main getInstance() {
         return instance;
     }
-
     public static void setInstance(Main instance) {
         Main.instance = instance;
     }
@@ -44,9 +44,9 @@ public class Main extends JavaPlugin implements Listener, CommandExecutor {
 
         getCommand("miningblock").setExecutor(this);
         getCommand("miningblock").setTabCompleter(this);
-        Bukkit.getPluginManager().registerEvents(new MiningOre(this), this);
 
-        Bukkit.getPluginManager().registerEvents(new Menu(this), this);
+        Bukkit.getPluginManager().registerEvents(new MiningOre(), this);
+        Bukkit.getPluginManager().registerEvents(new Menu(), this);
 
         System.out.println(ChatColor.GREEN + "---------------------------------------------------------------");
         System.out.println(ChatColor.GREEN + "MiningBlock - has been enabled!");
@@ -74,12 +74,17 @@ public class Main extends JavaPlugin implements Listener, CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-        if (!(sender instanceof Player)) return false;
+        if (!(sender instanceof Player)) {
+            sender.sendMessage(ChatColor.RED + "Команда доступна только в игре!");
+        }
+
+        assert sender instanceof Player;
         Player player = (Player) sender;
+
         if (cmd.getName().equalsIgnoreCase("miningblock")) {
             if (sender.hasPermission("miningblock.admin")) {
                 if (args.length == 1 && args[0].equalsIgnoreCase("menu")) {
-                    player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0F, 1.0F);
+                    player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
                     Menu.openGUI(player);
                 }
             } else {
@@ -90,7 +95,7 @@ public class Main extends JavaPlugin implements Listener, CommandExecutor {
             if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
                 if (sender.hasPermission("miningblock.admin")) {
                     this.reloadConfig();
-                    player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0F, 1.0F);
+                    player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("Messages.reload")));
                 } else {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("Messages.noPerm")));
