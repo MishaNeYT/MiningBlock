@@ -12,7 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import org.jetbrains.annotations.NotNull;
 import ru.mishaneyt.miningblock.gui.Menu;
 import ru.mishaneyt.miningblock.mining.MiningOre;
 
@@ -48,16 +47,13 @@ public class Main extends JavaPlugin implements Listener, CommandExecutor {
         Bukkit.getPluginManager().registerEvents(new Menu(), this);
 
         System.out.println(ChatColor.GREEN + "---------------------------------------------------------------");
-        System.out.println(ChatColor.GREEN + "MiningBlock - has been enabled!");
+        System.out.println(ChatColor.GREEN + "MiningBlock - успешно включён, приятного использования!");
         System.out.println(ChatColor.GREEN + "---------------------------------------------------------------");
 
         setInstance(this);
         setupEconomy();
         saveConfig();
     }
-
-    public void onDisable() { saveConfig(); }
-
 
     private void setupEconomy() {
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
@@ -72,34 +68,33 @@ public class Main extends JavaPlugin implements Listener, CommandExecutor {
 
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage(ChatColor.RED + "Команда доступна только в игре!");
-        }
+    public boolean onCommand(CommandSender sender,  Command cmd,  String label, String[] args) {
+        if (sender instanceof Player) {
+            Player player = (Player) sender;
 
-        assert sender instanceof Player;
-        Player player = (Player) sender;
-
-        if (cmd.getName().equalsIgnoreCase("miningblock")) {
-            if (sender.hasPermission("miningblock.admin")) {
-                if (args.length == 1 && args[0].equalsIgnoreCase("menu")) {
-                    player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
-                    Menu.openGUI(player);
-                }
-            } else {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("Messages.noPerm")));
-            }
-
-
-            if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
+            if (cmd.getName().equalsIgnoreCase("miningblock")) {
                 if (sender.hasPermission("miningblock.admin")) {
-                    this.reloadConfig();
-                    player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("Messages.reload")));
+                    if (args.length == 1 && args[0].equalsIgnoreCase("menu")) {
+                        player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
+                        Menu.openGUI(player);
+                    }
                 } else {
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("Messages.noPerm")));
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("Messages.NoPerm")));
+                }
+
+
+                if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
+                    if (sender.hasPermission("miningblock.admin")) {
+                        this.reloadConfig();
+                        player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("Messages.Reload")));
+                    } else {
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("Messages.NoPerm")));
+                    }
                 }
             }
+        } else {
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("Messages.CommandOnlyServer")));
         }
         return false;
     }

@@ -21,368 +21,386 @@ public class MiningOre implements Listener {
         Player player = e.getPlayer();
         final Block block = e.getBlock();
         Material ore = block.getType();
-        String location = Objects.requireNonNull(player.getLocation().getWorld()).getName();
+        String location = player.getLocation().getWorld().getName();
 
-        String enableSound = Main.getInstance().getConfig().getString("Settings.soundPickup");
-        String moneyCoal = String.valueOf(Main.getInstance().getConfig().getInt("Mining.coal.moneyDrop"));
-        String moneyIron = String.valueOf(Main.getInstance().getConfig().getInt("Mining.iron.moneyDrop"));
-        String moneyGold = String.valueOf(Main.getInstance().getConfig().getInt("Mining.gold.moneyDrop"));
-        String moneyDiamond = String.valueOf(Main.getInstance().getConfig().getInt("Mining.diamond.moneyDrop"));
-        String moneyEmerald = String.valueOf(Main.getInstance().getConfig().getInt("Mining.emerald.moneyDrop"));
+        String enableSound = Main.getInstance().getConfig().getString("Settings.SoundPickup");
+        String moneyCoal = String.valueOf(Main.getInstance().getConfig().getInt("Mining.COAL.MoneyDrop"));
+        String moneyIron = String.valueOf(Main.getInstance().getConfig().getInt("Mining.IRON.MoneyDrop"));
+        String moneyGold = String.valueOf(Main.getInstance().getConfig().getInt("Mining.GOLD.MoneyDrop"));
+        String moneyDiamond = String.valueOf(Main.getInstance().getConfig().getInt("Mining.DIAMOND.MoneyDrop"));
+        String moneyEmerald = String.valueOf(Main.getInstance().getConfig().getInt("Mining.EMERALD.MoneyDrop"));
 
-        if (Main.getInstance().getConfig().getStringList("Settings.enableWorld").contains(location)) {
-            if (Main.getInstance().getConfig().getBoolean("Mining.coal.enable")) {
+        if (Main.getInstance().getConfig().getStringList("Settings.EnableWorld").contains(location)) {
+            if (Main.getInstance().getConfig().getBoolean("Mining.COAL.Enable")) {
                 if (ore == Material.COAL_ORE) {
                     e.setCancelled(true);
-                    e.setExpToDrop(Main.getInstance().getConfig().getInt("Mining.coal.expDrop"));
+                    e.setExpToDrop(Main.getInstance().getConfig().getInt("Mining.COAL.ExpDrop"));
                     e.getPlayer().giveExp(e.getExpToDrop());
 
-                    if (Main.getInstance().getConfig().getBoolean("Settings.enableVault")) {
-                        Main.economy.depositPlayer(player, Main.getInstance().getConfig().getInt("Mining.coal.moneyDrop"));
+                    if (Main.getInstance().getConfig().getBoolean("Settings.EnableVault")) {
+                        Main.economy.depositPlayer(player, Main.getInstance().getConfig().getInt("Mining.COAL.MoneyDrop"));
                     }
 
-                    if (Main.getInstance().getConfig().getBoolean("Mining.coal.commandBreak.enable")) {
-                        String cmd = Main.getInstance().getConfig().getString("Mining.coal.commandBreak.command").replaceAll("%player%", player.getName());
+                    if (Main.getInstance().getConfig().getBoolean("Mining.COAL.CommandBreak.enable")) {
+                        String cmd = Main.getInstance().getConfig().getString("Mining.COAL.CommandBreak.command").replaceAll("%player%", player.getName());
                         cmd = PlaceholderAPI.setPlaceholders(e.getPlayer(), cmd);
 
                         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd);
                     }
 
 
-
-                    if (Main.getInstance().getConfig().getBoolean("Mining.coal.enableDropBlock")) {
-                        block.getLocation().add(0.5D, 1.5D, 0.5D).getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.COAL));
+                    if (Main.getInstance().getConfig().getBoolean("Mining.COAL.Drop.Enable")) {
+                        block.getLocation().add(0.5D, 1.5D, 0.5D).getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.valueOf(Main.getInstance().getConfig().getString("Mining.COAL.Drop.DropBlock"))));
+                    }
+                    if (Main.getInstance().getConfig().getBoolean("Mining.COAL.AutoPickup.Enable")) {
+                        player.getInventory().addItem(new ItemStack(Material.valueOf(Main.getInstance().getConfig().getString("Mining.COAL.AutoPickup.PickupBlock"))));
                     }
 
 
-                    if (Main.getInstance().getConfig().getBoolean("Actionbar.enableActionbar")) {
-                        String money = ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("Actionbar.message")).replaceAll("%money%", moneyCoal);
+                    if (Main.getInstance().getConfig().getBoolean("Actionbar.EnableActionbar")) {
+                        String money = ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("Actionbar.Message")).replaceAll("%money%", moneyCoal);
                         money = PlaceholderAPI.setPlaceholders(e.getPlayer(), money);
 
                         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(money));
                     }
 
 
-                    if (Main.getInstance().getConfig().getBoolean("MessageToChat.enableMessageToChat")) {
-                        String message = (ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("MessageToChat.message")).replaceAll("%money%", String.valueOf(Main.getInstance().getConfig().getInt("Mining.coal.moneyDrop"))));
+                    if (Main.getInstance().getConfig().getBoolean("MessageToChat.EnableMessageToChat")) {
+                        String message = (ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("MessageToChat.Message")).replaceAll("%money%", moneyCoal));
                         message = PlaceholderAPI.setPlaceholders(e.getPlayer(), message);
 
                         player.sendMessage(message);
                     }
 
 
-                    if (Main.getInstance().getConfig().getBoolean("TitleOnPickup.enableTitles")) {
+                    if (Main.getInstance().getConfig().getBoolean("TitleOnPickup.EnableTitles")) {
                         String titleText = ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig()
-                                .getString("TitleOnPickup.title")).replaceAll("%money%", moneyCoal);
+                                .getString("TitleOnPickup.Title")).replaceAll("%money%", moneyCoal);
                         String subtitleText = ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig()
-                                .getString("TitleOnPickup.subtitle")).replaceAll("%money%", moneyCoal);
+                                .getString("TitleOnPickup.Subtitle")).replaceAll("%money%", moneyCoal);
 
                         titleText = PlaceholderAPI.setPlaceholders(e.getPlayer(), titleText);
                         subtitleText = PlaceholderAPI.setPlaceholders(e.getPlayer(), subtitleText);
 
                         player.sendTitle(titleText, subtitleText, Main.getInstance().getConfig()
-                                .getInt("TitleOnPickup.fadeIn"), Main.getInstance().getConfig()
-                                .getInt("TitleOnPickup.stay"), Main.getInstance().getConfig()
-                                .getInt("TitleOnPickup.fadeOut"));
+                                .getInt("TitleOnPickup.FadeIn"), Main.getInstance().getConfig()
+                                .getInt("TitleOnPickup.Stay"), Main.getInstance().getConfig()
+                                .getInt("TitleOnPickup.FadeOut"));
                     }
 
 
-                    if (Main.getInstance().getConfig().getBoolean("Settings.enableSoundPickup")) {
+                    if (Main.getInstance().getConfig().getBoolean("Settings.EnableSoundPickup")) {
                         player.playSound(player.getLocation(), Sound.valueOf(enableSound), 1.0F, 1.0F);
                     }
 
-                    if (Main.getInstance().getConfig().getBoolean("Mining.coal.particleBreak.enable")) {
+                    if (Main.getInstance().getConfig().getBoolean("Mining.COAL.ParticleBreak.enable")) {
                         Location blockLocation = e.getBlock().getLocation();
                         Location particleLocation = new Location(blockLocation.getWorld(), blockLocation.getBlockX() + 0.5, blockLocation.getBlockY() + 0.5, blockLocation.getBlockZ() + 0.5);
-                        blockLocation.getWorld().spawnParticle(Particle.valueOf(Main.getInstance().getConfig().getString("Mining.coal.particleBreak.particle")), particleLocation, 1);
+                        blockLocation.getWorld().spawnParticle(Particle.valueOf(Main.getInstance().getConfig().getString("Mining.COAL.ParticleBreak.particle")), particleLocation, 1);
                     }
 
-                    block.setType(Material.valueOf(Main.getInstance().getConfig().getString("Mining.coal.replaceBlock")));
-                    Main.getInstance().getServer().getScheduler().runTaskLater(Main.getInstance(), () -> block.setType(Material.COAL_ORE), Main.getInstance().getConfig().getInt("Mining.coal.delay") * 20L);
+                    block.setType(Material.valueOf(Main.getInstance().getConfig().getString("Mining.COAL.ReplaceBlock")));
+                    Main.getInstance().getServer().getScheduler().runTaskLater(Main.getInstance(), () -> block.setType(Material.COAL_ORE), Main.getInstance().getConfig().getInt("Mining.COAL.Delay") * 20L);
                 }
             }
 
 
 
-            if (Main.getInstance().getConfig().getBoolean("Mining.iron.enable")) {
+            if (Main.getInstance().getConfig().getBoolean("Mining.IRON.Enable")) {
                 if (ore == Material.IRON_ORE) {
                     e.setCancelled(true);
-                    e.setExpToDrop(Main.getInstance().getConfig().getInt("Mining.iron.expDrop"));
+                    e.setExpToDrop(Main.getInstance().getConfig().getInt("Mining.IRON.ExpDrop"));
                     e.getPlayer().giveExp(e.getExpToDrop());
 
-                    if (Main.getInstance().getConfig().getBoolean("Settings.enableVault")) {
-                        Main.economy.depositPlayer(player, Main.getInstance().getConfig().getInt("Mining.iron.moneyDrop"));
+                    if (Main.getInstance().getConfig().getBoolean("Settings.EnableVault")) {
+                        Main.economy.depositPlayer(player, Main.getInstance().getConfig().getInt("Mining.IRON.MoneyDrop"));
                     }
 
-                    if (Main.getInstance().getConfig().getBoolean("Mining.iron.commandBreak.enable")) {
-                        String cmd = Main.getInstance().getConfig().getString("Mining.iron.commandBreak.command").replaceAll("%player%", player.getName());
+                    if (Main.getInstance().getConfig().getBoolean("Mining.IRON.CommandBreak.enable")) {
+                        String cmd = Main.getInstance().getConfig().getString("Mining.IRON.CommandBreak.command").replaceAll("%player%", player.getName());
                         cmd = PlaceholderAPI.setPlaceholders(e.getPlayer(), cmd);
 
                         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd);
                     }
 
-                    if (Main.getInstance().getConfig().getBoolean("Mining.iron.enableDropBlock")) {
-                        block.getLocation().add(0.5D, 1.5D, 0.5D).getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.IRON_ORE));
+
+                    if (Main.getInstance().getConfig().getBoolean("Mining.IRON.Drop.Enable")) {
+                        block.getLocation().add(0.5D, 1.5D, 0.5D).getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.valueOf(Main.getInstance().getConfig().getString("Mining.IRON.Drop.DropBlock"))));
+                    }
+                    if (Main.getInstance().getConfig().getBoolean("Mining.IRON.AutoPickup.Enable")) {
+                        player.getInventory().addItem(new ItemStack(Material.valueOf(Main.getInstance().getConfig().getString("Mining.IRON.AutoPickup.PickupBlock"))));
                     }
 
-                    if (Main.getInstance().getConfig().getBoolean("Actionbar.enableActionbar")) {
-                        String money = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(((Main.getInstance().getConfig().getString("Actionbar.message")))).replaceAll("%money%", moneyIron));
+
+                    if (Main.getInstance().getConfig().getBoolean("Actionbar.EnableActionbar")) {
+                        String money = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(((Main.getInstance().getConfig().getString("Actionbar.Message")))).replaceAll("%money%", moneyIron));
                         money = PlaceholderAPI.setPlaceholders(e.getPlayer(), money);
 
                         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(money));
                     }
 
 
-                    if (Main.getInstance().getConfig().getBoolean("MessageToChat.enableMessageToChat")) {
-                        String message = (ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("MessageToChat.message")).replaceAll("%money%", moneyIron));
+                    if (Main.getInstance().getConfig().getBoolean("MessageToChat.EnableMessageToChat")) {
+                        String message = (ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("MessageToChat.Message")).replaceAll("%money%", moneyIron));
                         message = PlaceholderAPI.setPlaceholders(e.getPlayer(), message);
 
                         player.sendMessage(message);
                     }
 
 
-                    if (Main.getInstance().getConfig().getBoolean("TitleOnPickup.enableTitles")) {
+                    if (Main.getInstance().getConfig().getBoolean("TitleOnPickup.EnableTitles")) {
                         String titleText = ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig()
-                                .getString("TitleOnPickup.title")).replaceAll("%money%", moneyIron);
+                                .getString("TitleOnPickup.Title")).replaceAll("%money%", moneyIron);
                         String subtitleText = ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig()
-                                .getString("TitleOnPickup.subtitle")).replaceAll("%money%", moneyIron);
+                                .getString("TitleOnPickup.Subtitle")).replaceAll("%money%", moneyIron);
 
                         titleText = PlaceholderAPI.setPlaceholders(e.getPlayer(), titleText);
                         subtitleText = PlaceholderAPI.setPlaceholders(e.getPlayer(), subtitleText);
 
                         player.sendTitle(titleText, subtitleText, Main.getInstance().getConfig()
-                                .getInt("TitleOnPickup.fadeIn"), Main.getInstance().getConfig()
-                                .getInt("TitleOnPickup.stay"), Main.getInstance().getConfig()
-                                .getInt("TitleOnPickup.fadeOut"));
+                                .getInt("TitleOnPickup.FadeIn"), Main.getInstance().getConfig()
+                                .getInt("TitleOnPickup.Stay"), Main.getInstance().getConfig()
+                                .getInt("TitleOnPickup.FadeOut"));
                     }
 
 
-                    if (Main.getInstance().getConfig().getBoolean("Settings.enableSoundPickup")) {
+                    if (Main.getInstance().getConfig().getBoolean("Settings.EnableSoundPickup")) {
                         player.playSound(player.getLocation(), Sound.valueOf(enableSound), 1.0F, 1.0F);
                     }
 
-                    if (Main.getInstance().getConfig().getBoolean("Mining.iron.particleBreak.enable")) {
+                    if (Main.getInstance().getConfig().getBoolean("Mining.IRON.ParticleBreak.enable")) {
                         Location blockLocation = e.getBlock().getLocation();
                         Location particleLocation = new Location(blockLocation.getWorld(), blockLocation.getBlockX() + 0.5, blockLocation.getBlockY() + 0.5, blockLocation.getBlockZ() + 0.5);
-                        blockLocation.getWorld().spawnParticle(Particle.valueOf(Main.getInstance().getConfig().getString("Mining.iron.particleBreak.particle")), particleLocation, 1);
+                        blockLocation.getWorld().spawnParticle(Particle.valueOf(Main.getInstance().getConfig().getString("Mining.IRON.ParticleBreak.particle")), particleLocation, 1);
                     }
 
-                    block.setType(Material.valueOf(Main.getInstance().getConfig().getString("Mining.iron.replaceBlock")));
-                    Bukkit.getServer().getScheduler().runTaskLater(Main.getInstance(), () -> block.setType(Material.IRON_ORE), Main.getInstance().getConfig().getInt("Mining.iron.delay") * 20L);
+                    block.setType(Material.valueOf(Main.getInstance().getConfig().getString("Mining.IRON.ReplaceBlock")));
+                    Bukkit.getServer().getScheduler().runTaskLater(Main.getInstance(), () -> block.setType(Material.IRON_ORE), Main.getInstance().getConfig().getInt("Mining.IRON.Delay") * 20L);
                 }
             }
 
 
 
-            if (Main.getInstance().getConfig().getBoolean("Mining.gold.enable")) {
+            if (Main.getInstance().getConfig().getBoolean("Mining.GOLD.Enable")) {
                 if (ore == Material.GOLD_ORE) {
                     e.setCancelled(true);
-                    e.setExpToDrop(Main.getInstance().getConfig().getInt("Mining.gold.expDrop"));
+                    e.setExpToDrop(Main.getInstance().getConfig().getInt("Mining.GOLD.ExpDrop"));
                     e.getPlayer().giveExp(e.getExpToDrop());
 
-                    if (Main.getInstance().getConfig().getBoolean("Settings.enableVault")) {
-                        Main.economy.depositPlayer(player, Main.getInstance().getConfig().getInt("Mining.gold.moneyDrop"));
+                    if (Main.getInstance().getConfig().getBoolean("Settings.EnableVault")) {
+                        Main.economy.depositPlayer(player, Main.getInstance().getConfig().getInt("Mining.GOLD.MoneyDrop"));
                     }
 
-                    if (Main.getInstance().getConfig().getBoolean("Mining.gold.commandBreak.enable")) {
-                        String cmd = Main.getInstance().getConfig().getString("Mining.gold.commandBreak.command").replaceAll("%player%", player.getName());
+                    if (Main.getInstance().getConfig().getBoolean("Mining.GOLD.CommandBreak.enable")) {
+                        String cmd = Main.getInstance().getConfig().getString("Mining.GOLD.CommandBreak.command").replaceAll("%player%", player.getName());
                         cmd = PlaceholderAPI.setPlaceholders(e.getPlayer(), cmd);
 
                         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd);
                     }
 
-                    if (Main.getInstance().getConfig().getBoolean("Mining.gold.enableDropBlock")) {
-                        block.getLocation().add(0.5D, 1.5D, 0.5D).getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.GOLD_ORE));
+
+                    if (Main.getInstance().getConfig().getBoolean("Mining.GOLD.Drop.Enable")) {
+                        block.getLocation().add(0.5D, 1.5D, 0.5D).getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.valueOf(Main.getInstance().getConfig().getString("Mining.GOLD.Drop.DropBlock"))));
+                    }
+                    if (Main.getInstance().getConfig().getBoolean("Mining.GOLD.AutoPickup.Enable")) {
+                        player.getInventory().addItem(new ItemStack(Material.valueOf(Main.getInstance().getConfig().getString("Mining.GOLD.AutoPickup.PickupBlock"))));
                     }
 
-                    if (Main.getInstance().getConfig().getBoolean("Actionbar.enableActionbar")) {
-                        String money = ChatColor.translateAlternateColorCodes('&', ((Main.getInstance().getConfig().getString("Actionbar.message"))).replaceAll("%money%", moneyGold));
+
+                    if (Main.getInstance().getConfig().getBoolean("Actionbar.EnableActionbar")) {
+                        String money = ChatColor.translateAlternateColorCodes('&', ((Main.getInstance().getConfig().getString("Actionbar.Message"))).replaceAll("%money%", moneyGold));
                         money = PlaceholderAPI.setPlaceholders(e.getPlayer(), money);
 
                         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(money));
                     }
 
 
-                    if (Main.getInstance().getConfig().getBoolean("MessageToChat.enableMessageToChat")) {
-                        String message =(ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("MessageToChat.message")).replaceAll("%money%", moneyGold));
+                    if (Main.getInstance().getConfig().getBoolean("MessageToChat.EnableMessageToChat")) {
+                        String message =(ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("MessageToChat.Message")).replaceAll("%money%", moneyGold));
                         message = PlaceholderAPI.setPlaceholders(e.getPlayer(), message);
 
                         player.sendMessage(message);
                     }
 
 
-                    if (Main.getInstance().getConfig().getBoolean("TitleOnPickup.enableTitles")) {
+                    if (Main.getInstance().getConfig().getBoolean("TitleOnPickup.EnableTitles")) {
                         String titleText = ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig()
-                                .getString("TitleOnPickup.title")).replaceAll("%money%", moneyGold);
+                                .getString("TitleOnPickup.Title")).replaceAll("%money%", moneyGold);
                         String subtitleText = ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig()
-                                .getString("TitleOnPickup.subtitle")).replaceAll("%money%", moneyGold);
+                                .getString("TitleOnPickup.Subtitle")).replaceAll("%money%", moneyGold);
 
                         titleText = PlaceholderAPI.setPlaceholders(e.getPlayer(), titleText);
                         subtitleText = PlaceholderAPI.setPlaceholders(e.getPlayer(), subtitleText);
 
                         player.sendTitle(titleText, subtitleText, Main.getInstance().getConfig()
-                                .getInt("TitleOnPickup.fadeIn"), Main.getInstance().getConfig()
-                                .getInt("TitleOnPickup.stay"), Main.getInstance().getConfig()
-                                .getInt("TitleOnPickup.fadeOut"));
+                                .getInt("TitleOnPickup.FadeIn"), Main.getInstance().getConfig()
+                                .getInt("TitleOnPickup.Stay"), Main.getInstance().getConfig()
+                                .getInt("TitleOnPickup.FadeOut"));
                     }
 
 
-                    if (Main.getInstance().getConfig().getBoolean("Settings.enableSoundPickup")) {
+                    if (Main.getInstance().getConfig().getBoolean("Settings.EnableSoundPickup")) {
                         player.playSound(player.getLocation(), Sound.valueOf(enableSound), 1.0F, 1.0F);
                     }
 
-                    if (Main.getInstance().getConfig().getBoolean("Mining.gold.particleBreak.enable")) {
+                    if (Main.getInstance().getConfig().getBoolean("Mining.GOLD.ParticleBreak.enable")) {
                         Location blockLocation = e.getBlock().getLocation();
                         Location particleLocation = new Location(blockLocation.getWorld(), blockLocation.getBlockX() + 0.5, blockLocation.getBlockY() + 0.5, blockLocation.getBlockZ() + 0.5);
-                        blockLocation.getWorld().spawnParticle(Particle.valueOf(Main.getInstance().getConfig().getString("Mining.gold.particleBreak.particle")), particleLocation, 1);
+                        blockLocation.getWorld().spawnParticle(Particle.valueOf(Main.getInstance().getConfig().getString("Mining.GOLD.ParticleBreak.particle")), particleLocation, 1);
                     }
 
-                    block.setType(Material.valueOf(Main.getInstance().getConfig().getString("Mining.gold.replaceBlock")));
-                    Bukkit.getServer().getScheduler().runTaskLater(Main.getInstance(), () -> block.setType(Material.GOLD_ORE), Main.getInstance().getConfig().getInt("Mining.gold.delay") * 20L);
+                    block.setType(Material.valueOf(Main.getInstance().getConfig().getString("Mining.GOLD.ReplaceBlock")));
+                    Bukkit.getServer().getScheduler().runTaskLater(Main.getInstance(), () -> block.setType(Material.GOLD_ORE), Main.getInstance().getConfig().getInt("Mining.GOLD.Delay") * 20L);
                 }
             }
 
 
 
-            if (Main.getInstance().getConfig().getBoolean("Mining.diamond.enable")) {
+            if (Main.getInstance().getConfig().getBoolean("Mining.DIAMOND.Enable")) {
                 if (ore == Material.DIAMOND_ORE) {
                     e.setCancelled(true);
-                    e.setExpToDrop(Main.getInstance().getConfig().getInt("Mining.diamond.expDrop"));
+                    e.setExpToDrop(Main.getInstance().getConfig().getInt("Mining.DIAMOND.ExpDrop"));
                     e.getPlayer().giveExp(e.getExpToDrop());
 
-                    if (Main.getInstance().getConfig().getBoolean("Settings.enableVault")) {
-                        Main.economy.depositPlayer(player, Main.getInstance().getConfig().getInt("Mining.diamond.moneyDrop"));
+                    if (Main.getInstance().getConfig().getBoolean("Settings.EnableVault")) {
+                        Main.economy.depositPlayer(player, Main.getInstance().getConfig().getInt("Mining.DIAMOND.MoneyDrop"));
                     }
 
-                    if (Main.getInstance().getConfig().getBoolean("Mining.diamond.commandBreak.enable")) {
-                        String cmd = Main.getInstance().getConfig().getString("Mining.diamond.commandBreak.command").replaceAll("%player%", player.getName());
+                    if (Main.getInstance().getConfig().getBoolean("Mining.DIAMOND.CommandBreak.enable")) {
+                        String cmd = Main.getInstance().getConfig().getString("Mining.DIAMOND.CommandBreak.command").replaceAll("%player%", player.getName());
                         cmd = PlaceholderAPI.setPlaceholders(e.getPlayer(), cmd);
 
                         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd);
                     }
 
 
-                    if (Main.getInstance().getConfig().getBoolean("Mining.coal.enableDropBlock")) {
-                        block.getLocation().add(0.5D, 1.5D, 0.5D).getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.DIAMOND));
+                    if (Main.getInstance().getConfig().getBoolean("Mining.DIAMOND.Drop.Enable")) {
+                        block.getLocation().add(0.5D, 1.5D, 0.5D).getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.valueOf(Main.getInstance().getConfig().getString("Mining.DIAMOND.Drop.DropBlock"))));
+                    }
+                    if (Main.getInstance().getConfig().getBoolean("Mining.DIAMOND.AutoPickup.Enable")) {
+                        player.getInventory().addItem(new ItemStack(Material.valueOf(Main.getInstance().getConfig().getString("Mining.DIAMOND.AutoPickup.PickupBlock"))));
                     }
 
 
-                    if (Main.getInstance().getConfig().getBoolean("Actionbar.enableActionbar")) {
-                        String money = ChatColor.translateAlternateColorCodes('&', ((Main.getInstance().getConfig().getString("Actionbar.message"))).replaceAll("%money%", moneyDiamond));
+                    if (Main.getInstance().getConfig().getBoolean("Actionbar.EnableActionbar")) {
+                        String money = ChatColor.translateAlternateColorCodes('&', ((Main.getInstance().getConfig().getString("Actionbar.Message"))).replaceAll("%money%", moneyDiamond));
                         money = PlaceholderAPI.setPlaceholders(e.getPlayer(), money);
 
                         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(money));
                     }
 
 
-                    if (Main.getInstance().getConfig().getBoolean("MessageToChat.enableMessageToChat")) {
-                        String message =(ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("MessageToChat.message")).replaceAll("%money%", moneyDiamond));
+                    if (Main.getInstance().getConfig().getBoolean("MessageToChat.EnableMessageToChat")) {
+                        String message =(ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("MessageToChat.Message")).replaceAll("%money%", moneyDiamond));
                         message = PlaceholderAPI.setPlaceholders(e.getPlayer(), message);
 
                         player.sendMessage(message);
                     }
 
 
-                    if (Main.getInstance().getConfig().getBoolean("TitleOnPickup.enableTitles")) {
+                    if (Main.getInstance().getConfig().getBoolean("TitleOnPickup.EnableTitles")) {
                         String titleText = ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig()
-                                .getString("TitleOnPickup.title")).replaceAll("%money%", moneyDiamond);
+                                .getString("TitleOnPickup.Title")).replaceAll("%money%", moneyDiamond);
                         String subtitleText = ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig()
-                                .getString("TitleOnPickup.subtitle")).replaceAll("%money%", moneyDiamond);
+                                .getString("TitleOnPickup.Subtitle")).replaceAll("%money%", moneyDiamond);
 
                         titleText = PlaceholderAPI.setPlaceholders(e.getPlayer(), titleText);
                         subtitleText = PlaceholderAPI.setPlaceholders(e.getPlayer(), subtitleText);
 
                         player.sendTitle(titleText, subtitleText, Main.getInstance().getConfig()
-                                .getInt("TitleOnPickup.fadeIn"), Main.getInstance().getConfig()
-                                .getInt("TitleOnPickup.stay"), Main.getInstance().getConfig()
-                                .getInt("TitleOnPickup.fadeOut"));
+                                .getInt("TitleOnPickup.FadeIn"), Main.getInstance().getConfig()
+                                .getInt("TitleOnPickup.Stay"), Main.getInstance().getConfig()
+                                .getInt("TitleOnPickup.FadeOut"));
                     }
 
 
-                    if (Main.getInstance().getConfig().getBoolean("Settings.enableSoundPickup")) {
+                    if (Main.getInstance().getConfig().getBoolean("Settings.EnableSoundPickup")) {
                         player.playSound(player.getLocation(), Sound.valueOf(enableSound), 1.0F, 1.0F);
                     }
 
-                    if (Main.getInstance().getConfig().getBoolean("Mining.diamond.particleBreak.enable")) {
+                    if (Main.getInstance().getConfig().getBoolean("Mining.DIAMOND.ParticleBreak.enable")) {
                         Location blockLocation = e.getBlock().getLocation();
                         Location particleLocation = new Location(blockLocation.getWorld(), blockLocation.getBlockX() + 0.5, blockLocation.getBlockY() + 0.5, blockLocation.getBlockZ() + 0.5);
-                        blockLocation.getWorld().spawnParticle(Particle.valueOf(Main.getInstance().getConfig().getString("Mining.diamond.particleBreak.particle")), particleLocation, 1);
+                        blockLocation.getWorld().spawnParticle(Particle.valueOf(Main.getInstance().getConfig().getString("Mining.DIAMOND.ParticleBreak.particle")), particleLocation, 1);
                     }
 
-                    block.setType(Material.valueOf(Main.getInstance().getConfig().getString("Mining.diamond.replaceBlock")));
-                    Bukkit.getServer().getScheduler().runTaskLater(Main.getInstance(), () -> block.setType(Material.DIAMOND_ORE), Main.getInstance().getConfig().getInt("Mining.diamond.delay") * 20L);
+                    block.setType(Material.valueOf(Main.getInstance().getConfig().getString("Mining.DIAMOND.ReplaceBlock")));
+                    Bukkit.getServer().getScheduler().runTaskLater(Main.getInstance(), () -> block.setType(Material.DIAMOND_ORE), Main.getInstance().getConfig().getInt("Mining.DIAMOND.Delay") * 20L);
                 }
             }
 
 
 
-            if (Main.getInstance().getConfig().getBoolean("Mining.emerald.enable")) {
+            if (Main.getInstance().getConfig().getBoolean("Mining.EMERALD.Enable")) {
                 if (ore == Material.EMERALD_ORE) {
                     e.setCancelled(true);
-                    e.setExpToDrop(Main.getInstance().getConfig().getInt("Mining.emerald.expDrop"));
+                    e.setExpToDrop(Main.getInstance().getConfig().getInt("Mining.EMERALD.ExpDrop"));
                     e.getPlayer().giveExp(e.getExpToDrop());
 
-                    if (Main.getInstance().getConfig().getBoolean("Settings.enableVault")) {
-                        Main.economy.depositPlayer(player, Main.getInstance().getConfig().getInt("Mining.emerald.moneyDrop"));
+                    if (Main.getInstance().getConfig().getBoolean("Settings.EnableVault")) {
+                        Main.economy.depositPlayer(player, Main.getInstance().getConfig().getInt("Mining.EMERALD.MoneyDrop"));
                     }
 
-                    if (Main.getInstance().getConfig().getBoolean("Mining.emerald.commandBreak.enable")) {
-                        String cmd = Main.getInstance().getConfig().getString("Mining.emerald.commandBreak.command").replaceAll("%player%", player.getName());
+                    if (Main.getInstance().getConfig().getBoolean("Mining.EMERALD.CommandBreak.enable")) {
+                        String cmd = Main.getInstance().getConfig().getString("Mining.EMERALD.CommandBreak.command").replaceAll("%player%", player.getName());
                         cmd = PlaceholderAPI.setPlaceholders(e.getPlayer(), cmd);
 
                         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd);
                     }
 
 
-                    if (Main.getInstance().getConfig().getBoolean("Mining.coal.enableDropBlock")) {
-                        block.getLocation().add(0.5D, 1.5D, 0.5D).getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.EMERALD));
+                    if (Main.getInstance().getConfig().getBoolean("Mining.EMERALD.Drop.Enable")) {
+                        block.getLocation().add(0.5D, 1.5D, 0.5D).getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.valueOf(Main.getInstance().getConfig().getString("Mining.EMERALD.Drop.DropBlock"))));
+                    }
+                    if (Main.getInstance().getConfig().getBoolean("Mining.EMERALD.AutoPickup.Enable")) {
+                        player.getInventory().addItem(new ItemStack(Material.valueOf(Main.getInstance().getConfig().getString("Mining.EMERALD.AutoPickup.PickupBlock"))));
                     }
 
 
-                    if (Main.getInstance().getConfig().getBoolean("Actionbar.enableActionbar")) {
-                        String money = ChatColor.translateAlternateColorCodes('&', ((Main.getInstance().getConfig().getString("Actionbar.message"))).replaceAll("%money%", moneyEmerald));
+                    if (Main.getInstance().getConfig().getBoolean("Actionbar.EnableActionbar")) {
+                        String money = ChatColor.translateAlternateColorCodes('&', ((Main.getInstance().getConfig().getString("Actionbar.Message"))).replaceAll("%money%", moneyEmerald));
                         money = PlaceholderAPI.setPlaceholders(e.getPlayer(), money);
 
                         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(money));
                     }
 
 
-                    if (Main.getInstance().getConfig().getBoolean("MessageToChat.enableMessageToChat")) {
-                        String message = (ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("MessageToChat.message")).replaceAll("%money%", moneyEmerald));
+                    if (Main.getInstance().getConfig().getBoolean("MessageToChat.EnableMessageToChat")) {
+                        String message = (ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("MessageToChat.Message")).replaceAll("%money%", moneyEmerald));
                         message = PlaceholderAPI.setPlaceholders(e.getPlayer(), message);
 
                         player.sendMessage(message);
                     }
 
 
-                    if (Main.getInstance().getConfig().getBoolean("TitleOnPickup.enableTitles")) {
+                    if (Main.getInstance().getConfig().getBoolean("TitleOnPickup.EnableTitles")) {
                         String titleText = ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig()
-                                .getString("TitleOnPickup.title")).replaceAll("%money%", moneyEmerald);
+                                .getString("TitleOnPickup.Title")).replaceAll("%money%", moneyEmerald);
                         String subtitleText = ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig()
-                                .getString("TitleOnPickup.subtitle")).replaceAll("%money%", moneyEmerald);
+                                .getString("TitleOnPickup.Subtitle")).replaceAll("%money%", moneyEmerald);
 
                         titleText = PlaceholderAPI.setPlaceholders(e.getPlayer(), titleText);
                         subtitleText = PlaceholderAPI.setPlaceholders(e.getPlayer(), subtitleText);
 
                         player.sendTitle(titleText, subtitleText, Main.getInstance().getConfig()
-                                .getInt("TitleOnPickup.fadeIn"), Main.getInstance().getConfig()
-                                .getInt("TitleOnPickup.stay"), Main.getInstance().getConfig()
-                                .getInt("TitleOnPickup.fadeOut"));
+                                .getInt("TitleOnPickup.FadeIn"), Main.getInstance().getConfig()
+                                .getInt("TitleOnPickup.Stay"), Main.getInstance().getConfig()
+                                .getInt("TitleOnPickup.FadeOut"));
                     }
 
 
-                    if (Main.getInstance().getConfig().getBoolean("Settings.enableSoundPickup")) {
+                    if (Main.getInstance().getConfig().getBoolean("Settings.EnableSoundPickup")) {
                         player.playSound(player.getLocation(), Sound.valueOf(enableSound), 1.0F, 1.0F);
                     }
 
-                    if (Main.getInstance().getConfig().getBoolean("Mining.emerald.particleBreak.enable")) {
+                    if (Main.getInstance().getConfig().getBoolean("Mining.EMERALD.ParticleBreak.enable")) {
                         Location blockLocation = e.getBlock().getLocation();
                         Location particleLocation = new Location(blockLocation.getWorld(), blockLocation.getBlockX() + 0.5, blockLocation.getBlockY() + 0.5, blockLocation.getBlockZ() + 0.5);
-                        blockLocation.getWorld().spawnParticle(Particle.valueOf(Main.getInstance().getConfig().getString("Mining.emerald.particleBreak.particle")), particleLocation, 1);
+                        blockLocation.getWorld().spawnParticle(Particle.valueOf(Main.getInstance().getConfig().getString("Mining.EMERALD.ParticleBreak.particle")), particleLocation, 1);
                     }
 
-                    block.setType(Material.valueOf(Main.getInstance().getConfig().getString("Mining.emerald.replaceBlock")));
-                    Bukkit.getServer().getScheduler().runTaskLater(Main.getInstance(), () -> block.setType(Material.EMERALD_ORE), Main.getInstance().getConfig().getInt("Mining.emerald.delay") * 20L);
+                    block.setType(Material.valueOf(Main.getInstance().getConfig().getString("Mining.EMERALD.ReplaceBlock")));
+                    Bukkit.getServer().getScheduler().runTaskLater(Main.getInstance(), () -> block.setType(Material.EMERALD_ORE), Main.getInstance().getConfig().getInt("Mining.EMERALD.Delay") * 20L);
                 }
             }
         }

@@ -2,100 +2,130 @@
 # Свои placeholder-ы - %money% и %player%.
 
 Settings:
-  enableSoundPickup: true # Производится звук сломанной руды.
-  soundPickup: ENTITY_EXPERIENCE_ORB_PICKUP # Сам звук https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
-  enableVault: true # Если багает. То можете включить или отключить Vault.
-  enableWorld: # Разрешённые миры - в которых будет работать шахта.
-    - world
-    - miner
+  EnableSoundPickup: true # Производится звук сломанной руды.
+  SoundPickup: ENTITY_EXPERIENCE_ORB_PICKUP # Сам звук https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+  EnableVault: true # Если проблемы, то можете отключить Vault.
+  EnableWorld: # Разрешённые миры - в которых будет работать шахта.
+  - world
+  - miner
 
 # Сообщение в экран (Титл).
 TitleOnPickup:
-  enableTitles: false
-  title: '&aУспешно'
-  subtitle: '&fВы заработали &e+%money%$'
-  fadeIn: 10
-  stay: 20
-  fadeOut: 10
+  EnableTitles: false
+  Title: '&aУспешно'
+  Subtitle: '&fВы заработали &e+%money%$'
+  FadeIn: 10
+  Stay: 20
+  FadeOut: 10
 
 # Сообщение снизу (Нижний бар).
 Actionbar:
-  enableActionbar: true
-  message: '&e+%money%$ монеты'
+  EnableActionbar: true
+  Message: '&e+%money%$ монеты'
 
 # Сообщение в чате.
 MessageToChat:
-  enableMessageToChat: false
-  message: '&a(!) &fВы заработали с этого блока &e+%money%$'
+  EnableMessageToChat: false
+  Message: '&a(!) &fВы заработали с этого блока &e+%money%$'
 
 Mining:
-  coal:
-    enable: true
-    enableDropBlock: true # Включить или отключить выпадение дропа. Если отключено, то выпадение дропа так же не будет работать с enableSilkTouch.
-    delay: 5 # Задержка респавна руды.
-    moneyDrop: 2 # После добычи блока, игрок получит денги на свой баланс | 0 - отключить.
-    expDrop: 2 # После добычи блока, игрок получит опыт | 0 - отключить.
-    replaceBlock: BEDROCK # Блок, который будет появляться после добычи этой руды. А после него AIR.
-    particleBreak: # Воспроизводится частица, когда блок сломан https://helpch.at/docs/1.12.2/org/bukkit/Particle.html
+  COAL:
+    Enable: true
+    Delay: 5 # Задержка респавна руды.
+    MoneyDrop: 2 # После добычи блока, игрок получит денги на свой баланс | 0 - отключить.
+    ExpDrop: 2 # После добычи блока, игрок получит опыт | 0 - отключить.
+    ReplaceBlock: BEDROCK # Блок, который будет появляться после добычи этой руды. А после него AIR.
+    Drop:
+      Enable: true # Включить или отключить выпадение дропа.
+      DropBlock: COAL
+    AutoPickup:
+      Enable: false # Включить или отключить авто подбор дропа на инвентарь игрока.
+      PickupBlock: COAL
+    ParticleBreak: # Воспроизводится частица, когда блок сломан https://helpch.at/docs/1.12.2/org/bukkit/Particle.html
       enable: false
       particle: HEART
-    commandBreak:
+    CommandBreak:
       enable: false
       # Placeholder, чтобы указать ник игрока - %player%
       command: 'tell %player% Привет, меня зовут Coal!'
-  iron:
-    enable: true
-    enableDropBlock: true
-    delay: 7
-    moneyDrop: 5
-    expDrop: 5
-    replaceBlock: BEDROCK
-    particleBreak:
+
+  IRON:
+    Enable: true
+    Delay: 7
+    MoneyDrop: 5
+    ExpDrop: 5
+    ReplaceBlock: BEDROCK
+    Drop:
+      Enable: true
+      DropBlock: IRON_ORE
+    AutoPickup:
+      Enable: false
+      PickupBlock: IRON_ORE
+    ParticleBreak:
       enable: false
       particle: HEART
-    commandBreak:
+    CommandBreak:
       enable: false
       command: 'tell %player% Привет, меня зовут Iron!'
-  gold:
-    enable: true
-    enableDropBlock: true
-    delay: 9
-    moneyDrop: 8
-    expDrop: 9
-    replaceBlock: BEDROCK
-    particleBreak:
+
+  GOLD:
+    Enable: true
+    Delay: 9
+    MoneyDrop: 8
+    ExpDrop: 9
+    ReplaceBlock: BEDROCK
+    Drop:
+      Enable: true
+      DropBlock: GOLD_ORE
+    AutoPickup:
+      Enable: false
+      PickupBlock: GOLD_ORE
+    ParticleBreak:
       enable: false
       particle: HEART
-    commandBreak:
+    CommandBreak:
       enable: false
       command: 'tell %player% Привет, меня зовут Gold!'
-  diamond:
-    enable: true
-    enableDropBlock: true
-    delay: 12
-    moneyDrop: 10
-    expDrop: 15
-    replaceBlock: BEDROCK
-    particleBreak:
+
+  DIAMOND:
+    Enable: true
+    Delay: 12
+    MoneyDrop: 10
+    ExpDrop: 15
+    ReplaceBlock: BEDROCK
+    Drop:
+      Enable: true
+      DropBlock: DIAMOND
+    AutoPickup:
+      Enable: false
+      PickupBlock: DIAMOND
+    ParticleBreak:
       enable: false
       particle: HEART
-    commandBreak:
+    CommandBreak:
       enable: false
       command: 'tell %player% Привет, меня зовут Diamond!'
-  emerald:
-    enable: true
-    enableDropBlock: true
-    delay: 15
-    moneyDrop: 15
-    expDrop: 25
-    replaceBlock: BEDROCK
-    particleBreak:
+
+  EMERALD:
+    Enable: true
+    Delay: 15
+    MoneyDrop: 15
+    ExpDrop: 25
+    ReplaceBlock: BEDROCK
+    Drop:
+      Enable: true
+      DropBlock: EMERALD
+    AutoPickup:
+      Enable: false
+      PickupBlock: EMERALD
+    ParticleBreak:
       enable: false
       particle: HEART
-    commandBreak:
+    CommandBreak:
       enable: false
       command: 'tell %player% Привет, меня зовут Emerald!'
 
 Messages:
-  reload: '&aПлагин успешно перезагружен!'
-  noPerm: '&cУ вас нет прав!'
+  Reload: '&a✔ Плагин успешно перезагружен!'
+  CommandOnlyServer: '&c✖ Команда доступна только в игре!'
+  NoPerm: '&c✖ У вас нет прав!'
