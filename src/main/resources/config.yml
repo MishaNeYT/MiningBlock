@@ -2,12 +2,16 @@
 # Свои placeholder-ы - %money% и %player%.
 
 Settings:
-  EnableSoundPickup: true # Производится звук сломанной руды.
-  SoundPickup: ENTITY_EXPERIENCE_ORB_PICKUP # Сам звук https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
   EnableVault: true # Если проблемы, то можете отключить Vault.
+  EnableEditOre: true
+  Permission: miningblock.admin
   EnableWorld: # Разрешённые миры - в которых будет работать шахта.
   - world
   - miner
+
+Sound:
+  EnableSoundPickup: true # Производится звук сломанной руды.
+  SoundPickup: ENTITY_EXPERIENCE_ORB_PICKUP # Сам звук https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
 
 # Сообщение в экран (Титл).
 TitleOnPickup:
@@ -26,7 +30,8 @@ Actionbar:
 # Сообщение в чате.
 MessageToChat:
   EnableMessageToChat: false
-  Message: '&a(!) &fВы заработали с этого блока &e+%money%$'
+  Message:
+  - '&a(!) &fВы заработали с этого блока &e+%money%$'
 
 Mining:
   COAL:
@@ -38,16 +43,25 @@ Mining:
     Drop:
       Enable: true # Включить или отключить выпадение дропа.
       DropBlock: COAL
+      Amount: 1
     AutoPickup:
       Enable: false # Включить или отключить авто подбор дропа на инвентарь игрока.
       PickupBlock: COAL
+      Amount: 1
     ParticleBreak: # Воспроизводится частица, когда блок сломан https://helpch.at/docs/1.12.2/org/bukkit/Particle.html
       enable: false
       particle: HEART
+      Locations:
+        amount: 10
+        locationX: 1
+        locationY: 1
+        locationZ: 1
     CommandBreak:
       enable: false
       # Placeholder, чтобы указать ник игрока - %player%
-      command: 'tell %player% Привет, меня зовут Coal!'
+      command:
+      - 'tell %player% Привет, меня зовут Coal!'
+      - 'tell %player% Привет ещё раз, меня зовут Coal!'
 
   IRON:
     Enable: true
@@ -58,15 +72,24 @@ Mining:
     Drop:
       Enable: true
       DropBlock: IRON_ORE
+      Amount: 1
     AutoPickup:
       Enable: false
       PickupBlock: IRON_ORE
+      Amount: 1
     ParticleBreak:
       enable: false
       particle: HEART
+      Locations:
+        amount: 10
+        locationX: 1
+        locationY: 1
+        locationZ: 1
     CommandBreak:
       enable: false
-      command: 'tell %player% Привет, меня зовут Iron!'
+      command:
+      - 'tell %player% Привет, меня зовут Iron!'
+      - 'tell %player% Привет ещё раз, меня зовут iron!'
 
   GOLD:
     Enable: true
@@ -77,15 +100,24 @@ Mining:
     Drop:
       Enable: true
       DropBlock: GOLD_ORE
+      Amount: 1
     AutoPickup:
       Enable: false
       PickupBlock: GOLD_ORE
+      Amount: 1
     ParticleBreak:
       enable: false
       particle: HEART
+      Locations:
+        amount: 10
+        locationX: 1
+        locationY: 1
+        locationZ: 1
     CommandBreak:
       enable: false
-      command: 'tell %player% Привет, меня зовут Gold!'
+      command:
+      - 'tell %player% Привет, меня зовут Gold!'
+      - 'tell %player% Привет ещё раз, меня зовут Gold!'
 
   DIAMOND:
     Enable: true
@@ -96,15 +128,24 @@ Mining:
     Drop:
       Enable: true
       DropBlock: DIAMOND
+      Amount: 1
     AutoPickup:
       Enable: false
       PickupBlock: DIAMOND
+      Amount: 1
     ParticleBreak:
       enable: false
       particle: HEART
+      Locations:
+        amount: 10
+        locationX: 1
+        locationY: 1
+        locationZ: 1
     CommandBreak:
       enable: false
-      command: 'tell %player% Привет, меня зовут Diamond!'
+      command:
+      - 'tell %player% Привет, меня зовут Diamond!'
+      - 'tell %player% Привет ещё раз, меня зовут Diamond!'
 
   EMERALD:
     Enable: true
@@ -115,17 +156,36 @@ Mining:
     Drop:
       Enable: true
       DropBlock: EMERALD
+      Amount: 1
     AutoPickup:
       Enable: false
       PickupBlock: EMERALD
+      Amount: 1
     ParticleBreak:
       enable: false
       particle: HEART
+      Locations:
+        amount: 10
+        locationX: 1
+        locationY: 1
+        locationZ: 1
     CommandBreak:
       enable: false
-      command: 'tell %player% Привет, меня зовут Emerald!'
+      command:
+      - 'tell %player% Привет, меня зовут Emerald!'
+      - 'tell %player% Привет ещё раз, меня зовут Emerald!'
 
 Messages:
   Reload: '&a✔ Плагин успешно перезагружен!'
-  CommandOnlyServer: '&c✖ Команда доступна только в игре!'
   NoPerm: '&c✖ У вас нет прав!'
+  CommandOnlyServer: '&c✖ Команда доступна только в игре!'
+  UseCommand:
+    - ''
+    - '&6--------------------------------------------------'
+    - '&f Создатель плагина: &7GhostSetuper'
+    - '&f Версия плагина: &a%version%'
+    - ''
+    - '&8 ▸ &e/miningblock menu &f- открыть GUI;'
+    - '&8 ▸ &e/miningblock reload &f- перезагрузить плагин.'
+    - '&6--------------------------------------------------'
+    - ''

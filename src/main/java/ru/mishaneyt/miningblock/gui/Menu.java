@@ -13,6 +13,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import ru.mishaneyt.miningblock.Main;
+import ru.mishaneyt.miningblock.Utils;
 
 import java.util.ArrayList;
 
@@ -27,26 +28,26 @@ public class Menu implements Listener {
                 enableEmeraldCMD, enableEmeraldDrop, enableVault, enableMusic, enableTitle, enableActionbar,
                 enableChat, enableParticleCoal, enableParticleIron, enableParticleGold, enableParticleDiamond,
                 enableParticleEmerald, enableCoalAutoPickup, enableIronAutoPickup, enableGoldAutoPickup,
-                enableDiamondAutoPickup, enableEmeraldAutoPickup;
+                enableDiamondAutoPickup, enableEmeraldAutoPickup, enableEditOre;
 
-        if (Main.getInstance().getConfig().getBoolean("Mining.COAL.Enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.COAL.Enable"))) {
             enableCoal = "§8[§a✔§8]§7";
         } else {
             enableCoal = "§8[§c✖§8]§7";
         }
 
-        if (Main.getInstance().getConfig().getBoolean("Mining.COAL.CommandBreak.enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.COAL.CommandBreak.enable"))) {
             enableCoalCMD = "§a✔";
         } else {
             enableCoalCMD = "§c✖";
         }
 
-        if (Main.getInstance().getConfig().getBoolean("Mining.COAL.Drop.Enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.COAL.Drop.Enable"))) {
             enableCoalDrop = "§a✔";
         } else {
             enableCoalDrop = "§c✖";
         }
-        if (Main.getInstance().getConfig().getBoolean("Mining.COAL.AutoPickup.Enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.COAL.AutoPickup.Enable"))) {
             enableCoalAutoPickup = "§a✔";
         } else {
             enableCoalAutoPickup = "§c✖";
@@ -54,24 +55,24 @@ public class Menu implements Listener {
 
 
 
-        if (Main.getInstance().getConfig().getBoolean("Mining.IRON.Enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.IRON.Enable"))) {
             enableIron = "§8[§a✔§8]§f";
         } else {
             enableIron = "§8[§c✖§8]§f";
         }
 
-        if (Main.getInstance().getConfig().getBoolean("Mining.IRON.CommandBreak.enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.IRON.CommandBreak.enable"))) {
             enableIronCMD = "§a✔";
         } else {
             enableIronCMD = "§c✖";
         }
 
-        if (Main.getInstance().getConfig().getBoolean("Mining.IRON.Drop.Enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.IRON.Drop.Enable"))) {
             enableIronDrop = "§a✔";
         } else {
             enableIronDrop = "§c✖";
         }
-        if (Main.getInstance().getConfig().getBoolean("Mining.IRON.AutoPickup.Enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.IRON.AutoPickup.Enable"))) {
             enableIronAutoPickup = "§a✔";
         } else {
             enableIronAutoPickup = "§c✖";
@@ -79,24 +80,24 @@ public class Menu implements Listener {
 
 
 
-        if (Main.getInstance().getConfig().getBoolean("Mining.GOLD.Enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.GOLD.Enable"))) {
             enableGold = "§8[§a✔§8]§e";
         } else {
             enableGold = "§8[§c✖§8]§e";
         }
 
-        if (Main.getInstance().getConfig().getBoolean("Mining.GOLD.CommandBreak.enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.GOLD.CommandBreak.enable"))) {
             enableGoldCMD = "§a✔";
         } else {
             enableGoldCMD = "§c✖";
         }
 
-        if (Main.getInstance().getConfig().getBoolean("Mining.GOLD.Drop.Enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.GOLD.Drop.Enable"))) {
             enableGoldDrop = "§a✔";
         } else {
             enableGoldDrop = "§c✖";
         }
-        if (Main.getInstance().getConfig().getBoolean("Mining.GOLD.AutoPickup.Enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.GOLD.AutoPickup.Enable"))) {
             enableGoldAutoPickup = "§a✔";
         } else {
             enableGoldAutoPickup = "§c✖";
@@ -104,24 +105,24 @@ public class Menu implements Listener {
 
 
 
-        if (Main.getInstance().getConfig().getBoolean("Mining.DIAMOND.Enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.DIAMOND.Enable"))) {
             enableDiamond = "§8[§a✔§8]§b";
         } else {
             enableDiamond = "§8[§c✖§8]§b";
         }
 
-        if (Main.getInstance().getConfig().getBoolean("Mining.DIAMOND.CommandBreak.enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.DIAMOND.CommandBreak.enable"))) {
             enableDiamondCMD = "§a✔";
         } else {
             enableDiamondCMD = "§c✖";
         }
 
-        if (Main.getInstance().getConfig().getBoolean("Mining.DIAMOND.Drop.Enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.DIAMOND.Drop.Enable"))) {
             enableDiamondDrop = "§a✔";
         } else {
             enableDiamondDrop = "§c✖";
         }
-        if (Main.getInstance().getConfig().getBoolean("Mining.DIAMOND.AutoPickup.Enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.DIAMOND.AutoPickup.Enable"))) {
             enableDiamondAutoPickup = "§a✔";
         } else {
             enableDiamondAutoPickup = "§c✖";
@@ -129,24 +130,24 @@ public class Menu implements Listener {
 
 
 
-        if (Main.getInstance().getConfig().getBoolean("Mining.DIAMOND.Enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.DIAMOND.Enable"))) {
             enableEmerald = "§8[§a✔§8]§a";
         } else {
             enableEmerald = "§8[§c✖§8]§a";
         }
 
-        if (Main.getInstance().getConfig().getBoolean("Mining.DIAMOND.CommandBreak.enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.DIAMOND.CommandBreak.enable"))) {
             enableEmeraldCMD = "§a✔";
         } else {
             enableEmeraldCMD = "§c✖";
         }
 
-        if (Main.getInstance().getConfig().getBoolean("Mining.EMERALD.Drop.Enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.EMERALD.Drop.Enable"))) {
             enableEmeraldDrop = "§a✔";
         } else {
             enableEmeraldDrop = "§c✖";
         }
-        if (Main.getInstance().getConfig().getBoolean("Mining.EMERALD.AutoPickup.Enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.EMERALD.AutoPickup.Enable"))) {
             enableEmeraldAutoPickup = "§a✔";
         } else {
             enableEmeraldAutoPickup = "§c✖";
@@ -154,62 +155,68 @@ public class Menu implements Listener {
 
 
 
-        if (Main.getInstance().getConfig().getBoolean("Settings.EnableVault")) {
+        if (Utils.getBoolean(Boolean.valueOf("Settings.EnableVault"))) {
             enableVault = "§8[§a✔§8]§6";
         } else {
             enableVault = "§8[§c✖§8]§6";
         }
 
-        if (Main.getInstance().getConfig().getBoolean("Settings.EnableSoundPickup")) {
+        if (Utils.getBoolean(Boolean.valueOf("Sound.EnableSoundPickup"))) {
             enableMusic = "§8[§a✔§8]§9";
         } else {
             enableMusic = "§8[§c✖§8]§9";
         }
 
-        if (Main.getInstance().getConfig().getBoolean("TitleOnPickup.EnableTitles")) {
+        if (Utils.getBoolean(Boolean.valueOf("Settings.EnableEditOre"))) {
+            enableEditOre = "§8[§a✔§8]§c";
+        } else {
+            enableEditOre = "§8[§c✖§8]§c";
+        }
+
+        if (Utils.getBoolean(Boolean.valueOf("TitleOnPickup.EnableTitles"))) {
             enableTitle = "§8[§a✔§8]§a";
         } else {
             enableTitle = "§8[§c✖§8]§a";
         }
 
-        if (Main.getInstance().getConfig().getBoolean("Actionbar.EnableActionbar")) {
+        if (Utils.getBoolean(Boolean.valueOf("Actionbar.EnableActionbar"))) {
             enableActionbar = "§8[§a✔§8]§a";
         } else {
             enableActionbar = "§8[§c✖§8]§a";
         }
 
-        if (Main.getInstance().getConfig().getBoolean("MessageToChat.EnableMessageToChat")) {
+        if (Utils.getBoolean(Boolean.valueOf("MessageToChat.EnableMessageToChat"))) {
             enableChat = "§8[§a✔§8]§a";
         } else {
             enableChat = "§8[§c✖§8]§a";
         }
 
 
-        if (Main.getInstance().getConfig().getBoolean("Mining.COAL.ParticleBreak.enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.COAL.ParticleBreak.enable"))) {
             enableParticleCoal = "§a✔";
         } else {
             enableParticleCoal = "§c✖";
         }
 
-        if (Main.getInstance().getConfig().getBoolean("Mining.IRON.ParticleBreak.enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.IRON.ParticleBreak.enable"))) {
             enableParticleIron = "§a✔";
         } else {
             enableParticleIron = "§c✖";
         }
 
-        if (Main.getInstance().getConfig().getBoolean("Mining.GOLD.ParticleBreak.enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.GOLD.ParticleBreak.enable"))) {
             enableParticleGold = "§a✔";
         } else {
             enableParticleGold = "§c✖";
         }
 
-        if (Main.getInstance().getConfig().getBoolean("Mining.DIAMOND.ParticleBreak.enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.DIAMOND.ParticleBreak.enable"))) {
             enableParticleDiamond = "§a✔";
         } else {
             enableParticleDiamond = "§c✖";
         }
 
-        if (Main.getInstance().getConfig().getBoolean("Mining.EMERALD.ParticleBreak.enable")) {
+        if (Utils.getBoolean(Boolean.valueOf("Mining.EMERALD.ParticleBreak.enable"))) {
             enableParticleEmerald = "§a✔";
         } else {
             enableParticleEmerald = "§c✖";
@@ -228,11 +235,11 @@ public class Menu implements Listener {
         menu.addItem(coal);
         menu.setItem(10, coal);
         ArrayList<String> coal_lore = new ArrayList<>();
-        coal_lore.add("§8▸ §7Задержка: §f" + Main.getInstance().getConfig().getString("Mining.COAL.Delay") + " сек.");
-        coal_lore.add("§8▸ §7Деньги: §e+" + Main.getInstance().getConfig().getString("Mining.COAL.MoneyDrop"));
-        coal_lore.add("§8▸ §7Опыт: §3+" + Main.getInstance().getConfig().getString("Mining.COAL.ExpDrop"));
+        coal_lore.add("§8▸ §7Задержка: §f" + Utils.getString("Mining.COAL.Delay") + " сек.");
+        coal_lore.add("§8▸ §7Деньги: §e+" + Utils.getString("Mining.COAL.MoneyDrop"));
+        coal_lore.add("§8▸ §7Опыт: §3+" + Utils.getString("Mining.COAL.ExpDrop"));
         coal_lore.add("");
-        coal_lore.add("§8▸ §7Замена на: §6" + Main.getInstance().getConfig().getString("Mining.COAL.ReplaceBlock"));
+        coal_lore.add("§8▸ §7Замена на: §6" + Utils.getString("Mining.COAL.ReplaceBlock"));
         coal_lore.add("§8▸ §7Частица: " + enableParticleCoal);
         coal_lore.add("");
         coal_lore.add("§8▸ §7Дроп: " + enableCoalDrop);
@@ -254,11 +261,11 @@ public class Menu implements Listener {
         menu.addItem(iron);
         menu.setItem(11, iron);
         ArrayList<String> iron_lore = new ArrayList<>();
-        iron_lore.add("§8▸ §7Задержка: §f" + Main.getInstance().getConfig().getString("Mining.IRON.Delay") + " сек.");
-        iron_lore.add("§8▸ §7Деньги: §e+" + Main.getInstance().getConfig().getString("Mining.IRON.MoneyDrop"));
-        iron_lore.add("§8▸ §7Опыт: §3+" + Main.getInstance().getConfig().getString("Mining.IRON.ExpDrop"));
+        iron_lore.add("§8▸ §7Задержка: §f" + Utils.getString("Mining.IRON.Delay") + " сек.");
+        iron_lore.add("§8▸ §7Деньги: §e+" + Utils.getString("Mining.IRON.MoneyDrop"));
+        iron_lore.add("§8▸ §7Опыт: §3+" + Utils.getString("Mining.IRON.ExpDrop"));
         iron_lore.add("");
-        iron_lore.add("§8▸ §7Замена на: §6" + Main.getInstance().getConfig().getString("Mining.IRON.ReplaceBlock"));
+        iron_lore.add("§8▸ §7Замена на: §6" + Utils.getString("Mining.IRON.ReplaceBlock"));
         iron_lore.add("§8▸ §7Частица: " + enableParticleIron);
         iron_lore.add("");
         iron_lore.add("§8▸ §7Дроп: " + enableIronDrop);
@@ -280,11 +287,11 @@ public class Menu implements Listener {
         menu.addItem(gold);
         menu.setItem(12, gold);
         ArrayList<String> gold_lore = new ArrayList<>();
-        gold_lore.add("§8▸ §7Задержка: §f" + Main.getInstance().getConfig().getString("Mining.GOLD.Delay") + " сек.");
-        gold_lore.add("§8▸ §7Деньги: §e+" + Main.getInstance().getConfig().getString("Mining.GOLD.MoneyDrop"));
-        gold_lore.add("§8▸ §7Опыт: §3+" + Main.getInstance().getConfig().getString("Mining.GOLD.ExpDrop"));
+        gold_lore.add("§8▸ §7Задержка: §f" + Utils.getString("Mining.GOLD.Delay") + " сек.");
+        gold_lore.add("§8▸ §7Деньги: §e+" + Utils.getString("Mining.GOLD.MoneyDrop"));
+        gold_lore.add("§8▸ §7Опыт: §3+" + Utils.getString("Mining.GOLD.ExpDrop"));
         gold_lore.add("");
-        gold_lore.add("§8▸ §7Замена на: §6" + Main.getInstance().getConfig().getString("Mining.GOLD.ReplaceBlock"));
+        gold_lore.add("§8▸ §7Замена на: §6" + Utils.getString("Mining.GOLD.ReplaceBlock"));
         gold_lore.add("§8▸ §7Частица: " + enableParticleGold);
         gold_lore.add("");
         gold_lore.add("§8▸ §7Дроп: " + enableGoldDrop);
@@ -306,11 +313,11 @@ public class Menu implements Listener {
         menu.addItem(diamond);
         menu.setItem(13, diamond);
         ArrayList<String> diamond_lore = new ArrayList<>();
-        diamond_lore.add("§8▸ §7Задержка: §f" + Main.getInstance().getConfig().getString("Mining.DIAMOND.Delay") + " сек.");
-        diamond_lore.add("§8▸ §7Деньги: §e+" + Main.getInstance().getConfig().getString("Mining.DIAMOND.MoneyDrop"));
-        diamond_lore.add("§8▸ §7Опыт: §3+" + Main.getInstance().getConfig().getString("Mining.DIAMOND.ExpDrop"));
+        diamond_lore.add("§8▸ §7Задержка: §f" + Utils.getString("Mining.DIAMOND.Delay") + " сек.");
+        diamond_lore.add("§8▸ §7Деньги: §e+" + Utils.getString("Mining.DIAMOND.MoneyDrop"));
+        diamond_lore.add("§8▸ §7Опыт: §3+" + Utils.getString("Mining.DIAMOND.ExpDrop"));
         diamond_lore.add("");
-        diamond_lore.add("§8▸ §7Замена на: §6" + Main.getInstance().getConfig().getString("Mining.DIAMOND.ReplaceBlock"));
+        diamond_lore.add("§8▸ §7Замена на: §6" + Utils.getString("Mining.DIAMOND.ReplaceBlock"));
         diamond_lore.add("§8▸ §7Частица: " + enableParticleDiamond);
         diamond_lore.add("");
         diamond_lore.add("§8▸ §7Дроп: " + enableDiamondDrop);
@@ -332,11 +339,11 @@ public class Menu implements Listener {
         menu.addItem(emerald);
         menu.setItem(14, emerald);
         ArrayList<String> emerald_lore = new ArrayList<>();
-        emerald_lore.add("§8▸ §7Задержка: §f" + Main.getInstance().getConfig().getString("Mining.EMERALD.Delay") + " сек.");
-        emerald_lore.add("§8▸ §7Деньги: §e+" + Main.getInstance().getConfig().getString("Mining.EMERALD.MoneyDrop"));
-        emerald_lore.add("§8▸ §7Опыт: §3+" + Main.getInstance().getConfig().getString("Mining.EMERALD.ExpDrop"));
+        emerald_lore.add("§8▸ §7Задержка: §f" + Utils.getString("Mining.EMERALD.Delay") + " сек.");
+        emerald_lore.add("§8▸ §7Деньги: §e+" + Utils.getString("Mining.EMERALD.MoneyDrop"));
+        emerald_lore.add("§8▸ §7Опыт: §3+" + Utils.getString("Mining.EMERALD.ExpDrop"));
         emerald_lore.add("");
-        emerald_lore.add("§8▸ §7Замена на: §6" + Main.getInstance().getConfig().getString("Mining.EMERALD.ReplaceBlock"));
+        emerald_lore.add("§8▸ §7Замена на: §6" + Utils.getString("Mining.EMERALD.ReplaceBlock"));
         emerald_lore.add("§8▸ §7Частица: " + enableParticleEmerald);
         emerald_lore.add("");
         emerald_lore.add("§8▸ §7Дроп: " + enableEmeraldDrop);
@@ -386,12 +393,31 @@ public class Menu implements Listener {
         menu.addItem(music);
         menu.setItem(18, music);
         ArrayList<String> music_lore = new ArrayList<>();
-        music_lore.add("§8▸ §7Тип музыки: §f(" + Main.getInstance().getConfig().getString("Settings.SoundPickup") + "§f)");
+        music_lore.add("§8▸ §7Тип музыки: §f(" + Utils.getString("Sound.SoundPickup") + "§f)");
         music_lore.add("");
         music_lore.add("§e▸ ЛКМ, чтобы включить!");
-        music_lore.add("§e▸ ПКМ, чтобы включить!");
+        music_lore.add("§e▸ ПКМ, чтобы отключить!");
         music_meta.setLore(music_lore);
         music.setItemMeta(music_meta);
+
+
+        ItemStack edit = new ItemStack(Material.TNT);
+        ItemMeta edit_meta = edit.getItemMeta();
+        edit_meta.setDisplayName(enableEditOre + " Редактирования руд");
+        edit.setItemMeta(edit_meta);
+        menu.addItem(edit);
+        menu.setItem(19, edit);
+        ArrayList<String> edit_lore = new ArrayList<>();
+        edit_lore.add("§7С помощью этой опции, админы");
+        edit_lore.add("§7смогут редактировать расположения");
+        edit_lore.add("§7руд в шахте.");
+        edit_lore.add("");
+        edit_lore.add("§7Права: §c" + Utils.getString("Settings.Permission"));
+        edit_lore.add("");
+        edit_lore.add("§e▸ ЛКМ, чтобы включить!");
+        edit_lore.add("§e▸ ПКМ, чтобы отключить!");
+        edit_meta.setLore(edit_lore);
+        edit.setItemMeta(edit_meta);
 
 
         ItemStack title = new ItemStack(Material.ITEM_FRAME);
@@ -399,10 +425,10 @@ public class Menu implements Listener {
         title_meta.setDisplayName(enableTitle + " Титлы (TitleOnPickup)");
         title.setItemMeta(title_meta);
         menu.addItem(title);
-        menu.setItem(19, title);
+        menu.setItem(20, title);
         ArrayList<String> title_lore = new ArrayList<>();
-        title_lore.add(ChatColor.translateAlternateColorCodes('&',"&8▸ &7Главный: &f(" + Main.getInstance().getConfig().getString("TitleOnPickup.Title") + "&f)"));
-        title_lore.add(ChatColor.translateAlternateColorCodes('&',"&8▸ &7Нижний: &f(" + Main.getInstance().getConfig().getString("TitleOnPickup.Subtitle") + "&f)"));
+        title_lore.add(ChatColor.translateAlternateColorCodes('&',"&8▸ &7Главный: &f(" + Utils.getString("TitleOnPickup.Title") + "&f)"));
+        title_lore.add(ChatColor.translateAlternateColorCodes('&',"&8▸ &7Нижний: &f(" + Utils.getString("TitleOnPickup.Subtitle") + "&f)"));
         title_lore.add("");
         title_lore.add("§e▸ ЛКМ, чтобы включить!");
         title_lore.add("§e▸ ПКМ, чтобы отключить!");
@@ -415,10 +441,10 @@ public class Menu implements Listener {
         actionbar_meta.setDisplayName(enableActionbar + " Нижний бар (Actionbar)");
         actionbar.setItemMeta(actionbar_meta);
         menu.addItem(actionbar);
-        menu.setItem(20, actionbar);
+        menu.setItem(21, actionbar);
         ArrayList<String> actionbar_lore = new ArrayList<>();
         actionbar_lore.add("§8▸ §7Сообщение:");
-        actionbar_lore.add(ChatColor.translateAlternateColorCodes('&',"&8- &f(" + Main.getInstance().getConfig().getString("Actionbar.Message") + "&f)"));
+        actionbar_lore.add(ChatColor.translateAlternateColorCodes('&',"&8- &f(" + Utils.getString("Actionbar.Message") + "&f)"));
         actionbar_lore.add("");
         actionbar_lore.add("§e▸ ЛКМ, чтобы включить!");
         actionbar_lore.add("§e▸ ПКМ, чтобы отключить!");
@@ -431,10 +457,10 @@ public class Menu implements Listener {
         chat_meta.setDisplayName(enableChat + " Cообщение в чат (MessageToChat)");
         chat.setItemMeta(chat_meta);
         menu.addItem(chat);
-        menu.setItem(21, chat);
+        menu.setItem(22, chat);
         ArrayList<String> chat_lore = new ArrayList<>();
         chat_lore.add("§8▸ §7Сообщение:");
-        chat_lore.add(ChatColor.translateAlternateColorCodes('&', "&8- &f(" + Main.getInstance().getConfig().getString("MessageToChat.Message") + "&f)"));
+        chat_lore.add(Utils.color("&8- &f(" + Main.getInstance().getConfig().getStringList("MessageToChat.Message") + "&f)"));
         chat_lore.add("");
         chat_lore.add("§e▸ ЛКМ, чтобы включить!");
         chat_lore.add("§e▸ ПКМ, чтобы отключить!");
@@ -442,7 +468,7 @@ public class Menu implements Listener {
         chat.setItemMeta(chat_meta);
 
 
-        ItemStack[] menu_item = {air, air, air, air, air, air, air, air, air, air, coal, iron, gold, diamond, emerald, air, reload, air, air, air, air, air, air, air, air, air, air, air, vault, music, air, air, title, actionbar, chat};
+        ItemStack[] menu_item = {air, air, air, air, air, air, air, air, air, air, coal, iron, gold, diamond, emerald, air, reload, air, air, air, air, air, air, air, air, air, air, air, vault, music, edit, air, title, actionbar, chat};
         menu.setContents(menu_item);
         player.openInventory(menu);
     }
@@ -486,7 +512,13 @@ public class Menu implements Listener {
 
     public void setEnabledMusic(boolean status) {
         this.enabled = status;
-        Main.getInstance().getConfig().set("Settings.EnableSoundPickup", status);
+        Main.getInstance().getConfig().set("Sound.EnableSoundPickup", status);
+        Main.getInstance().saveConfig();
+    }
+
+    public void setEnabledEditOre(boolean status) {
+        this.enabled = status;
+        Main.getInstance().getConfig().set("Settings.EnableEditOre", status);
         Main.getInstance().saveConfig();
     }
 
@@ -590,7 +622,7 @@ public class Menu implements Listener {
                 Main.getInstance().reloadConfig();
                 Main.getInstance().saveConfig();
                 player.closeInventory();
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("Messages.Reload")));
+                player.sendMessage(Utils.color(Utils.getString("Messages.Reload")));
             } else if (event.getCurrentItem().getType().equals(Material.GOLD_INGOT)) {
                 event.setCancelled(true);
                 if (event.getClick() == ClickType.LEFT) {
@@ -613,6 +645,20 @@ public class Menu implements Listener {
                     Menu.openGUI(player);
                 } else if (event.getClick() == ClickType.RIGHT) {
                     this.setEnabledMusic(false);
+                    Main.getInstance().saveConfig();
+                    player.closeInventory();
+                    Menu.openGUI(player);
+                }
+            } else if (event.getCurrentItem().getType().equals(Material.TNT)) {
+                event.setCancelled(true);
+                if (event.getClick() == ClickType.LEFT) {
+                    this.setEnabledEditOre(true);
+                    player.sendTitle("", "§fРедактирования руд - §aвключено", 20, 60, 40);
+                    Main.getInstance().saveConfig();
+                    player.closeInventory();
+                    Menu.openGUI(player);
+                } else if (event.getClick() == ClickType.RIGHT) {
+                    this.setEnabledEditOre(false);
                     Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
