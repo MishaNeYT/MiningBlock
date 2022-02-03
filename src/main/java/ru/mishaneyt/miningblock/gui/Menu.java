@@ -1,7 +1,6 @@
 package ru.mishaneyt.miningblock.gui;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,7 +12,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import ru.mishaneyt.miningblock.Main;
-import ru.mishaneyt.miningblock.Utils;
+import ru.mishaneyt.miningblock.utils.FileUtil;
+import ru.mishaneyt.miningblock.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -30,24 +30,25 @@ public class Menu implements Listener {
                 enableParticleEmerald, enableCoalAutoPickup, enableIronAutoPickup, enableGoldAutoPickup,
                 enableDiamondAutoPickup, enableEmeraldAutoPickup, enableEditOre;
 
-        if (Utils.getBoolean(Boolean.valueOf("Mining.COAL.Enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("COAL.Enable")) {
             enableCoal = "§8[§a✔§8]§7";
         } else {
             enableCoal = "§8[§c✖§8]§7";
         }
 
-        if (Utils.getBoolean(Boolean.valueOf("Mining.COAL.CommandBreak.enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("COAL.CommandBreak.enable")) {
             enableCoalCMD = "§a✔";
         } else {
             enableCoalCMD = "§c✖";
         }
 
-        if (Utils.getBoolean(Boolean.valueOf("Mining.COAL.Drop.Enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("COAL.Drop.Enable")) {
             enableCoalDrop = "§a✔";
         } else {
             enableCoalDrop = "§c✖";
         }
-        if (Utils.getBoolean(Boolean.valueOf("Mining.COAL.AutoPickup.Enable"))) {
+
+        if (FileUtil.getMiningConfig().getBoolean("COAL.AutoPickup.Enable")) {
             enableCoalAutoPickup = "§a✔";
         } else {
             enableCoalAutoPickup = "§c✖";
@@ -55,24 +56,25 @@ public class Menu implements Listener {
 
 
 
-        if (Utils.getBoolean(Boolean.valueOf("Mining.IRON.Enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("IRON.Enable")) {
             enableIron = "§8[§a✔§8]§f";
         } else {
             enableIron = "§8[§c✖§8]§f";
         }
 
-        if (Utils.getBoolean(Boolean.valueOf("Mining.IRON.CommandBreak.enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("IRON.CommandBreak.enable")) {
             enableIronCMD = "§a✔";
         } else {
             enableIronCMD = "§c✖";
         }
 
-        if (Utils.getBoolean(Boolean.valueOf("Mining.IRON.Drop.Enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("IRON.Drop.Enable")) {
             enableIronDrop = "§a✔";
         } else {
             enableIronDrop = "§c✖";
         }
-        if (Utils.getBoolean(Boolean.valueOf("Mining.IRON.AutoPickup.Enable"))) {
+
+        if (FileUtil.getMiningConfig().getBoolean("IRON.AutoPickup.Enable")) {
             enableIronAutoPickup = "§a✔";
         } else {
             enableIronAutoPickup = "§c✖";
@@ -80,24 +82,25 @@ public class Menu implements Listener {
 
 
 
-        if (Utils.getBoolean(Boolean.valueOf("Mining.GOLD.Enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("GOLD.Enable")) {
             enableGold = "§8[§a✔§8]§e";
         } else {
             enableGold = "§8[§c✖§8]§e";
         }
 
-        if (Utils.getBoolean(Boolean.valueOf("Mining.GOLD.CommandBreak.enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("GOLD.CommandBreak.enable")) {
             enableGoldCMD = "§a✔";
         } else {
             enableGoldCMD = "§c✖";
         }
 
-        if (Utils.getBoolean(Boolean.valueOf("Mining.GOLD.Drop.Enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("GOLD.Drop.Enable")) {
             enableGoldDrop = "§a✔";
         } else {
             enableGoldDrop = "§c✖";
         }
-        if (Utils.getBoolean(Boolean.valueOf("Mining.GOLD.AutoPickup.Enable"))) {
+
+        if (FileUtil.getMiningConfig().getBoolean("GOLD.AutoPickup.Enable")) {
             enableGoldAutoPickup = "§a✔";
         } else {
             enableGoldAutoPickup = "§c✖";
@@ -105,24 +108,25 @@ public class Menu implements Listener {
 
 
 
-        if (Utils.getBoolean(Boolean.valueOf("Mining.DIAMOND.Enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("DIAMOND.Enable")) {
             enableDiamond = "§8[§a✔§8]§b";
         } else {
             enableDiamond = "§8[§c✖§8]§b";
         }
 
-        if (Utils.getBoolean(Boolean.valueOf("Mining.DIAMOND.CommandBreak.enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("DIAMOND.CommandBreak.enable")) {
             enableDiamondCMD = "§a✔";
         } else {
             enableDiamondCMD = "§c✖";
         }
 
-        if (Utils.getBoolean(Boolean.valueOf("Mining.DIAMOND.Drop.Enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("DIAMOND.Drop.Enable")) {
             enableDiamondDrop = "§a✔";
         } else {
             enableDiamondDrop = "§c✖";
         }
-        if (Utils.getBoolean(Boolean.valueOf("Mining.DIAMOND.AutoPickup.Enable"))) {
+
+        if (FileUtil.getMiningConfig().getBoolean("DIAMOND.AutoPickup.Enable")) {
             enableDiamondAutoPickup = "§a✔";
         } else {
             enableDiamondAutoPickup = "§c✖";
@@ -130,24 +134,24 @@ public class Menu implements Listener {
 
 
 
-        if (Utils.getBoolean(Boolean.valueOf("Mining.DIAMOND.Enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("EMERALD.Enable")) {
             enableEmerald = "§8[§a✔§8]§a";
         } else {
             enableEmerald = "§8[§c✖§8]§a";
         }
 
-        if (Utils.getBoolean(Boolean.valueOf("Mining.DIAMOND.CommandBreak.enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("EMERALD.CommandBreak.enable")) {
             enableEmeraldCMD = "§a✔";
         } else {
             enableEmeraldCMD = "§c✖";
         }
 
-        if (Utils.getBoolean(Boolean.valueOf("Mining.EMERALD.Drop.Enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("EMERALD.Drop.Enable")) {
             enableEmeraldDrop = "§a✔";
         } else {
             enableEmeraldDrop = "§c✖";
         }
-        if (Utils.getBoolean(Boolean.valueOf("Mining.EMERALD.AutoPickup.Enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("EMERALD.AutoPickup.Enable")) {
             enableEmeraldAutoPickup = "§a✔";
         } else {
             enableEmeraldAutoPickup = "§c✖";
@@ -155,68 +159,68 @@ public class Menu implements Listener {
 
 
 
-        if (Utils.getBoolean(Boolean.valueOf("Settings.EnableVault"))) {
+        if (Main.getInstance().getConfig().getBoolean("Settings.EnableVault")) {
             enableVault = "§8[§a✔§8]§6";
         } else {
             enableVault = "§8[§c✖§8]§6";
         }
 
-        if (Utils.getBoolean(Boolean.valueOf("Sound.EnableSoundPickup"))) {
+        if (Main.getInstance().getConfig().getBoolean("Sound.EnableSoundPickup")) {
             enableMusic = "§8[§a✔§8]§9";
         } else {
             enableMusic = "§8[§c✖§8]§9";
         }
 
-        if (Utils.getBoolean(Boolean.valueOf("Settings.EnableEditOre"))) {
+        if (Main.getInstance().getConfig().getBoolean("Settings.EnableEditOre")) {
             enableEditOre = "§8[§a✔§8]§c";
         } else {
             enableEditOre = "§8[§c✖§8]§c";
         }
 
-        if (Utils.getBoolean(Boolean.valueOf("TitleOnPickup.EnableTitles"))) {
+        if (Main.getInstance().getConfig().getBoolean("TitleOnPickup.EnableTitles")) {
             enableTitle = "§8[§a✔§8]§a";
         } else {
             enableTitle = "§8[§c✖§8]§a";
         }
 
-        if (Utils.getBoolean(Boolean.valueOf("Actionbar.EnableActionbar"))) {
+        if (Main.getInstance().getConfig().getBoolean("Actionbar.EnableActionbar")) {
             enableActionbar = "§8[§a✔§8]§a";
         } else {
             enableActionbar = "§8[§c✖§8]§a";
         }
 
-        if (Utils.getBoolean(Boolean.valueOf("MessageToChat.EnableMessageToChat"))) {
+        if (Main.getInstance().getConfig().getBoolean("MessageToChat.EnableMessageToChat")) {
             enableChat = "§8[§a✔§8]§a";
         } else {
             enableChat = "§8[§c✖§8]§a";
         }
 
 
-        if (Utils.getBoolean(Boolean.valueOf("Mining.COAL.ParticleBreak.enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("COAL.ParticleBreak.enable")) {
             enableParticleCoal = "§a✔";
         } else {
             enableParticleCoal = "§c✖";
         }
 
-        if (Utils.getBoolean(Boolean.valueOf("Mining.IRON.ParticleBreak.enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("IRON.ParticleBreak.enable")) {
             enableParticleIron = "§a✔";
         } else {
             enableParticleIron = "§c✖";
         }
 
-        if (Utils.getBoolean(Boolean.valueOf("Mining.GOLD.ParticleBreak.enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("GOLD.ParticleBreak.enable")) {
             enableParticleGold = "§a✔";
         } else {
             enableParticleGold = "§c✖";
         }
 
-        if (Utils.getBoolean(Boolean.valueOf("Mining.DIAMOND.ParticleBreak.enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("DIAMOND.ParticleBreak.enable")) {
             enableParticleDiamond = "§a✔";
         } else {
             enableParticleDiamond = "§c✖";
         }
 
-        if (Utils.getBoolean(Boolean.valueOf("Mining.EMERALD.ParticleBreak.enable"))) {
+        if (FileUtil.getMiningConfig().getBoolean("EMERALD.ParticleBreak.enable")) {
             enableParticleEmerald = "§a✔";
         } else {
             enableParticleEmerald = "§c✖";
@@ -235,11 +239,11 @@ public class Menu implements Listener {
         menu.addItem(coal);
         menu.setItem(10, coal);
         ArrayList<String> coal_lore = new ArrayList<>();
-        coal_lore.add("§8▸ §7Задержка: §f" + Utils.getString("Mining.COAL.Delay") + " сек.");
-        coal_lore.add("§8▸ §7Деньги: §e+" + Utils.getString("Mining.COAL.MoneyDrop"));
-        coal_lore.add("§8▸ §7Опыт: §3+" + Utils.getString("Mining.COAL.ExpDrop"));
+        coal_lore.add("§8▸ §7Задержка: §f" + FileUtil.getMiningConfig().getInt("COAL.Delay") + " сек.");
+        coal_lore.add("§8▸ §7Деньги: §e+" + FileUtil.getMiningConfig().getInt ("COAL.MoneyDrop"));
+        coal_lore.add("§8▸ §7Опыт: §3+" + FileUtil.getMiningConfig().getInt("COAL.ExpDrop"));
         coal_lore.add("");
-        coal_lore.add("§8▸ §7Замена на: §6" + Utils.getString("Mining.COAL.ReplaceBlock"));
+        coal_lore.add("§8▸ §7Замена на: §6" + FileUtil.getMiningConfig().getString("COAL.ReplaceBlock"));
         coal_lore.add("§8▸ §7Частица: " + enableParticleCoal);
         coal_lore.add("");
         coal_lore.add("§8▸ §7Дроп: " + enableCoalDrop);
@@ -261,11 +265,11 @@ public class Menu implements Listener {
         menu.addItem(iron);
         menu.setItem(11, iron);
         ArrayList<String> iron_lore = new ArrayList<>();
-        iron_lore.add("§8▸ §7Задержка: §f" + Utils.getString("Mining.IRON.Delay") + " сек.");
-        iron_lore.add("§8▸ §7Деньги: §e+" + Utils.getString("Mining.IRON.MoneyDrop"));
-        iron_lore.add("§8▸ §7Опыт: §3+" + Utils.getString("Mining.IRON.ExpDrop"));
+        iron_lore.add("§8▸ §7Задержка: §f" + FileUtil.getMiningConfig().getInt("IRON.Delay") + " сек.");
+        iron_lore.add("§8▸ §7Деньги: §e+" + FileUtil.getMiningConfig().getInt("IRON.MoneyDrop"));
+        iron_lore.add("§8▸ §7Опыт: §3+" + FileUtil.getMiningConfig().getInt("IRON.ExpDrop"));
         iron_lore.add("");
-        iron_lore.add("§8▸ §7Замена на: §6" + Utils.getString("Mining.IRON.ReplaceBlock"));
+        iron_lore.add("§8▸ §7Замена на: §6" + FileUtil.getMiningConfig().getString("IRON.ReplaceBlock"));
         iron_lore.add("§8▸ §7Частица: " + enableParticleIron);
         iron_lore.add("");
         iron_lore.add("§8▸ §7Дроп: " + enableIronDrop);
@@ -287,11 +291,11 @@ public class Menu implements Listener {
         menu.addItem(gold);
         menu.setItem(12, gold);
         ArrayList<String> gold_lore = new ArrayList<>();
-        gold_lore.add("§8▸ §7Задержка: §f" + Utils.getString("Mining.GOLD.Delay") + " сек.");
-        gold_lore.add("§8▸ §7Деньги: §e+" + Utils.getString("Mining.GOLD.MoneyDrop"));
-        gold_lore.add("§8▸ §7Опыт: §3+" + Utils.getString("Mining.GOLD.ExpDrop"));
+        gold_lore.add("§8▸ §7Задержка: §f" + FileUtil.getMiningConfig().getInt("GOLD.Delay") + " сек.");
+        gold_lore.add("§8▸ §7Деньги: §e+" + FileUtil.getMiningConfig().getInt("GOLD.MoneyDrop"));
+        gold_lore.add("§8▸ §7Опыт: §3+" + FileUtil.getMiningConfig().getInt("GOLD.ExpDrop"));
         gold_lore.add("");
-        gold_lore.add("§8▸ §7Замена на: §6" + Utils.getString("Mining.GOLD.ReplaceBlock"));
+        gold_lore.add("§8▸ §7Замена на: §6" + FileUtil.getMiningConfig().getString("GOLD.ReplaceBlock"));
         gold_lore.add("§8▸ §7Частица: " + enableParticleGold);
         gold_lore.add("");
         gold_lore.add("§8▸ §7Дроп: " + enableGoldDrop);
@@ -313,11 +317,11 @@ public class Menu implements Listener {
         menu.addItem(diamond);
         menu.setItem(13, diamond);
         ArrayList<String> diamond_lore = new ArrayList<>();
-        diamond_lore.add("§8▸ §7Задержка: §f" + Utils.getString("Mining.DIAMOND.Delay") + " сек.");
-        diamond_lore.add("§8▸ §7Деньги: §e+" + Utils.getString("Mining.DIAMOND.MoneyDrop"));
-        diamond_lore.add("§8▸ §7Опыт: §3+" + Utils.getString("Mining.DIAMOND.ExpDrop"));
+        diamond_lore.add("§8▸ §7Задержка: §f" + FileUtil.getMiningConfig().getInt("DIAMOND.Delay") + " сек.");
+        diamond_lore.add("§8▸ §7Деньги: §e+" + FileUtil.getMiningConfig().getInt("DIAMOND.MoneyDrop"));
+        diamond_lore.add("§8▸ §7Опыт: §3+" + FileUtil.getMiningConfig().getInt("DIAMOND.ExpDrop"));
         diamond_lore.add("");
-        diamond_lore.add("§8▸ §7Замена на: §6" + Utils.getString("Mining.DIAMOND.ReplaceBlock"));
+        diamond_lore.add("§8▸ §7Замена на: §6" + FileUtil.getMiningConfig().getString("DIAMOND.ReplaceBlock"));
         diamond_lore.add("§8▸ §7Частица: " + enableParticleDiamond);
         diamond_lore.add("");
         diamond_lore.add("§8▸ §7Дроп: " + enableDiamondDrop);
@@ -339,11 +343,11 @@ public class Menu implements Listener {
         menu.addItem(emerald);
         menu.setItem(14, emerald);
         ArrayList<String> emerald_lore = new ArrayList<>();
-        emerald_lore.add("§8▸ §7Задержка: §f" + Utils.getString("Mining.EMERALD.Delay") + " сек.");
-        emerald_lore.add("§8▸ §7Деньги: §e+" + Utils.getString("Mining.EMERALD.MoneyDrop"));
-        emerald_lore.add("§8▸ §7Опыт: §3+" + Utils.getString("Mining.EMERALD.ExpDrop"));
+        emerald_lore.add("§8▸ §7Задержка: §f" + FileUtil.getMiningConfig().getInt("EMERALD.Delay") + " сек.");
+        emerald_lore.add("§8▸ §7Деньги: §e+" + FileUtil.getMiningConfig().getInt("EMERALD.MoneyDrop"));
+        emerald_lore.add("§8▸ §7Опыт: §3+" + FileUtil.getMiningConfig().getInt("EMERALD.ExpDrop"));
         emerald_lore.add("");
-        emerald_lore.add("§8▸ §7Замена на: §6" + Utils.getString("Mining.EMERALD.ReplaceBlock"));
+        emerald_lore.add("§8▸ §7Замена на: §6" + FileUtil.getMiningConfig().getString("EMERALD.ReplaceBlock"));
         emerald_lore.add("§8▸ §7Частица: " + enableParticleEmerald);
         emerald_lore.add("");
         emerald_lore.add("§8▸ §7Дроп: " + enableEmeraldDrop);
@@ -427,8 +431,8 @@ public class Menu implements Listener {
         menu.addItem(title);
         menu.setItem(20, title);
         ArrayList<String> title_lore = new ArrayList<>();
-        title_lore.add(ChatColor.translateAlternateColorCodes('&',"&8▸ &7Главный: &f(" + Utils.getString("TitleOnPickup.Title") + "&f)"));
-        title_lore.add(ChatColor.translateAlternateColorCodes('&',"&8▸ &7Нижний: &f(" + Utils.getString("TitleOnPickup.Subtitle") + "&f)"));
+        title_lore.add(Utils.color("&8▸ &7Главный: &f(" + Utils.getString("TitleOnPickup.Title") + "&f)"));
+        title_lore.add(Utils.color("&8▸ &7Нижний: &f(" + Utils.getString("TitleOnPickup.Subtitle") + "&f)"));
         title_lore.add("");
         title_lore.add("§e▸ ЛКМ, чтобы включить!");
         title_lore.add("§e▸ ПКМ, чтобы отключить!");
@@ -444,7 +448,7 @@ public class Menu implements Listener {
         menu.setItem(21, actionbar);
         ArrayList<String> actionbar_lore = new ArrayList<>();
         actionbar_lore.add("§8▸ §7Сообщение:");
-        actionbar_lore.add(ChatColor.translateAlternateColorCodes('&',"&8- &f(" + Utils.getString("Actionbar.Message") + "&f)"));
+        actionbar_lore.add(Utils.color("&8- &f(" + Utils.getString("Actionbar.Message") + "&f)"));
         actionbar_lore.add("");
         actionbar_lore.add("§e▸ ЛКМ, чтобы включить!");
         actionbar_lore.add("§e▸ ПКМ, чтобы отключить!");
@@ -460,7 +464,7 @@ public class Menu implements Listener {
         menu.setItem(22, chat);
         ArrayList<String> chat_lore = new ArrayList<>();
         chat_lore.add("§8▸ §7Сообщение:");
-        chat_lore.add(Utils.color("&8- &f(" + Main.getInstance().getConfig().getStringList("MessageToChat.Message") + "&f)"));
+        chat_lore.add(Utils.color("&8- &f(" + Utils.getStringList("MessageToChat.Message") + "&f)"));
         chat_lore.add("");
         chat_lore.add("§e▸ ЛКМ, чтобы включить!");
         chat_lore.add("§e▸ ПКМ, чтобы отключить!");
@@ -473,35 +477,34 @@ public class Menu implements Listener {
         player.openInventory(menu);
     }
 
-
     public void setEnabledCoal(boolean status) {
         this.enabled = status;
-        Main.getInstance().getConfig().set("Mining.COAL.Enable", status);
-        Main.getInstance().saveConfig();
+        FileUtil.getMiningConfig().set("COAL.Enable", status);
+        FileUtil.saveMining();
     }
 
     public void setEnabledIron(boolean status) {
         this.enabled = status;
-        Main.getInstance().getConfig().set("Mining.IRON.Enable", status);
-        Main.getInstance().saveConfig();
+        FileUtil.getMiningConfig().set("IRON.Enable", status);
+        FileUtil.saveMining();
     }
 
     public void setEnabledGold(boolean status) {
         this.enabled = status;
-        Main.getInstance().getConfig().set("Mining.GOLD.Enable", status);
-        Main.getInstance().saveConfig();
+        FileUtil.getMiningConfig().set("GOLD.Enable", status);
+        FileUtil.saveMining();
     }
 
     public void setEnabledDiamond(boolean status) {
         this.enabled = status;
-        Main.getInstance().getConfig().set("Mining.DIAMOND.Enable", status);
-        Main.getInstance().saveConfig();
+        FileUtil.getMiningConfig().set("DIAMOND.Enable", status);
+        FileUtil.saveMining();
     }
 
     public void setEnabledEmerald(boolean status) {
         this.enabled = status;
-        Main.getInstance().getConfig().set("Mining.EMERALD.Enable", status);
-        Main.getInstance().saveConfig();
+        FileUtil.getMiningConfig().set("EMERALD.Enable", status);
+        FileUtil.saveMining();
     }
 
     public void setEnabledVault(boolean status) {
@@ -542,24 +545,22 @@ public class Menu implements Listener {
 
 
     @EventHandler
-    public void onInventoryClick(InventoryClickEvent event) {
+    public boolean onInventoryClick(InventoryClickEvent event) {
         if (event.getInventory().getType() == InventoryType.CHEST && event.getInventory().getTitle().equals(" ")) {
             Player player = (Player) event.getWhoClicked();
             if (event.getCurrentItem() == null)
-                return;
+                return false;
             if (event.getCurrentItem().getItemMeta() == null)
-                return;
+                return false;
 
             if (event.getCurrentItem().getType().equals(Material.COAL_ORE)) {
                 event.setCancelled(true);
                 if (event.getClick() == ClickType.LEFT) {
                     this.setEnabledCoal(true);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 } else if (event.getClick() == ClickType.RIGHT) {
                     this.setEnabledCoal(false);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 }
@@ -567,12 +568,10 @@ public class Menu implements Listener {
                 event.setCancelled(true);
                 if (event.getClick() == ClickType.LEFT) {
                     this.setEnabledIron(true);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 } else if (event.getClick() == ClickType.RIGHT) {
                     this.setEnabledIron(false);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 }
@@ -580,12 +579,10 @@ public class Menu implements Listener {
                 event.setCancelled(true);
                 if (event.getClick() == ClickType.LEFT) {
                     this.setEnabledGold(true);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 } else if (event.getClick() == ClickType.RIGHT) {
                     this.setEnabledGold(false);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 }
@@ -593,12 +590,10 @@ public class Menu implements Listener {
                 event.setCancelled(true);
                 if (event.getClick() == ClickType.LEFT) {
                     this.setEnabledDiamond(true);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 } else if (event.getClick() == ClickType.RIGHT) {
                     this.setEnabledDiamond(false);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 }
@@ -606,33 +601,29 @@ public class Menu implements Listener {
                 event.setCancelled(true);
                 if (event.getClick() == ClickType.LEFT) {
                     this.setEnabledEmerald(true);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 } else if (event.getClick() == ClickType.RIGHT) {
                     this.setEnabledEmerald(false);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 }
-            }
-
-            else if (event.getCurrentItem().getType().equals(Material.ANVIL)) {
+            } else if (event.getCurrentItem().getType().equals(Material.ANVIL)) {
                 event.setCancelled(true);
                 Main.getInstance().reloadConfig();
-                Main.getInstance().saveConfig();
+                FileUtil.reloadMining();
+                FileUtil.saveMining();
                 player.closeInventory();
                 player.sendMessage(Utils.color(Utils.getString("Messages.Reload")));
+
             } else if (event.getCurrentItem().getType().equals(Material.GOLD_INGOT)) {
                 event.setCancelled(true);
                 if (event.getClick() == ClickType.LEFT) {
                     this.setEnabledVault(true);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 } else if (event.getClick() == ClickType.RIGHT) {
                     this.setEnabledVault(false);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 }
@@ -640,12 +631,10 @@ public class Menu implements Listener {
                 event.setCancelled(true);
                 if (event.getClick() == ClickType.LEFT) {
                     this.setEnabledMusic(true);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 } else if (event.getClick() == ClickType.RIGHT) {
                     this.setEnabledMusic(false);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 }
@@ -654,12 +643,10 @@ public class Menu implements Listener {
                 if (event.getClick() == ClickType.LEFT) {
                     this.setEnabledEditOre(true);
                     player.sendTitle("", "§fРедактирования руд - §aвключено", 20, 60, 40);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 } else if (event.getClick() == ClickType.RIGHT) {
                     this.setEnabledEditOre(false);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 }
@@ -667,12 +654,10 @@ public class Menu implements Listener {
                 event.setCancelled(true);
                 if (event.getClick() == ClickType.LEFT) {
                     this.setEnabledTitle(true);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 } else if (event.getClick() == ClickType.RIGHT) {
                     this.setEnabledTitle(false);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 }
@@ -680,12 +665,10 @@ public class Menu implements Listener {
                 event.setCancelled(true);
                 if (event.getClick() == ClickType.LEFT) {
                     this.setEnabledActionbar(true);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 } else if (event.getClick() == ClickType.RIGHT) {
                     this.setEnabledActionbar(false);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 }
@@ -693,16 +676,15 @@ public class Menu implements Listener {
                 event.setCancelled(true);
                 if (event.getClick() == ClickType.LEFT) {
                     this.setEnabledChat(true);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 } else if (event.getClick() == ClickType.RIGHT) {
                     this.setEnabledChat(false);
-                    Main.getInstance().saveConfig();
                     player.closeInventory();
                     Menu.openGUI(player);
                 }
             }
         }
+        return false;
     }
 }

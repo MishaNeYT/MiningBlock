@@ -1,0 +1,140 @@
+COAL:
+  Enable: true
+  Delay: 5 # Задержка респавна руды.
+  MoneyDrop: 2 # После добычи блока, игрок получит денги на свой баланс | 0 - отключить.
+  ExpDrop: 2 # После добычи блока, игрок получит опыт | 0 - отключить.
+  ReplaceBlock: BEDROCK # Блок, который будет появляться после добычи этой руды. А после него AIR.
+  Drop:
+    Enable: true # Включить или отключить выпадение дропа.
+    DropBlock: COAL
+    Amount: 1
+  AutoPickup:
+    Enable: false # Включить или отключить авто подбор дропа на инвентарь игрока.
+    PickupBlock: COAL
+    Amount: 1
+  ParticleBreak: # Воспроизводится частица, когда блок сломан https://helpch.at/docs/1.12.2/org/bukkit/Particle.html
+    enable: false
+    particle: HEART
+    Locations:
+      amount: 10
+      locationX: 1
+      locationY: 1
+      locationZ: 1
+  CommandBreak:
+    enable: false
+    # Placeholder, чтобы указать ник игрока - %player%
+    command:
+      - 'tell %player% Привет, меня зовут Coal!'
+      - 'tell %player% Привет ещё раз, меня зовут Coal!'
+
+IRON:
+  Enable: true
+  Delay: 7
+  MoneyDrop: 5
+  ExpDrop: 5
+  ReplaceBlock: BEDROCK
+  Drop:
+    Enable: true
+    DropBlock: IRON_ORE
+    Amount: 1
+  AutoPickup:
+    Enable: false
+    PickupBlock: IRON_ORE
+    Amount: 1
+  ParticleBreak:
+    enable: false
+    particle: HEART
+    Locations:
+      amount: 10
+      locationX: 1
+      locationY: 1
+      locationZ: 1
+  CommandBreak:
+    enable: false
+    command:
+    - 'tell %player% Привет, меня зовут Iron!'
+    - 'tell %player% Привет ещё раз, меня зовут iron!'
+
+GOLD:
+  Enable: true
+  Delay: 9
+  MoneyDrop: 8
+  ExpDrop: 9
+  ReplaceBlock: BEDROCK
+  Drop:
+    Enable: true
+    DropBlock: GOLD_ORE
+    Amount: 1
+  AutoPickup:
+    Enable: false
+    PickupBlock: GOLD_ORE
+    Amount: 1
+  ParticleBreak:
+    enable: false
+    particle: HEART
+    Locations:
+      amount: 10
+      locationX: 1
+      locationY: 1
+      locationZ: 1
+  CommandBreak:
+    enable: false
+    command:
+    - 'tell %player% Привет, меня зовут Gold!'
+    - 'tell %player% Привет ещё раз, меня зовут Gold!'
+
+DIAMOND:
+  Enable: true
+  Delay: 12
+  MoneyDrop: 10
+  ExpDrop: 15
+  ReplaceBlock: BEDROCK
+  Drop:
+    Enable: true
+    DropBlock: DIAMOND
+    Amount: 1
+  AutoPickup:
+    Enable: false
+    PickupBlock: DIAMOND
+    Amount: 1
+  ParticleBreak:
+    enable: false
+    particle: HEART
+    Locations:
+      amount: 10
+      locationX: 1
+      locationY: 1
+      locationZ: 1
+  CommandBreak:
+    enable: false
+    command:
+    - 'tell %player% Привет, меня зовут Diamond!'
+    - 'tell %player% Привет ещё раз, меня зовут Diamond!'
+
+EMERALD:
+  Enable: true
+  Delay: 15
+  MoneyDrop: 15
+  ExpDrop: 25
+  ReplaceBlock: BEDROCK
+  Drop:
+    Enable: true
+    DropBlock: EMERALD
+    Amount: 1
+  AutoPickup:
+    Enable: false
+    PickupBlock: EMERALD
+    Amount: 1
+  ParticleBreak:
+    enable: false
+    particle: HEART
+    Locations:
+      amount: 10
+      locationX: 1
+      locationY: 1
+      locationZ: 1
+  CommandBreak:
+    enable: false
+    command:
+    - 'tell %player% Привет, меня зовут Emerald!'
+    - 'tell %player% Привет ещё раз, меня зовут Emerald!'

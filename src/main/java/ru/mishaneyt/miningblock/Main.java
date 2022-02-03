@@ -28,6 +28,7 @@ public class Main extends JavaPlugin implements Listener, CommandExecutor {
 
     public void onEnable() {
         saveDefaultConfig();
+        saveResource("mining.yml", false);
         instance = this;
 
         setupPlaceholder();
@@ -74,7 +75,7 @@ public class Main extends JavaPlugin implements Listener, CommandExecutor {
 
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1) {
-            return Arrays.asList("reload", "menu");
+            return Arrays.asList("help", "reload", "menu");
         }
         return new ArrayList<>();
     }
