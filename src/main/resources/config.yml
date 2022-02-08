@@ -36,6 +36,7 @@ MessageToChat:
 Messages:
   Reload: '&a✔ Плагин успешно перезагружен!'
   NoPerm: '&c✖ У вас нет прав!'
+  Error: '&c✖ Команда введена не правильно!'
   CommandOnlyServer: '&c✖ Команда доступна только в игре!'
   UseCommand:
     - ''

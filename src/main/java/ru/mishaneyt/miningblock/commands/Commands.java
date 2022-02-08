@@ -5,9 +5,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import ru.mishaneyt.miningblock.Main;
+import ru.mishaneyt.miningblock.gui.Menu;
 import ru.mishaneyt.miningblock.utils.FileUtil;
 import ru.mishaneyt.miningblock.utils.Utils;
-import ru.mishaneyt.miningblock.gui.Menu;
 
 public class Commands implements CommandExecutor {
 
@@ -23,34 +23,33 @@ public class Commands implements CommandExecutor {
             return false;
         }
 
+        Player player = (Player) sender;
+
         if (cmd.getName().equalsIgnoreCase("miningblock")) {
             if (args.length == 0) {
                 for (String message : Main.getInstance().getConfig().getStringList("Messages.UseCommand")) {
                     sender.sendMessage(Utils.color(message)
                             .replace("%version%", Main.getInstance().getDescription().getVersion()));
                 }
-            }
 
-            Player player = (Player) sender;
-            if (args.length == 1 && args[0].equalsIgnoreCase("menu")) {
-                Menu.openGUI(player);
-                return false;
-            } else if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
-                Main.getInstance().saveConfig();
-                FileUtil.reloadMining();
-                FileUtil.saveMining();
-                sender.sendMessage(Utils.color(Utils.getString("Messages.Reload")));
-                return false;
             } else if (args.length == 1 && args[0].equalsIgnoreCase("help")) {
                 for (String message : Main.getInstance().getConfig().getStringList("Messages.UseCommand")) {
                     sender.sendMessage(Utils.color(message)
                             .replace("%version%", Main.getInstance().getDescription().getVersion()));
                 }
+            } else if (args.length == 1 && args[0].equalsIgnoreCase("menu")) {
+                Menu.openGUI(player);
+                return false;
+            } else if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
+                Main.getInstance().reloadConfig();
+                Main.getInstance().saveConfig();
+                FileUtil.reloadMining();
+                FileUtil.saveMining();
+                sender.sendMessage(Utils.color(Utils.getString("Messages.Reload")));
+                return true;
             } else {
-                for (String message : Main.getInstance().getConfig().getStringList("Messages.UseCommand")) {
-                    sender.sendMessage(Utils.color(message)
-                            .replace("%version%", Main.getInstance().getDescription().getVersion()));
-                }
+                sender.sendMessage(Utils.color(Utils.getString("Messages.Error")));
+                return true;
             }
         }
         return false;

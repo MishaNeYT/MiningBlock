@@ -138,3 +138,87 @@ EMERALD:
     command:
     - 'tell %player% Привет, меня зовут Emerald!'
     - 'tell %player% Привет ещё раз, меня зовут Emerald!'
+
+LAPIS:
+  Enable: true
+  Delay: 20
+  MoneyDrop: 20
+  ExpDrop: 35
+  ReplaceBlock: BEDROCK
+  Drop:
+    Enable: true
+    DropBlock: LAPIS_ORE
+    Amount: 1
+  AutoPickup:
+    Enable: false
+    PickupBlock: LAPIS_ORE
+    Amount: 1
+  ParticleBreak:
+    enable: false
+    particle: HEART
+    Locations:
+      amount: 10
+      locationX: 1
+      locationY: 1
+      locationZ: 1
+  CommandBreak:
+    enable: false
+    command:
+      - 'tell %player% Привет, меня зовут Lapis!'
+      - 'tell %player% Привет ещё раз, меня зовут Lapis!'
+
+REDSTONE:
+  Enable: true
+  Delay: 25
+  MoneyDrop: 25
+  ExpDrop: 45
+  ReplaceBlock: BEDROCK
+  Drop:
+    Enable: true
+    DropBlock: REDSTONE
+    Amount: 1
+  AutoPickup:
+    Enable: false
+    PickupBlock: REDSTONE
+    Amount: 1
+  ParticleBreak:
+    enable: false
+    particle: HEART
+    Locations:
+      amount: 10
+      locationX: 1
+      locationY: 1
+      locationZ: 1
+  CommandBreak:
+    enable: false
+    command:
+      - 'tell %player% Привет, меня зовут Redstone!'
+      - 'tell %player% Привет ещё раз, меня зовут Redstone!'
+
+QUARTZ:
+  Enable: true
+  Delay: 30
+  MoneyDrop: 30
+  ExpDrop: 55
+  ReplaceBlock: BEDROCK
+  Drop:
+    Enable: true
+    DropBlock: QUARTZ
+    Amount: 1
+  AutoPickup:
+    Enable: false
+    PickupBlock: QUARTZ
+    Amount: 1
+  ParticleBreak:
+    enable: false
+    particle: HEART
+    Locations:
+      amount: 10
+      locationX: 1
+      locationY: 1
+      locationZ: 1
+  CommandBreak:
+    enable: false
+    command:
+      - 'tell %player% Привет, меня зовут Quartz!'
+      - 'tell %player% Привет ещё раз, меня зовут Quartz!'

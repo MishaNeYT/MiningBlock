@@ -1,9 +1,8 @@
 name: MiningBlock
-version: 1.8.5
+version: 1.8.6
 main: ru.mishaneyt.miningblock.Main
 authors: [ GhostSetuper ]
 softdepend: [ Vault ]
 commands:
   miningblock:
     aliases: [ mb ]
-    description: Main command
