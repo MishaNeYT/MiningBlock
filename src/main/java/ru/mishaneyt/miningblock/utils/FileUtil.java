@@ -28,7 +28,7 @@ public class FileUtil {
         }
     }
 
-    public static void reloadMining() {
+    public static void reloadConfigs() {
         miningConfig = YamlConfiguration.loadConfiguration(miningFile);
 
         InputStream defConfigStream = Main.getInstance().getResource("mining.yml");
@@ -36,5 +36,14 @@ public class FileUtil {
             YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(miningFile);
             miningConfig.setDefaults(defConfig);
         }
+
+        try {
+            FileUtil.getMiningConfig().save(FileUtil.getMiningFile());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Main.getInstance().reloadConfig();
+        Main.getInstance().saveConfig();
     }
 }

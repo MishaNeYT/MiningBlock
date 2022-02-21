@@ -3,15 +3,15 @@
 
 Settings:
   EnableVault: true # Если проблемы, то можете отключить Vault.
-  EnableEditOre: false
-  Permission: miningblock.admin
+  EnableEditOre: false # Если включено, то администрация сервера сможет менять расположения руд.
+  Permission: 'miningblock.admin'
   EnableWorld: # Разрешённые миры - в которых будет работать шахта.
   - world
   - miner
 
 Sound:
   EnableSoundPickup: false # Производится звук сломанной руды.
-  SoundPickup: ENTITY_EXPERIENCE_ORB_PICKUP # Сам звук https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+  SoundPickup: 'ENTITY_EXPERIENCE_ORB_PICKUP' # Сам звук https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
 
 # Сообщение в экран (Титл).
 TitleOnPickup:

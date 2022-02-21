@@ -17,9 +17,6 @@ public class Menu {
     public static void openGUI(Player player) {
         Inventory menu = Bukkit.createInventory(null, 54, " ");
 
-        ItemStack air = new ItemStack(Material.AIR);
-        menu.addItem(air);
-
         ItemStack coal = new ItemStack(Material.COAL_ORE);
         ItemMeta coal_meta = coal.getItemMeta();
 
@@ -67,7 +64,6 @@ public class Menu {
 
 
         coal_meta.setDisplayName(MenuSettings.enableCoal() + " Каменный уголь");
-        menu.addItem(coal);
         List<String> coal_lore = List.of(
                 "§8▸ §7Задержка: §f" + FileUtil.getMiningConfig().getInt("COAL.Delay") + " сек.",
                 "§8▸ §7Деньги: §e+" + FileUtil.getMiningConfig().getInt("COAL.MoneyDrop"),
@@ -84,13 +80,12 @@ public class Menu {
                 "§e▸ ЛКМ, чтобы включить!",
                 "§e▸ ПКМ, чтобы отключить!"
         );
-        coal.setItemMeta(coal_meta);
         coal_meta.setLore(coal_lore);
         coal.setItemMeta(coal_meta);
+        menu.setItem(10, coal);
 
 
         iron_meta.setDisplayName(MenuSettings.enableIron() + " Железная руда");
-        menu.addItem(iron);
         List<String> iron_lore = List.of(
                 "§8▸ §7Задержка: §f" + FileUtil.getMiningConfig().getInt("IRON.Delay") + " сек.",
                 "§8▸ §7Деньги: §e+" + FileUtil.getMiningConfig().getInt("IRON.MoneyDrop"),
@@ -107,13 +102,12 @@ public class Menu {
                 "§e▸ ЛКМ, чтобы включить!",
                 "§e▸ ПКМ, чтобы отключить!"
         );
-        iron.setItemMeta(iron_meta);
         iron_meta.setLore(iron_lore);
         iron.setItemMeta(iron_meta);
+        menu.setItem(11, iron);
 
 
         gold_meta.setDisplayName(MenuSettings.enableGold() + " Золотая руда");
-        menu.addItem(gold);
         List<String> gold_lore = List.of(
                 "§8▸ §7Задержка: §f" + FileUtil.getMiningConfig().getInt("GOLD.Delay") + " сек.",
                 "§8▸ §7Деньги: §e+" + FileUtil.getMiningConfig().getInt("GOLD.MoneyDrop"),
@@ -130,13 +124,12 @@ public class Menu {
                 "§e▸ ЛКМ, чтобы включить!",
                 "§e▸ ПКМ, чтобы отключить!"
         );
-        gold.setItemMeta(gold_meta);
         gold_meta.setLore(gold_lore);
         gold.setItemMeta(gold_meta);
+        menu.setItem(12, gold);
 
 
         diamond_meta.setDisplayName(MenuSettings.enableDiamond() + " Алмазная руда");
-        menu.addItem(diamond);
         List<String> diamond_lore = List.of(
                 "§8▸ §7Задержка: §f" + FileUtil.getMiningConfig().getInt("DIAMOND.Delay") + " сек.",
                 "§8▸ §7Деньги: §e+" + FileUtil.getMiningConfig().getInt("DIAMOND.MoneyDrop"),
@@ -153,13 +146,12 @@ public class Menu {
                 "§e▸ ЛКМ, чтобы включить!",
                 "§e▸ ПКМ, чтобы отключить!"
         );
-        diamond.setItemMeta(diamond_meta);
         diamond_meta.setLore(diamond_lore);
         diamond.setItemMeta(diamond_meta);
+        menu.setItem(13, diamond);
 
 
         emerald_meta.setDisplayName(MenuSettings.enableEmerald() + " Изумрудная руда");
-        menu.addItem(emerald);
         List<String> emerald_lore = List.of(
                 "§8▸ §7Задержка: §f" + FileUtil.getMiningConfig().getInt("EMERALD.Delay") + " сек.",
                 "§8▸ §7Деньги: §e+" + FileUtil.getMiningConfig().getInt("EMERALD.MoneyDrop"),
@@ -176,13 +168,12 @@ public class Menu {
                 "§e▸ ЛКМ, чтобы включить!",
                 "§e▸ ПКМ, чтобы отключить!"
         );
-        emerald.setItemMeta(emerald_meta);
         emerald_meta.setLore(emerald_lore);
         emerald.setItemMeta(emerald_meta);
+        menu.setItem(14, emerald);
 
 
         lapis_meta.setDisplayName(MenuSettings.enableLapis() + " Лазуритовая руда");
-        menu.addItem(lapis);
         List<String> lapis_lore = List.of(
                 "§8▸ §7Задержка: §f" + FileUtil.getMiningConfig().getInt("LAPIS.Delay") + " сек.",
                 "§8▸ §7Деньги: §e+" + FileUtil.getMiningConfig().getInt("LAPIS.MoneyDrop"),
@@ -199,13 +190,12 @@ public class Menu {
                 "§e▸ ЛКМ, чтобы включить!",
                 "§e▸ ПКМ, чтобы отключить!"
         );
-        lapis.setItemMeta(lapis_meta);
         lapis_meta.setLore(lapis_lore);
         lapis.setItemMeta(lapis_meta);
+        menu.setItem(19, lapis);
 
 
         redstone_meta.setDisplayName(MenuSettings.enableRedstone() + " Красная руда");
-        menu.addItem(redstone);
         List<String> redstone_lore = List.of(
                 "§8▸ §7Задержка: §f" + FileUtil.getMiningConfig().getInt("REDSTONE.Delay") + " сек.",
                 "§8▸ §7Деньги: §e+" + FileUtil.getMiningConfig().getInt("REDSTONE.MoneyDrop"),
@@ -222,13 +212,12 @@ public class Menu {
                 "§e▸ ЛКМ, чтобы включить!",
                 "§e▸ ПКМ, чтобы отключить!"
         );
-        redstone.setItemMeta(redstone_meta);
         redstone_meta.setLore(redstone_lore);
         redstone.setItemMeta(redstone_meta);
+        menu.setItem(20, redstone);
 
 
         quartz_meta.setDisplayName(MenuSettings.enableQuartz() + " Кварцевая руда");
-        menu.addItem(quartz);
         List<String> quartz_lore = List.of(
                 "§8▸ §7Задержка: §f" + FileUtil.getMiningConfig().getInt("QUARTZ.Delay") + " сек.",
                 "§8▸ §7Деньги: §e+" + FileUtil.getMiningConfig().getInt("QUARTZ.MoneyDrop"),
@@ -245,23 +234,21 @@ public class Menu {
                 "§e▸ ЛКМ, чтобы включить!",
                 "§e▸ ПКМ, чтобы отключить!"
         );
-        quartz.setItemMeta(quartz_meta);
         quartz_meta.setLore(quartz_lore);
         quartz.setItemMeta(quartz_meta);
+        menu.setItem(21, quartz);
 
 
         reload_meta.setDisplayName("§aПерезагрузить плагин");
-        menu.addItem(reload);
         List<String> reload_lore = List.of(
                 "§e▸ Нажмите, чтобы перезагрузить!"
         );
-        reload.setItemMeta(reload_meta);
         reload_meta.setLore(reload_lore);
         reload.setItemMeta(reload_meta);
+        menu.setItem(16, reload);
 
 
         vault_meta.setDisplayName(MenuSettings.enableVault() + " Поддержка Vault");
-        menu.addItem(vault);
         List<String> vault_lore = List.of(
                 "§cРекомендую поставить Vault,",
                 "§cчтобы работала эта функция!",
@@ -269,26 +256,24 @@ public class Menu {
                 "§e▸ ЛКМ, чтобы включить!",
                 "§e▸ ПКМ, чтобы отключить!"
         );
-        vault.setItemMeta(vault_meta);
         vault_meta.setLore(vault_lore);
         vault.setItemMeta(vault_meta);
+        menu.setItem(37, vault);
 
 
         music_meta.setDisplayName(MenuSettings.enableMusic() + " Звук сломанной руды");
-        menu.addItem(music);
         List<String> music_lore = List.of(
-                "§8▸ §7Тип музыки: §f(" + Utils.getString("Sound.SoundPickup") + "§f)",
+                "§8▸ §7Тип звука: §f(" + Utils.getString("Sound.SoundPickup") + "§f)",
                 "",
                 "§e▸ ЛКМ, чтобы включить!",
                 "§e▸ ПКМ, чтобы отключить!"
         );
-        music.setItemMeta(music_meta);
         music_meta.setLore(music_lore);
         music.setItemMeta(music_meta);
+        menu.setItem(38, music);
 
 
         edit_meta.setDisplayName(MenuSettings.enableEditOre() + " Редактирования руд");
-        menu.addItem(edit);
         List<String> edit_lore = List.of(
                 "§7С помощью этой опции, админы",
                 "§7смогут редактировать расположения",
@@ -299,13 +284,12 @@ public class Menu {
                 "§e▸ ЛКМ, чтобы включить!",
                 "§e▸ ПКМ, чтобы отключить!"
         );
-        edit.setItemMeta(edit_meta);
         edit_meta.setLore(edit_lore);
         edit.setItemMeta(edit_meta);
+        menu.setItem(39, edit);
 
 
         title_meta.setDisplayName(MenuSettings.enableTitle() + " Титлы (TitleOnPickup)");
-        menu.addItem(title);
         List<String> title_lore = List.of(
                 Utils.color("&8▸ &7Главный: &f(" + Utils.getString("TitleOnPickup.Title") + "&f)"),
                 Utils.color("&8▸ &7Нижний: &f(" + Utils.getString("TitleOnPickup.Subtitle") + "&f)"),
@@ -313,13 +297,12 @@ public class Menu {
                 "§e▸ ЛКМ, чтобы включить!",
                 "§e▸ ПКМ, чтобы отключить!"
         );
-        title.setItemMeta(title_meta);
         title_meta.setLore(title_lore);
         title.setItemMeta(title_meta);
+        menu.setItem(41, title);
 
 
         actionbar_meta.setDisplayName(MenuSettings.enableActionbar() + " Нижний бар (Actionbar)");
-        menu.addItem(actionbar);
         List<String> actionbar_lore = List.of(
                 "§8▸ §7Сообщение:",
                 Utils.color("&8- &f(" + Utils.getString("Actionbar.Message") + "&f)"),
@@ -327,13 +310,12 @@ public class Menu {
                 "§e▸ ЛКМ, чтобы включить!",
                 "§e▸ ПКМ, чтобы отключить!"
         );
-        actionbar.setItemMeta(actionbar_meta);
         actionbar_meta.setLore(actionbar_lore);
         actionbar.setItemMeta(actionbar_meta);
+        menu.setItem(42, actionbar);
 
 
         chat_meta.setDisplayName(MenuSettings.enableChat() + " Cообщение в чат (MessageToChat)");
-        menu.addItem(chat);
         List<String> chat_lore = List.of(
                 "§8▸ §7Сообщение:",
                 Utils.color("&8- &f(" + Utils.getStringList("MessageToChat.Message") + "&f)"),
@@ -341,15 +323,11 @@ public class Menu {
                 "§e▸ ЛКМ, чтобы включить!",
                 "§e▸ ПКМ, чтобы отключить!"
         );
-        chat.setItemMeta(chat_meta);
         chat_meta.setLore(chat_lore);
         chat.setItemMeta(chat_meta);
+        menu.setItem(43, chat);
 
 
-        ItemStack[] menu_item = {air, air, air, air, air, air, air, air, air, air, coal, iron, gold, diamond, emerald,
-                air, reload, air, air, lapis, redstone, quartz, air, air, air, air, air, air, air, air, air, air, air, air, air,
-                air, air, vault, music, edit, air, title, actionbar, chat};
-        menu.setContents(menu_item);
         player.openInventory(menu);
     }
 }

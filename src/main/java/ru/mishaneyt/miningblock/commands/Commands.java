@@ -25,26 +25,24 @@ public class Commands implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        if (cmd.getName().equalsIgnoreCase("miningblock")) {
+        if (cmd.getName().equalsIgnoreCase("miningblock") || (cmd.getName().equalsIgnoreCase("mb"))) {
             if (args.length == 0) {
                 for (String message : Main.getInstance().getConfig().getStringList("Messages.UseCommand")) {
                     sender.sendMessage(Utils.color(message)
                             .replace("%version%", Main.getInstance().getDescription().getVersion()));
                 }
 
-            } else if (args.length == 1 && args[0].equalsIgnoreCase("help")) {
+            } else if (args[0].equalsIgnoreCase("help")) {
                 for (String message : Main.getInstance().getConfig().getStringList("Messages.UseCommand")) {
                     sender.sendMessage(Utils.color(message)
                             .replace("%version%", Main.getInstance().getDescription().getVersion()));
                 }
-            } else if (args.length == 1 && args[0].equalsIgnoreCase("menu")) {
+            } else if (args[0].equalsIgnoreCase("menu")) {
                 Menu.openGUI(player);
                 return false;
-            } else if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
-                Main.getInstance().reloadConfig();
-                Main.getInstance().saveConfig();
-                FileUtil.reloadMining();
-                FileUtil.saveMining();
+            } else if (args[0].equalsIgnoreCase("reload")) {
+                FileUtil.reloadConfigs();
+
                 sender.sendMessage(Utils.color(Utils.getString("Messages.Reload")));
                 return true;
             } else {

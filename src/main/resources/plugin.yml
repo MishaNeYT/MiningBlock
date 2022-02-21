@@ -1,5 +1,5 @@
 name: MiningBlock
-version: 1.8.6
+version: 1.9.7
 main: ru.mishaneyt.miningblock.Main
 authors: [ GhostSetuper ]
 softdepend: [ Vault ]
