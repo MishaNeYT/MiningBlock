@@ -8,16 +8,22 @@ import ru.mishaneyt.miningblock.Main;
 import java.util.List;
 
 public class Utils {
+    static final Main plugin = Main.getPlugin(Main.class);
+
     public static String color(String msg) {
         return ChatColor.translateAlternateColorCodes('&', msg);
     }
 
+    public static String colorString(String string) {
+        return ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString(string));
+    }
+
     public static String getString(String configStringMsg) {
-        return Main.getInstance().getConfig().getString(configStringMsg);
+        return plugin.getConfig().getString(configStringMsg);
     }
 
     public static List<String> getStringList(String configStringListMsg) {
-        return Main.getInstance().getConfig().getStringList(configStringListMsg);
+        return plugin.getConfig().getStringList(configStringListMsg);
     }
 
     public static void getSound(Player player) {

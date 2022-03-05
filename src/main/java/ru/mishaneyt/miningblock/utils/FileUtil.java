@@ -9,7 +9,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class FileUtil {
-    private static final File miningFile = new File(Main.getInstance().getDataFolder(), "mining.yml");
+    static final Main plugin = Main.getPlugin(Main.class);
+    private static final File miningFile = new File(plugin.getDataFolder(), "mining.yml");
     private static FileConfiguration miningConfig = YamlConfiguration.loadConfiguration(miningFile);
 
     public static FileConfiguration getMiningConfig() {
@@ -31,7 +32,7 @@ public class FileUtil {
     public static void reloadConfigs() {
         miningConfig = YamlConfiguration.loadConfiguration(miningFile);
 
-        InputStream defConfigStream = Main.getInstance().getResource("mining.yml");
+        InputStream defConfigStream = plugin.getResource("mining.yml");
         if (defConfigStream != null) {
             YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(miningFile);
             miningConfig.setDefaults(defConfig);
@@ -43,7 +44,7 @@ public class FileUtil {
             e.printStackTrace();
         }
 
-        Main.getInstance().reloadConfig();
-        Main.getInstance().saveConfig();
+        plugin.reloadConfig();
+        plugin.saveConfig();
     }
 }

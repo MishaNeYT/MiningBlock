@@ -10,45 +10,42 @@ import ru.mishaneyt.miningblock.utils.FileUtil;
 import ru.mishaneyt.miningblock.utils.Utils;
 
 public class Commands implements CommandExecutor {
+    static final Main plugin = Main.getPlugin(Main.class);
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(Utils.color(Utils.getString("Messages.CommandOnlyServer")));
+            sender.sendMessage(Utils.colorString("Messages.CommandOnlyServer"));
             return false;
         }
 
-        if (!(sender.hasPermission(Utils.getString("Settings.Permission")))) {
-            sender.sendMessage(Utils.color(Utils.getString("Messages.NoPerm")));
+        if (!sender.hasPermission(Utils.getString("Settings.Permission"))) {
+            sender.sendMessage(Utils.colorString("Messages.NoPerm"));
             return false;
         }
 
         Player player = (Player) sender;
 
-        if (cmd.getName().equalsIgnoreCase("miningblock") || (cmd.getName().equalsIgnoreCase("mb"))) {
-            if (args.length == 0) {
-                for (String message : Main.getInstance().getConfig().getStringList("Messages.UseCommand")) {
-                    sender.sendMessage(Utils.color(message)
-                            .replace("%version%", Main.getInstance().getDescription().getVersion()));
-                }
-
-            } else if (args[0].equalsIgnoreCase("help")) {
-                for (String message : Main.getInstance().getConfig().getStringList("Messages.UseCommand")) {
-                    sender.sendMessage(Utils.color(message)
-                            .replace("%version%", Main.getInstance().getDescription().getVersion()));
-                }
-            } else if (args[0].equalsIgnoreCase("menu")) {
-                Menu.openGUI(player);
-                return false;
-            } else if (args[0].equalsIgnoreCase("reload")) {
-                FileUtil.reloadConfigs();
-
-                sender.sendMessage(Utils.color(Utils.getString("Messages.Reload")));
-                return true;
-            } else {
-                sender.sendMessage(Utils.color(Utils.getString("Messages.Error")));
-                return true;
+        if (args.length == 1) {
+            switch (args[0].toLowerCase()) {
+                case "help":
+                    for (String message : plugin.getConfig().getStringList("Messages.UseCommand")) {
+                        sender.sendMessage(Utils.color(message).replace("%version%", plugin.getDescription().getVersion()));
+                    }
+                    break;
+                case "menu":
+                    Menu.openGUI(player);
+                    break;
+                case "reload":
+                    FileUtil.reloadConfigs();
+                    sender.sendMessage(Utils.colorString("Messages.Reload"));
+                    break;
             }
+        } else {
+            for (String message : plugin.getConfig().getStringList("Messages.UseCommand")) {
+                sender.sendMessage(Utils.color(message).replace("%version%", plugin.getDescription().getVersion()));
+            }
+            return true;
         }
         return false;
     }

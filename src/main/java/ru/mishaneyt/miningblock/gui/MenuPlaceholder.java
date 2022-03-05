@@ -3,7 +3,8 @@ package ru.mishaneyt.miningblock.gui;
 import ru.mishaneyt.miningblock.Main;
 import ru.mishaneyt.miningblock.utils.FileUtil;
 
-public class MenuSettings {
+public class MenuPlaceholder {
+    static final Main plugin = Main.getPlugin(Main.class);
     static String enableCoal, enableParticleCoal, enableCoalDrop, enableCoalAutoPickup, enableCoalCMD,
             enableIron, enableParticleIron, enableIronDrop, enableIronAutoPickup, enableIronCMD, enableGold,
             enableParticleGold, enableGoldDrop, enableGoldAutoPickup, enableGoldCMD, enableDiamond,
@@ -391,7 +392,7 @@ public class MenuSettings {
     /* =========================================================== */
 
     public static String enableVault() {
-        if (Main.getInstance().getConfig().getBoolean("Settings.EnableVault")) {
+        if (plugin.getConfig().getBoolean("Settings.EnableVault")) {
             enableVault = "§8[§a✔§8]§6";
         } else {
             enableVault = "§8[§c✖§8]§6";
@@ -400,7 +401,7 @@ public class MenuSettings {
     }
 
     public static String enableMusic() {
-        if (Main.getInstance().getConfig().getBoolean("Sound.EnableSoundPickup")) {
+        if (plugin.getConfig().getBoolean("Sound.EnableSoundPickup")) {
             enableMusic = "§8[§a✔§8]§9";
         } else {
             enableMusic = "§8[§c✖§8]§9";
@@ -409,7 +410,7 @@ public class MenuSettings {
     }
 
     public static String enableEditOre() {
-        if (Main.getInstance().getConfig().getBoolean("Settings.EnableEditOre")) {
+        if (plugin.getConfig().getBoolean("Settings.EnableEditOre")) {
             enableEditOre = "§8[§a✔§8]§c";
         } else {
             enableEditOre = "§8[§c✖§8]§c";
@@ -418,7 +419,7 @@ public class MenuSettings {
     }
 
     public static String enableTitle() {
-        if (Main.getInstance().getConfig().getBoolean("TitleOnPickup.EnableTitles")) {
+        if (plugin.getConfig().getBoolean("TitleOnPickup.EnableTitles")) {
             enableTitle = "§8[§a✔§8]§a";
         } else {
             enableTitle = "§8[§c✖§8]§a";
@@ -427,7 +428,7 @@ public class MenuSettings {
     }
 
     public static String enableActionbar() {
-        if (Main.getInstance().getConfig().getBoolean("Actionbar.EnableActionbar")) {
+        if (plugin.getConfig().getBoolean("Actionbar.EnableActionbar")) {
             enableActionbar = "§8[§a✔§8]§a";
         } else {
             enableActionbar = "§8[§c✖§8]§a";
@@ -436,7 +437,7 @@ public class MenuSettings {
     }
 
     public static String enableChat() {
-        if (Main.getInstance().getConfig().getBoolean("MessageToChat.EnableMessageToChat")) {
+        if (plugin.getConfig().getBoolean("MessageToChat.EnableMessageToChat")) {
             enableChat = "§8[§a✔§8]§a";
         } else {
             enableChat = "§8[§c✖§8]§a";

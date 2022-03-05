@@ -1,7 +1,9 @@
 name: MiningBlock
-version: 1.9.7
+version: 1.9.8
+
 main: ru.mishaneyt.miningblock.Main
 authors: [ GhostSetuper ]
+
 softdepend: [ Vault ]
 commands:
   miningblock:

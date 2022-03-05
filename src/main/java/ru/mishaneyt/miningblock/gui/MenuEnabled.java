@@ -4,6 +4,7 @@ import ru.mishaneyt.miningblock.Main;
 import ru.mishaneyt.miningblock.utils.FileUtil;
 
 public class MenuEnabled {
+    static final Main plugin = Main.getPlugin(Main.class);
 
     public static void setEnabledCoal(boolean status) {
         Menu.enabled = status;
@@ -55,37 +56,37 @@ public class MenuEnabled {
 
     public static void setEnabledVault(boolean status) {
         Menu.enabled = status;
-        Main.getInstance().getConfig().set("Settings.EnableVault", status);
-        Main.getInstance().saveConfig();
+        plugin.getConfig().set("Settings.EnableVault", status);
+        plugin.saveConfig();
     }
 
     public static void setEnabledMusic(boolean status) {
         Menu.enabled = status;
-        Main.getInstance().getConfig().set("Sound.EnableSoundPickup", status);
-        Main.getInstance().saveConfig();
+        plugin.getConfig().set("Sound.EnableSoundPickup", status);
+        plugin.saveConfig();
     }
 
     public static void setEnabledEditOre(boolean status) {
         Menu.enabled = status;
-        Main.getInstance().getConfig().set("Settings.EnableEditOre", status);
-        Main.getInstance().saveConfig();
+        plugin.getConfig().set("Settings.EnableEditOre", status);
+        plugin.saveConfig();
     }
 
     public static void setEnabledTitle(boolean status) {
         Menu.enabled = status;
-        Main.getInstance().getConfig().set("TitleOnPickup.EnableTitles", status);
-        Main.getInstance().saveConfig();
+        plugin.getConfig().set("TitleOnPickup.EnableTitles", status);
+        plugin.saveConfig();
     }
 
     public static void setEnabledActionbar(boolean status) {
         Menu.enabled = status;
-        Main.getInstance().getConfig().set("Actionbar.EnableActionbar", status);
-        Main.getInstance().saveConfig();
+        plugin.getConfig().set("Actionbar.EnableActionbar", status);
+        plugin.saveConfig();
     }
 
     public static void setEnabledChat(boolean status) {
         Menu.enabled = status;
-        Main.getInstance().getConfig().set("MessageToChat.EnableMessageToChat", status);
-        Main.getInstance().saveConfig();
+        plugin.getConfig().set("MessageToChat.EnableMessageToChat", status);
+        plugin.saveConfig();
     }
 }
