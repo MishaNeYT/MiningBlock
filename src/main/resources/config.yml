@@ -1,50 +1,72 @@
-# Зависимость Vault и PlaceholderAPI
-# Свои placeholder-ы - %money% и %player%.
+# Создатель GhostSetuper (MishaNeYT). Появилась проблема? Пишите мне во вконтакте https://vk.com/mishapavlovyakutsk
+
+# НЕМНОГО ОБ АВТОРСКОМ ПРАВЕ:
+# Публикация плагина без моего разрешения строго запрещена! Все мы знаем об авторском праве, поэтому соблюдайте его.
+# Я ведь для вас стараюсь.
+
+# Есть открытый исходный код, вот ссылочка: https://github.com/MishaNeYT/MiningBlock
 
 Settings:
-  EnableVault: true # Если проблемы, то можете отключить Vault.
-  EnableEditOre: false # Если включено, то администрация сервера сможет менять расположения руд.
-  Permission: 'miningblock.admin'
-  EnableWorld: # Разрешённые миры - в которых будет работать шахта.
-  - world
-  - miner
+  # Права для администрации сервера.
+  Permission: mb.admin
+  # Если возникли проблемы с Vault, то вы можете отключить его.
+  EnableVault: false
+  # Если TRUE, то игроки с КРЕАТИВОВ не смогут добывать блоки - они просто не будут падать.
+  BreakCreative: true
+  # Уведомления в чат об ошибках в конфиге mining.yml. Если бесит, то можете отключить
+  InfoErrorChat: true
+  # Надпись на экране, о том, что у игрока заполненный инвентарь. Чисто хайпиксель xD
+  EnableFullInventory: true
+  # Миры, в которых работают блоки из mining.yml.
+  EnableWorlds:
+    - world
+    - spawn
 
-Sound:
-  EnableSoundPickup: false # Производится звук сломанной руды.
-  SoundPickup: 'ENTITY_EXPERIENCE_ORB_PICKUP' # Сам звук https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+SoundPickup:
+  # Воспроизводится звук добытой руды.
+  Enable: true
+  # Список доступных звуков https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+  Sound: 'ENTITY_EXPERIENCE_ORB_PICKUP'
 
-# Сообщение в экран (Титл).
+# Сообщение в экран (Title).
 TitleOnPickup:
-  EnableTitles: false
-  Title: '&aУспешно'
+  Enable: false
+  Title: '&aУспех!'
   Subtitle: '&fВы заработали &e+%money%$'
   FadeIn: 10
   Stay: 20
   FadeOut: 10
 
-# Сообщение снизу (Нижний бар).
+# Сообщение снизу (Action bar).
 Actionbar:
-  EnableActionbar: true
-  Message: '&e+%money%$ монеты'
+  Enable: true
+  Message: '&e+%money%$ монет'
 
 # Сообщение в чате.
 MessageToChat:
-  EnableMessageToChat: false
-  Message:
-  - '&a(!) &fВы заработали с этого блока &e+%money%$'
+  Enable: false
+  Message: '&e+%money%$ монет'
 
 Messages:
-  Reload: '&a✔ Плагин успешно перезагружен!'
-  NoPerm: '&c✖ У вас нет прав!'
-  Error: '&c✖ Команда введена не правильно!'
-  CommandOnlyServer: '&c✖ Команда доступна только в игре!'
-  UseCommand:
+  NoPerms: '&cУ вас нет прав для использования этой команды.'
+  OnlyPlayer: '&cКоманду может ввести только игрок.'
+  ErrorCmd: '&cКоманда введена неправильно. Используйте /mb help'
+  Reload: '&6[MB] &fПлагин успешно перезагружен.'
+  FullInventory:
+    Title: '&4Ваш инвентарь заполнился!'
+    Subtitle: '&cОсвободите место, чтобы добыть блок.'
+  EditOre:
+    Enable: '&6[MB] &fВы &aвключили &fрежим редактирования руд.'
+    Disable: '&6[MB] &fВы &cотключили &fрежим редактирования руд.'
+  HelpCommand:
     - ''
     - '&6--------------------------------------------------'
-    - '&f Создатель плагина: &7GhostSetuper'
+    - '&f Создатель плагина: &6GhostSetuper'
     - '&f Версия плагина: &a%version%'
     - ''
-    - '&8 ▸ &e/miningblock menu &f- открыть GUI;'
-    - '&8 ▸ &e/miningblock reload &f- перезагрузить плагин.'
+    - '&8 ▸ &e/miningblock menu &7- &fоткрыть GUI;'
+    - '&8 ▸ &e/miningblock info &7- &fкнига для чайникам.'
+    - '&8 ▸ &e/miningblock editore &7- &fвключить редактирования руд.'
+    - '&8 ▸ &e/miningblock reload &7- &fперезагрузить плагин.'
     - '&6--------------------------------------------------'
     - ''

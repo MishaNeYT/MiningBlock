@@ -3,35 +3,27 @@ package ru.mishaneyt.miningblock;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
-import ru.mishaneyt.miningblock.utils.FileUtil;
+import ru.mishaneyt.miningblock.config.ConfigManager;
+import ru.mishaneyt.miningblock.config.ConfigUtils;
+import ru.mishaneyt.miningblock.utils.LoaderPlugin;
 
 public class Main extends JavaPlugin implements Listener {
+    private static Main instance = null;
     public static Economy economy = null;
 
     @Override
     public void onEnable() {
-        if (!getDataFolder().isFile()) {
-            saveDefaultConfig();
+        Main.instance = this;
 
-            getLogger().info("");
-            getLogger().info("§2Основной конфиг успешно создан!");
-            getLogger().info("");
-        }
+        ConfigUtils.onCheckConfig(this);
 
-        saveResource("mining.yml", false);
+        ConfigManager.onLoad(this);
+        LoaderPlugin.onLoadPlugin();
 
-        Register.setupPlaceholder();
-        Register.setupEconomy();
-
-        Register.getCommand();
-        Register.registerEvents();
-
-        Register.MessageConsole();
+        LoaderPlugin.MessageConsole();
     }
 
-    @Override
-    public void onDisable() {
-        FileUtil.saveMining();
-        saveConfig();
+    public static Main getInstance() {
+        return instance;
     }
 }

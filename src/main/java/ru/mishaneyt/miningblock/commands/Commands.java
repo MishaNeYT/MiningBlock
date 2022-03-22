@@ -5,47 +5,47 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import ru.mishaneyt.miningblock.Main;
-import ru.mishaneyt.miningblock.gui.Menu;
-import ru.mishaneyt.miningblock.utils.FileUtil;
-import ru.mishaneyt.miningblock.utils.Utils;
+import ru.mishaneyt.miningblock.config.ConfigManager;
+import ru.mishaneyt.miningblock.config.ConfigUtils;
+import ru.mishaneyt.miningblock.utils.InfoBook;
+import ru.mishaneyt.miningblock.utils.UtilsManager;
 
 public class Commands implements CommandExecutor {
-    static final Main plugin = Main.getPlugin(Main.class);
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(Utils.colorString("Messages.CommandOnlyServer"));
+            sender.sendMessage(ConfigManager.ONLY_PLAYER);
+            return false;
+        }
+        if (!sender.hasPermission(ConfigManager.PERMISSION)) {
+            sender.sendMessage(ConfigManager.PERMISSION_MSG);
             return false;
         }
 
-        if (!sender.hasPermission(Utils.getString("Settings.Permission"))) {
-            sender.sendMessage(Utils.colorString("Messages.NoPerm"));
-            return false;
-        }
-
-        Player player = (Player) sender;
+        Player p = (Player) sender;
 
         if (args.length == 1) {
             switch (args[0].toLowerCase()) {
                 case "help":
-                    for (String message : plugin.getConfig().getStringList("Messages.UseCommand")) {
-                        sender.sendMessage(Utils.color(message).replace("%version%", plugin.getDescription().getVersion()));
-                    }
+                    UtilsManager.onHelp(p);
+                    break;
+                case "info":
+                    InfoBook.getBook(p);
                     break;
                 case "menu":
-                    Menu.openGUI(player);
+                    p.sendMessage("В разработке...");
+                    break;
+                case "editore":
+                    UtilsManager.onEditOre(p);
                     break;
                 case "reload":
-                    FileUtil.reloadConfigs();
-                    sender.sendMessage(Utils.colorString("Messages.Reload"));
+                    ConfigUtils.onCheckConfig(Main.getInstance());
+                    ConfigUtils.reloadConfigs(p);
                     break;
             }
         } else {
-            for (String message : plugin.getConfig().getStringList("Messages.UseCommand")) {
-                sender.sendMessage(Utils.color(message).replace("%version%", plugin.getDescription().getVersion()));
-            }
-            return true;
+            p.sendMessage(ConfigManager.ERROR);
         }
         return false;
     }

@@ -1,10 +1,13 @@
 name: MiningBlock
-version: 1.9.8
+version: 2.0.0
 
 main: ru.mishaneyt.miningblock.Main
 authors: [ GhostSetuper ]
 
-softdepend: [ Vault ]
+api-version: 1.13
+
 commands:
   miningblock:
+    description: Основная команда
+    default: op
     aliases: [ mb ]

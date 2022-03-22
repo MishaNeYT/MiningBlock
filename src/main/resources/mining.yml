@@ -1,224 +1,55 @@
-COAL:
-  Enable: true
-  Delay: 5 # Задержка респавна руды.
-  MoneyDrop: 2 # После добычи блока, игрок получит денги на свой баланс | 0 - отключить.
-  ExpDrop: 2 # После добычи блока, игрок получит опыт | 0 - отключить.
-  ReplaceBlock: BEDROCK # Блок, который будет появляться после добычи этой руды. А после него AIR.
-  Drop:
-    Enable: true # Включить или отключить выпадение дропа.
-    DropBlock: COAL
-    Amount: 1
-  AutoPickup:
-    Enable: false # Включить или отключить авто подбор дропа на инвентарь игрока.
-    PickupBlock: COAL
-    Amount: 1
-  ParticleBreak: # Воспроизводится частица, когда блок сломан https://helpch.at/docs/1.12.2/org/bukkit/Particle.html
-    enable: false
-    particle: HEART
-    Locations:
-      amount: 10
-      locationX: 1
-      locationY: 1
-      locationZ: 1
-  CommandBreak:
-    enable: false
-    # Placeholder, чтобы указать ник игрока - %player%
-    command:
-      - 'tell %player% Привет, меня зовут Coal!'
-      - 'tell %player% Привет ещё раз, меня зовут Coal!'
+# Создатель GhostSetuper (MishaNeYT) | PleasantVKChannel
+# СТОП, СТОП, СТОП! Впервые открыл этот конфиг? Да? Тогда рекомендую прочитать информацию - https://spigotmc.ru/resources/850/
 
-IRON:
+MiningBlocks:
   Enable: true
-  Delay: 7
-  MoneyDrop: 5
-  ExpDrop: 5
-  ReplaceBlock: BEDROCK
-  Drop:
-    Enable: true
-    DropBlock: IRON_ORE
-    Amount: 1
-  AutoPickup:
-    Enable: false
-    PickupBlock: IRON_ORE
-    Amount: 1
-  ParticleBreak:
-    enable: false
-    particle: HEART
-    Locations:
-      amount: 10
-      locationX: 1
-      locationY: 1
-      locationZ: 1
-  CommandBreak:
-    enable: false
-    command:
-    - 'tell %player% Привет, меня зовут Iron!'
-    - 'tell %player% Привет ещё раз, меня зовут iron!'
+  # Айди блока.
+  COAL_ORE:
+    # Задержка для ReplaceBlock.
+    Delay: 5
+    # Выпадение опыта.
+    ExpDrop: 5
+    # Айди блока, который будет появляться после добычи.
+    ReplaceBlock: BEDROCK
+    Drop:
+      DropItem: APPLE
+      Amount: 2
+    AutoPickup:
+      DropItem: COAL
+      Amount: 1
+    # Команда от имени сервера.
+    CommandBreak: 'say Вау, ты получил яблоко!'
 
-GOLD:
-  Enable: true
-  Delay: 9
-  MoneyDrop: 8
-  ExpDrop: 9
-  ReplaceBlock: BEDROCK
-  Drop:
-    Enable: true
-    DropBlock: GOLD_ORE
-    Amount: 1
-  AutoPickup:
-    Enable: false
-    PickupBlock: GOLD_ORE
-    Amount: 1
-  ParticleBreak:
-    enable: false
-    particle: HEART
-    Locations:
-      amount: 10
-      locationX: 1
-      locationY: 1
-      locationZ: 1
-  CommandBreak:
-    enable: false
-    command:
-    - 'tell %player% Привет, меня зовут Gold!'
-    - 'tell %player% Привет ещё раз, меня зовут Gold!'
 
-DIAMOND:
-  Enable: true
-  Delay: 12
-  MoneyDrop: 10
-  ExpDrop: 15
-  ReplaceBlock: BEDROCK
-  Drop:
-    Enable: true
-    DropBlock: DIAMOND
-    Amount: 1
-  AutoPickup:
-    Enable: false
-    PickupBlock: DIAMOND
-    Amount: 1
-  ParticleBreak:
-    enable: false
-    particle: HEART
-    Locations:
-      amount: 10
-      locationX: 1
-      locationY: 1
-      locationZ: 1
-  CommandBreak:
-    enable: false
-    command:
-    - 'tell %player% Привет, меня зовут Diamond!'
-    - 'tell %player% Привет ещё раз, меня зовут Diamond!'
+  # Примеры:
+  IRON_ORE:
+    Delay: 8
+    MoneyDrop: 2
+    ReplaceBlock: STONE
+    Drop:
+      DropItem: BREAD
+      Amount: 1
 
-EMERALD:
-  Enable: true
-  Delay: 15
-  MoneyDrop: 15
-  ExpDrop: 25
-  ReplaceBlock: BEDROCK
-  Drop:
-    Enable: true
-    DropBlock: EMERALD
-    Amount: 1
-  AutoPickup:
-    Enable: false
-    PickupBlock: EMERALD
-    Amount: 1
-  ParticleBreak:
-    enable: false
-    particle: HEART
-    Locations:
-      amount: 10
-      locationX: 1
-      locationY: 1
-      locationZ: 1
-  CommandBreak:
-    enable: false
-    command:
-    - 'tell %player% Привет, меня зовут Emerald!'
-    - 'tell %player% Привет ещё раз, меня зовут Emerald!'
+  DIAMOND_BLOCK:
+    Delay: 10
+    ExpDrop: 20
+    ReplaceBlock: DIAMOND_ORE
+    Drop:
+      DropItem: DIAMOND
+      Amount: 1
+    CommandBreak: 'tell %player% Эй, хватит меня трогать!'
 
-LAPIS:
-  Enable: true
-  Delay: 20
-  MoneyDrop: 20
-  ExpDrop: 35
-  ReplaceBlock: BEDROCK
-  Drop:
-    Enable: true
-    DropBlock: LAPIS_ORE
-    Amount: 1
-  AutoPickup:
-    Enable: false
-    PickupBlock: LAPIS_ORE
-    Amount: 1
-  ParticleBreak:
-    enable: false
-    particle: HEART
-    Locations:
-      amount: 10
-      locationX: 1
-      locationY: 1
-      locationZ: 1
-  CommandBreak:
-    enable: false
-    command:
-      - 'tell %player% Привет, меня зовут Lapis!'
-      - 'tell %player% Привет ещё раз, меня зовут Lapis!'
-
-REDSTONE:
-  Enable: true
-  Delay: 25
-  MoneyDrop: 25
-  ExpDrop: 45
-  ReplaceBlock: BEDROCK
-  Drop:
-    Enable: true
-    DropBlock: REDSTONE
-    Amount: 1
-  AutoPickup:
-    Enable: false
-    PickupBlock: REDSTONE
-    Amount: 1
-  ParticleBreak:
-    enable: false
-    particle: HEART
-    Locations:
-      amount: 10
-      locationX: 1
-      locationY: 1
-      locationZ: 1
-  CommandBreak:
-    enable: false
-    command:
-      - 'tell %player% Привет, меня зовут Redstone!'
-      - 'tell %player% Привет ещё раз, меня зовут Redstone!'
-
-QUARTZ:
-  Enable: true
-  Delay: 30
-  MoneyDrop: 30
-  ExpDrop: 55
-  ReplaceBlock: BEDROCK
-  Drop:
-    Enable: true
-    DropBlock: QUARTZ
-    Amount: 1
-  AutoPickup:
-    Enable: false
-    PickupBlock: QUARTZ
-    Amount: 1
-  ParticleBreak:
-    enable: false
-    particle: HEART
-    Locations:
-      amount: 10
-      locationX: 1
-      locationY: 1
-      locationZ: 1
-  CommandBreak:
-    enable: false
-    command:
-      - 'tell %player% Привет, меня зовут Quartz!'
-      - 'tell %player% Привет ещё раз, меня зовут Quartz!'
+  # Цепочка xD, просто начните быстрее копать GOLD_BLOCK
+  GOLD_BLOCK:
+    Delay: 2
+    ReplaceBlock: GOLD_ORE
+  GOLD_ORE:
+    Delay: 2
+    ReplaceBlock: COBBLESTONE
+  COBBLESTONE:
+    Delay: 2
+    ReplaceBlock: GOLD_BLOCK
+    AutoPickup:
+      DropItem: GOLD_INGOT
+      Amount: 10
+    CommandBreak: 'tell %player% Ураа, ты закончил цепочку :> Твоя награда - 10 золотых слитков.'
