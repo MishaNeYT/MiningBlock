@@ -1,19 +1,19 @@
 package ru.mishaneyt.miningblock.mining.features;
 
-import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.entity.Player;
+import ru.mishaneyt.miningblock.Main;
 import ru.mishaneyt.miningblock.config.ConfigManager;
 
 public class Chat {
 
     public static void sendMessage(Player p, String money) {
         if (ConfigManager.CHAT_ENABLE) {
-            String msg = ConfigManager.CHAT;
+            for (String msg : Main.getInstance().getConfig().getStringList("MessageToChat.Message")) {
+                msg = msg.replace("%money%", money).replace("&", "§");
+                Papi.connect(p, msg);
 
-            msg = msg.replace("%money%", money);
-            PlaceholderAPI.setPlaceholders(p, msg);
-
-            p.sendMessage(msg);
+                p.sendMessage(msg);
+            }
         }
     }
 }

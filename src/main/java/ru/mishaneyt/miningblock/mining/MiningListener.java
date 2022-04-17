@@ -1,10 +1,6 @@
 package ru.mishaneyt.miningblock.mining;
 
-import me.clip.placeholderapi.PlaceholderAPI;
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -39,14 +35,14 @@ public class MiningListener implements Listener {
         if (!ConfigManager.ENABLE_WORLDS.contains(world)) return;
         if (!ConfigManager.EDITORE) if (p.getGameMode() == GameMode.CREATIVE) return;
         if (!configMining.getBoolean("MiningBlocks.Enable")) {
-            Logger.warn("В конфиге mining.yml Раздел MiningBlocks.Enable отключён, либо возникла проблема с работой, воспользуйтесь командой /miningblock reload. Так же, рекомендую прочитать информацию - https://spigotmc.ru/resources/850/");
+            Logger.warn("В конфиге mining.yml Раздел MiningBlocks.Enable отключён, либо возникла проблема с работой, воспользуйтесь командой /miningblock reload.");
             UtilsManager.sendError(p);
             return;
         }
 
 
         if (block == null) {
-            Logger.warn("В mining.yml указан не верный айди блока.");
+            Logger.warn("Указан не верный айди блока.");
             UtilsManager.sendError(p);
             return;
         }
@@ -59,7 +55,7 @@ public class MiningListener implements Listener {
 
         int delay = section.getInt("Delay");
         if (!section.isInt("Delay")) {
-            Logger.warn("Укажите Delay, без него блок не будет работать. Для подробной информации https://spigotmc.ru/resources/850/");
+            Logger.warn("Укажите Delay, без него блок не будет работать.");
             UtilsManager.sendError(p);
             return;
         }
@@ -69,7 +65,7 @@ public class MiningListener implements Listener {
 
         String replace = section.getString("ReplaceBlock");
         if (replace == null) {
-            Logger.warn("Укажите ReplaceBlock, без него блок не будет работать. Для подробной информации https://spigotmc.ru/resources/850/");
+            Logger.warn("Укажите ReplaceBlock, без него блок не будет работать.");
             UtilsManager.sendError(p);
             return;
         }
@@ -83,34 +79,35 @@ public class MiningListener implements Listener {
         String command = section.getString("CommandBreak");
         if (command != null) {
             command = command.replace("%player%", p.getName());
-            PlaceholderAPI.setPlaceholders(p, command);
+            Papi.connect(p, command);
         }
 
 
         e.setCancelled(true);
 
-        if (p.getInventory().firstEmpty() == -1)
-            FullInventory.sendTitle(p);
+        if (p.getInventory().firstEmpty() == -1) FullInventory.sendTitle(p);
 
         if (ConfigManager.VAULT_ENABLE && section.isInt("MoneyDrop"))
             Main.economy.depositPlayer(p, money);
 
-        if (section.isInt("ExpDrop"))
-            e.setExpToDrop(exp);
+        if (section.isInt("ExpDrop")) e.setExpToDrop(exp);
 
         if (section.isString("Drop.DropItem") && section.isInt("Drop.Amount"))
             DropItem.dropItem(b, drop_item, drop_item_amount);
         if (section.isString("AutoPickup.DropItem") && section.isInt("AutoPickup.Amount"))
             AutoPickup.pickupItem(p, autopickup_item, autopickup_item_amount);
 
-        PlaySound.playSound(p);
+        try {
+            PlaySound.playSound(p);
+        } catch (Exception e1) {
+            Logger.warn("Пожалуйста, проверьте звук в config.yml. Ваша версия ядра, может его не поддерживать.");
+        }
 
         Title.sendTitle(p, String.valueOf(money));
         Actionbar.sendActionbar(p, String.valueOf(money));
         Chat.sendMessage(p, String.valueOf(money));
 
-        if (section.isString("CommandBreak"))
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
+        if (section.isString("CommandBreak")) Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
 
         b.setType(Material.valueOf(replace));
         Main.getInstance().getServer().getScheduler().runTaskLater(Main.getInstance(), () -> b.setType(block), delay * 20L);

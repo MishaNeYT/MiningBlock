@@ -52,7 +52,12 @@ public class ConfigUtils {
         pm.getPlugin("MiningBlock").reloadConfig();
         pm.enablePlugin(Main.getInstance());
 
-        PlaySound.playSound(p);
+        try {
+            PlaySound.playSound(p);
+        } catch (Exception e) {
+            Logger.warn("Пожалуйста, проверьте звук в config.yml. Ваша версия ядра, может его не поддерживать.");
+        }
+
         p.sendMessage(ConfigManager.RELOAD);
     }
 

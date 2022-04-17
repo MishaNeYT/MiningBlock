@@ -17,7 +17,6 @@ public class CommandsTab implements TabCompleter {
 
             if (sender.hasPermission(ConfigManager.PERMISSION)) {
                 arg.add("help");
-                arg.add("info");
                 arg.add("menu");
                 arg.add("editore");
                 arg.add("reload");

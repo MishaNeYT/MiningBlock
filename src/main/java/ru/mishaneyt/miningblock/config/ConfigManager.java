@@ -1,6 +1,7 @@
 package ru.mishaneyt.miningblock.config;
 
-import org.bukkit.plugin.Plugin;
+import org.bukkit.configuration.Configuration;
+import ru.mishaneyt.miningblock.Main;
 import ru.mishaneyt.miningblock.utils.UtilsManager;
 
 public class ConfigManager {
@@ -14,6 +15,7 @@ public class ConfigManager {
 
     public static String ENABLE_WORLDS;
     public static Boolean VAULT_ENABLE;
+    public static Boolean PLACEHOLDER_ENABLE;
 
     public static Boolean FULLINV_ENABLE;
     public static String FULLINV_TITLE;
@@ -40,41 +42,44 @@ public class ConfigManager {
     public static Boolean CHAT_ENABLE;
     public static String CHAT;
 
-    public static void onLoad(Plugin plugin) {
+    public static void onLoad() {
+        Configuration config = Main.getInstance().getConfig();
+
         ONLY_PLAYER = UtilsManager.getStringColor("Messages.OnlyPlayer");
         PERMISSION = UtilsManager.getString("Settings.Permission");
         PERMISSION_MSG = UtilsManager.getStringColor("Messages.NoPerms");
         ERROR = UtilsManager.getStringColor("Messages.ErrorCmd");
         RELOAD = UtilsManager.getStringColor("Messages.Reload");
 
-        BC_ERROR = plugin.getConfig().getBoolean("Settings.InfoErrorChat");
+        BC_ERROR = config.getBoolean("Settings.InfoErrorChat");
 
-        ENABLE_WORLDS = String.valueOf(plugin.getConfig().getStringList("Settings.EnableWorlds"));
-        VAULT_ENABLE = plugin.getConfig().getBoolean("Settings.EnableVault");
+        ENABLE_WORLDS = String.valueOf(config.getStringList("Settings.EnableWorlds"));
+        VAULT_ENABLE = config.getBoolean("Settings.EnableVault");
+        PLACEHOLDER_ENABLE = config.getBoolean("Settings.EnablePlaceholder");
 
-        FULLINV_ENABLE = plugin.getConfig().getBoolean("Seetings.EnableFullInventory");
+        FULLINV_ENABLE = config.getBoolean("Seetings.EnableFullInventory");
         FULLINV_TITLE = UtilsManager.getStringColor("Messages.FullInventory.Title");
         FULLINV_SUBTITLE = UtilsManager.getStringColor("Messages.FullInventory.Subtitle");
 
-        EDITORE = plugin.getConfig().getBoolean("Settings.BreakCreative");
+        EDITORE = config.getBoolean("Settings.BreakCreative");
 
-        SOUND_ENABLE = plugin.getConfig().getBoolean("SoundPickup.Enable");
+        SOUND_ENABLE = config.getBoolean("SoundPickup.Enable");
         SOUND = UtilsManager.getString("SoundPickup.Sound");
 
         EDITORE_ENABLE = UtilsManager.getStringColor("Messages.EditOre.Enable");
         EDITORE_DISABLE = UtilsManager.getStringColor("Messages.EditOre.Disable");
 
-        TITLE_ENABLE = plugin.getConfig().getBoolean("TitleOnPickup.Enable");
+        TITLE_ENABLE = config.getBoolean("TitleOnPickup.Enable");
         TITLE = UtilsManager.getStringColor("TitleOnPickup.Title");
         SUBTITLE = UtilsManager.getStringColor("TitleOnPickup.Subtitle");
-        FADEIN = plugin.getConfig().getInt("TitleOnPickup.FadeIn");
-        STAY = plugin.getConfig().getInt("TitleOnPickup.Stay");
-        FADEOUT = plugin.getConfig().getInt("TitleOnPickup.FadeOut");
+        FADEIN = config.getInt("TitleOnPickup.FadeIn");
+        STAY = config.getInt("TitleOnPickup.Stay");
+        FADEOUT = config.getInt("TitleOnPickup.FadeOut");
 
-        ACTIONBAR_ENABLE = plugin.getConfig().getBoolean("Actionbar.Enable");
+        ACTIONBAR_ENABLE = config.getBoolean("Actionbar.Enable");
         ACTIONBAR = UtilsManager.getStringColor("Actionbar.Message");
 
-        CHAT_ENABLE = plugin.getConfig().getBoolean("MessageToChat.Enable");
-        CHAT = UtilsManager.getStringColor("MessageToChat.Message");
+        CHAT_ENABLE = config.getBoolean("MessageToChat.Enable");
+        CHAT = String.valueOf(config.getStringList("MessageToChat.Message"));
     }
 }

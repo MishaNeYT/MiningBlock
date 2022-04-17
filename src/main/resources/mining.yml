@@ -1,6 +1,3 @@
-# Создатель GhostSetuper (MishaNeYT) | PleasantVKChannel
-# СТОП, СТОП, СТОП! Впервые открыл этот конфиг? Да? Тогда рекомендую прочитать информацию - https://spigotmc.ru/resources/850/
-
 MiningBlocks:
   Enable: true
   # Айди блока.
@@ -26,6 +23,7 @@ MiningBlocks:
     Delay: 8
     MoneyDrop: 2
     ReplaceBlock: STONE
+    Particle: CLOUD
     Drop:
       DropItem: BREAD
       Amount: 1
