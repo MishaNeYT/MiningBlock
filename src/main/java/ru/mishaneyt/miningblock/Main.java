@@ -35,4 +35,8 @@ public class Main extends JavaPlugin implements Listener {
     public static Main getInstance() {
         return instance;
     }
+
+    public static Economy getEconomy() {
+        return economy;
+    }
 }

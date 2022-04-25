@@ -12,18 +12,17 @@ public class CommandsTab implements TabCompleter {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
-        if (args.length == 1) {
-            List<String> arg = new ArrayList<>();
+        List<String> arg = new ArrayList<>();
 
+        if (args.length == 1) {
             if (sender.hasPermission(ConfigManager.PERMISSION)) {
                 arg.add("help");
                 arg.add("menu");
                 arg.add("editore");
                 arg.add("reload");
             }
-
             return arg;
         }
-        return new ArrayList<>();
+        return null;
     }
 }

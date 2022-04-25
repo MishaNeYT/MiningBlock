@@ -5,10 +5,10 @@ import ru.mishaneyt.miningblock.config.ConfigManager;
 
 public class Title {
 
-    public static void sendTitle(Player p, String money) {
+    public static void sendTitle(Player p, int money) {
         if (ConfigManager.TITLE_ENABLE) {
-            String titleText = ConfigManager.TITLE.replace("%money%", money);
-            String subtitleText = ConfigManager.SUBTITLE.replace("%money%", money);
+            String titleText = ConfigManager.TITLE.replace("%money%", String.valueOf(money));
+            String subtitleText = ConfigManager.SUBTITLE.replace("%money%", String.valueOf(money));
 
             Papi.connect(p, titleText);
             Papi.connect(p, subtitleText);

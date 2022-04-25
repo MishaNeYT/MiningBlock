@@ -88,7 +88,7 @@ public class MiningListener implements Listener {
         if (p.getInventory().firstEmpty() == -1) FullInventory.sendTitle(p);
 
         if (ConfigManager.VAULT_ENABLE && section.isInt("MoneyDrop"))
-            Main.economy.depositPlayer(p, money);
+            Main.getEconomy().depositPlayer(p, money);
 
         if (section.isInt("ExpDrop")) e.setExpToDrop(exp);
 
@@ -103,9 +103,9 @@ public class MiningListener implements Listener {
             Logger.warn("Пожалуйста, проверьте звук в config.yml. Ваша версия ядра, может его не поддерживать.");
         }
 
-        Title.sendTitle(p, String.valueOf(money));
-        Actionbar.sendActionbar(p, String.valueOf(money));
-        Chat.sendMessage(p, String.valueOf(money));
+        Title.sendTitle(p, money);
+        Actionbar.sendActionbar(p, money);
+        Chat.sendMessage(p, money);
 
         if (section.isString("CommandBreak")) Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
 

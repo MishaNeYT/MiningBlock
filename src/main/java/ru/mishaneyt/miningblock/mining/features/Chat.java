@@ -6,10 +6,10 @@ import ru.mishaneyt.miningblock.config.ConfigManager;
 
 public class Chat {
 
-    public static void sendMessage(Player p, String money) {
+    public static void sendMessage(Player p, int money) {
         if (ConfigManager.CHAT_ENABLE) {
             for (String msg : Main.getInstance().getConfig().getStringList("MessageToChat.Message")) {
-                msg = msg.replace("%money%", money).replace("&", "§");
+                msg = msg.replace("%money%", String.valueOf(money)).replace("&", "§");
                 Papi.connect(p, msg);
 
                 p.sendMessage(msg);

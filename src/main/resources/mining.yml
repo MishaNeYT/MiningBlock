@@ -1,7 +1,7 @@
 MiningBlocks:
   Enable: true
   # Айди блока.
-  COAL_ORE:
+  OBSIDIAN:
     # Задержка для ReplaceBlock.
     Delay: 5
     # Выпадение опыта.
@@ -17,17 +17,7 @@ MiningBlocks:
     # Команда от имени сервера.
     CommandBreak: 'say Вау, ты получил яблоко!'
 
-
-  # Примеры:
-  IRON_ORE:
-    Delay: 8
-    MoneyDrop: 2
-    ReplaceBlock: STONE
-    Particle: CLOUD
-    Drop:
-      DropItem: BREAD
-      Amount: 1
-
+# Примеры
   DIAMOND_BLOCK:
     Delay: 10
     ExpDrop: 20
@@ -37,17 +27,30 @@ MiningBlocks:
       Amount: 1
     CommandBreak: 'tell %player% Эй, хватит меня трогать!'
 
-  # Цепочка xD, просто начните быстрее копать GOLD_BLOCK
-  GOLD_BLOCK:
-    Delay: 2
-    ReplaceBlock: GOLD_ORE
-  GOLD_ORE:
+  STONE:
     Delay: 2
     ReplaceBlock: COBBLESTONE
   COBBLESTONE:
     Delay: 2
-    ReplaceBlock: GOLD_BLOCK
-    AutoPickup:
-      DropItem: GOLD_INGOT
-      Amount: 10
-    CommandBreak: 'tell %player% Ураа, ты закончил цепочку :> Твоя награда - 10 золотых слитков.'
+    ReplaceBlock: STONE
+  COAL_ORE:
+    Delay: 3
+    ReplaceBlock: STONE
+  IRON_ORE:
+    Delay: 4
+    ReplaceBlock: STONE
+  GOLD_ORE:
+    Delay: 5
+    ReplaceBlock: STONE
+  DIAMOND_ORE:
+    Delay: 6
+    ReplaceBlock: STONE
+  EMERALD_ORE:
+    Delay: 8
+    ReplaceBlock: STONE
+  REDSTONE_ORE:
+    Delay: 10
+    ReplaceBlock: STONE
+  LAPIS_ORE:
+    Delay: 12
+    ReplaceBlock: STONE

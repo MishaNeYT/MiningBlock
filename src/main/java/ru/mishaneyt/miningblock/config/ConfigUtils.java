@@ -47,9 +47,9 @@ public class ConfigUtils {
         }
 
         saveMining();
+        Main.getInstance().reloadConfig();
 
         pm.disablePlugin(Main.getInstance());
-        pm.getPlugin("MiningBlock").reloadConfig();
         pm.enablePlugin(Main.getInstance());
 
         try {

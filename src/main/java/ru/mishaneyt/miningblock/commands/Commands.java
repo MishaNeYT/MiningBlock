@@ -23,6 +23,7 @@ public class Commands implements CommandExecutor {
             sender.sendMessage(ConfigManager.ONLY_PLAYER);
             return false;
         }
+
         if (!sender.hasPermission(ConfigManager.PERMISSION)) {
             sender.sendMessage(ConfigManager.PERMISSION_MSG);
             return false;
@@ -31,7 +32,6 @@ public class Commands implements CommandExecutor {
         Player p = (Player) sender;
 
         if (args.length == 1) {
-
             if ("help".equalsIgnoreCase(args[0])) {
                 UtilsManager.onHelp(p); return true;
 
@@ -47,6 +47,7 @@ public class Commands implements CommandExecutor {
 
             } else sender.sendMessage(ConfigManager.ERROR);
         } else sender.sendMessage(ConfigManager.ERROR);
+
         return false;
     }
 }
