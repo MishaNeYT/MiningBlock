@@ -1,8 +1,8 @@
 name: MiningBlock
+main: ru.mishaneyt.miningblock.Main
 version: 2.1.1
 
-main: ru.mishaneyt.miningblock.Main
-authors: [ GhostSetuper ]
+authors: [ MishaNeYT ]
 website: https://vk.com/pleasantvkchannel
 
 api-version: 1.13
