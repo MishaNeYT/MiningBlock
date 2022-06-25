@@ -6,48 +6,52 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import ru.mishaneyt.miningblock.Main;
 import ru.mishaneyt.miningblock.config.ConfigManager;
-import ru.mishaneyt.miningblock.config.ConfigUtils;
-import ru.mishaneyt.miningblock.gui.MiningGUI;
-import ru.mishaneyt.miningblock.utils.UtilsManager;
+import ru.mishaneyt.miningblock.utils.Utils;
 
 public class Commands implements CommandExecutor {
+    private final Main main;
 
     public Commands(Main main) {
-        main.getCommand("miningblock").setExecutor(this);
-        main.getCommand("miningblock").setTabCompleter(new CommandsTab());
+        this.main = main;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(ConfigManager.ONLY_PLAYER);
-            return false;
+            sender.sendMessage(Utils.color(ConfigManager.getMessages().getString("Messages.Command.Player")));
+            return true;
         }
-
-        if (!sender.hasPermission(ConfigManager.PERMISSION)) {
-            sender.sendMessage(ConfigManager.PERMISSION_MSG);
-            return false;
+        if (!(sender.hasPermission(ConfigManager.getConfig().getString("Settings.Permission")))) {
+            sender.sendMessage(Utils.color(ConfigManager.getMessages().getString("Messages.Command.Permission")));
+            return true;
         }
 
         Player p = (Player) sender;
 
-        if (args.length == 1) {
+        if (args.length == 0) {
+            Utils.help(p);
+            return true;
+        }
+
+        else if (args.length == 1) {
             if ("help".equalsIgnoreCase(args[0])) {
-                UtilsManager.onHelp(p); return true;
+                Utils.help(p);
+                return true;
+            }
 
-            } else if ("menu".equalsIgnoreCase(args[0])) {
-                MiningGUI.open(p); return true;
+            else if ("editore".equalsIgnoreCase(args[0])) {
+                Utils.editOre(p);
+                return true;
+            }
 
-            } else if ("editore".equalsIgnoreCase(args[0])) {
-                UtilsManager.onEditOre(p); return true;
+            else if ("reload".equalsIgnoreCase(args[0])) {
+                ConfigManager configManager = new ConfigManager(this.main);
 
-            } else if ("reload".equalsIgnoreCase(args[0])) {
-                ConfigUtils.onCheckConfig(Main.getInstance());
-                ConfigUtils.reloadConfigs(p); return true;
+                configManager.reloadPlugin(p);
+                return true;
 
-            } else sender.sendMessage(ConfigManager.ERROR);
-        } else sender.sendMessage(ConfigManager.ERROR);
-
+            } else sender.sendMessage(Utils.color(ConfigManager.getMessages().getString("Messages.Command.Error")));
+        } else sender.sendMessage(Utils.color(ConfigManager.getMessages().getString("Messages.Command.Error")));
         return false;
     }
 }

@@ -7,6 +7,7 @@ import ru.mishaneyt.miningblock.config.ConfigManager;
 public class Papi {
 
     public static void connect(Player p, String s) {
-        if (ConfigManager.PLACEHOLDER_ENABLE) PlaceholderAPI.setPlaceholders(p, s);
+        if (ConfigManager.getConfig().getBoolean("Settings.SoftDepends.Placeholder"))
+            PlaceholderAPI.setPlaceholders(p, s);
     }
 }

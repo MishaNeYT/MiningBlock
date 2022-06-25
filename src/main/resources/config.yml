@@ -1,72 +1,64 @@
-# Создатель GhostSetuper (MishaNeYT). Появилась проблема? Пишите мне во вконтакте https://vk.com/mishapavlovyakutsk
-
-# НЕМНОГО ОБ АВТОРСКОМ ПРАВЕ:
-# Публикация плагина без моего разрешения строго запрещена! Все мы знаем об авторском праве, поэтому соблюдайте его.
-# Я ведь для вас стараюсь.
+# Автор MishaNeYT, плагин сделал для общего использования.
+# Запрещено выдавать плагин за себя.
 
 Settings:
-  # Права для администрации.
+  # Права для администрации. Используется для ввода основной
+  # команды. Может возникнуть тупая ошибки от bukkit. Поэтому рекомендую
+  # поставить любой другой плагин на permission (Например: LuckPerms)
+  # (Default: mb.admin)
   Permission: mb.admin
-  # Если возникли проблемы с Vault, то вы сможете отключить его.
-  EnableVault: false
-  # Если возникли проблемы с PlaceholderAPI, то вы сможете отключить его.
-  EnablePlaceholder: false
-  # Если TRUE, то игроки с КРЕАТИВАМ не смогут добывать блоки.
-  BreakCreative: true
-  # Уведомления в чат об ошибках в конфиге mining.yml. Если бесят, можете отключить.
-  InfoErrorChat: true
-  # Надпись на экране, о том, что у игрока заполненный инвентарь.
-  EnableFullInventory: true
-  # Миры, в которых работают блоки из mining.yml.
-  EnableWorlds:
+  # Если возникли проблемы с сохранением, используйте эту функцию.
+  # (Default: true)
+  AdvanceReload: true
+
+  Depends:
+    # Если возникли проблемы с Vault, я рекомендую отключть его.
+    # (Default: false)
+    Vault: false
+
+  SoftDepends:
+    # Если возникли проблемы с PlaceholderAPI, я рекомендую отключть его.
+    # (Default: false)
+    Placeholder: false
+
+  MineProtection:
+    # true - игроки в режиме креатив смогут копать блоки.
+    # (Default: false)
+    BreakCreative: false
+    # true - игроки с включенным флаям смогут копать блоки.
+    # (Default: false)
+    BreakFly: false
+
+  # Здесь находятся указанные миры, в которых работает плагин.
+  Worlds:
     - world
     - mine
 
 SoundPickup:
-  # Воспроизводится звук добытого блока.
-  Enable: true
+  # Воспроизводится звук после добычи блока.
+  # (Default: true)
+  Enabled: true
   # Список звуков https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+  # Используйте только те звуки, которые поддерживаются в вашей версии сервера.
   Sound: 'ENTITY_EXPERIENCE_ORB_PICKUP'
 
-# Сообщение на экран (Title).
-TitleOnPickup:
-  Enable: false
-  Title: '&aУспех!'
-  Subtitle: '&fВы заработали &e+%money%$'
+# Сообщение на экран (Title). Сообщение можно редактировать в
+# конфигурации messages.yml.
+# (Default: false)
+TitlePickup:
+  Enabled: false
   FadeIn: 10
   Stay: 20
   FadeOut: 10
 
-# Сообщение снизу (Action bar).
+# Сообщение снизу (Action bar). Сообщение можно редактировать в
+# конфигурации messages.yml.
+# (Default: true)
 Actionbar:
-  Enable: true
-  Message: '&e+%money%$ монет'
+  Enabled: true
 
-# Сообщение в чат.
-MessageToChat:
-  Enable: false
-  Message:
-    - '&e+%money%$ монет'
-
-Messages:
-  NoPerms: '&6[MB] &cУ вас нет прав для использования этой команды.'
-  OnlyPlayer: '&6[MB] &cКоманду может ввести только игрок.'
-  ErrorCmd: '&6[MB] &cКоманда введена неправильно. Используйте /mb help'
-  Reload: '&6[MB] &fПлагин успешно перезагружен.'
-  FullInventory:
-    Title: '&4Ваш инвентарь заполнен!'
-    Subtitle: '&cОсвободите место, чтобы добыть блок.'
-  EditOre:
-    Enable: '&6[MB] &fВы &aвключили &fрежим редактирования руд.'
-    Disable: '&6[MB] &fВы &cотключили &fрежим редактирования руд.'
-  HelpCommand:
-    - ''
-    - '&6--------------------------------------------------'
-    - '&f Создатель: &6GhostSetuper'
-    - '&f Версия: &a%version%'
-    - ''
-    - '&8 ▸ &e/miningblock menu &7- &fоткрыть GUI;'
-    - '&8 ▸ &e/miningblock editore &7- &fредактирования руд.'
-    - '&8 ▸ &e/miningblock reload &7- &fперезагрузить плагин.'
-    - '&6--------------------------------------------------'
-    - ''
+# Сообщение в чат. Сообщение можно редактировать в конфигурации
+# messages.yml.
+# (Default: false)
+MessageChat:
+  Enabled: false

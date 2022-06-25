@@ -1,85 +1,80 @@
 package ru.mishaneyt.miningblock.config;
 
-import org.bukkit.configuration.Configuration;
+import org.bukkit.Bukkit;
+import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.PluginManager;
 import ru.mishaneyt.miningblock.Main;
-import ru.mishaneyt.miningblock.utils.UtilsManager;
+import ru.mishaneyt.miningblock.utils.Logger;
+import ru.mishaneyt.miningblock.utils.Utils;
+
+import java.io.File;
+import java.io.IOException;
 
 public class ConfigManager {
-    public static String ONLY_PLAYER;
-    public static String PERMISSION;
-    public static String PERMISSION_MSG;
-    public static String ERROR;
-    public static String RELOAD;
+    private final Main main;
 
-    public static Boolean BC_ERROR;
+    public ConfigManager(Main main) {
+        this.main = main;
+    }
 
-    public static String ENABLE_WORLDS;
-    public static Boolean VAULT_ENABLE;
-    public static Boolean PLACEHOLDER_ENABLE;
+    private static final File config_file = new File(Main.getInstance().getDataFolder(), "config.yml");
+    private static final FileConfiguration config = YamlConfiguration.loadConfiguration(config_file);
 
-    public static Boolean FULLINV_ENABLE;
-    public static String FULLINV_TITLE;
-    public static String FULLINV_SUBTITLE;
+    private static final File mining_file = new File(Main.getInstance().getDataFolder(), "mining.yml");
+    private static final FileConfiguration mining = YamlConfiguration.loadConfiguration(mining_file);
 
-    public static Boolean EDITORE;
+    private static final File messages_file = new File(Main.getInstance().getDataFolder(), "messages.yml");
+    private static final FileConfiguration messages = YamlConfiguration.loadConfiguration(messages_file);
 
-    public static String EDITORE_ENABLE;
-    public static String EDITORE_DISABLE;
+    public static FileConfiguration getConfig() {
+        return config;
+    }
 
-    public static Boolean SOUND_ENABLE;
-    public static String SOUND;
+    public static FileConfiguration getMining() {
+        return mining;
+    }
 
-    public static Boolean TITLE_ENABLE;
-    public static String TITLE;
-    public static String SUBTITLE;
-    public static Integer FADEIN;
-    public static Integer STAY;
-    public static Integer FADEOUT;
+    public static FileConfiguration getMessages() {
+        return messages;
+    }
 
-    public static Boolean ACTIONBAR_ENABLE;
-    public static String ACTIONBAR;
+    public void checkConfigurations() {
+        if (!config_file.exists()) {
+            this.main.saveResource("config.yml", false);
+            Logger.info("§aКонфигурация config.yml - успешно создан.");
+        }
+        if (!mining_file.exists()) {
+            this.main.saveResource("mining.yml", false);
+            Logger.info("§aКонфигурация mining.yml - успешно создан.");
+        }
+        if (!messages_file.exists()) {
+            this.main.saveResource("messages.yml", false);
+            Logger.info("§aКонфигурация messages.yml - успешно создан.");
+        }
+    }
 
-    public static Boolean CHAT_ENABLE;
-    public static String CHAT;
+    public void reloadPlugin(Player p) {
+        this.checkConfigurations();
 
-    public static void onLoad() {
-        Configuration config = Main.getInstance().getConfig();
+        try {
+            getConfig().load(config_file);
+            getMining().load(mining_file);
+            getMessages().load(messages_file);
 
-        ONLY_PLAYER = UtilsManager.getStringColor("Messages.OnlyPlayer");
-        PERMISSION = UtilsManager.getString("Settings.Permission");
-        PERMISSION_MSG = UtilsManager.getStringColor("Messages.NoPerms");
-        ERROR = UtilsManager.getStringColor("Messages.ErrorCmd");
-        RELOAD = UtilsManager.getStringColor("Messages.Reload");
+            if (getConfig().getBoolean("Settings.AdvanceReload")) {
+                PluginManager pm = Bukkit.getPluginManager();
 
-        BC_ERROR = config.getBoolean("Settings.InfoErrorChat");
+                pm.disablePlugin(Main.getInstance());
+                pm.enablePlugin(Main.getInstance());
+            }
 
-        ENABLE_WORLDS = String.valueOf(config.getStringList("Settings.EnableWorlds"));
-        VAULT_ENABLE = config.getBoolean("Settings.EnableVault");
-        PLACEHOLDER_ENABLE = config.getBoolean("Settings.EnablePlaceholder");
+            p.sendMessage(Utils.color(getMessages().getString("Messages.Command.Reload")));
 
-        FULLINV_ENABLE = config.getBoolean("Seetings.EnableFullInventory");
-        FULLINV_TITLE = UtilsManager.getStringColor("Messages.FullInventory.Title");
-        FULLINV_SUBTITLE = UtilsManager.getStringColor("Messages.FullInventory.Subtitle");
-
-        EDITORE = config.getBoolean("Settings.BreakCreative");
-
-        SOUND_ENABLE = config.getBoolean("SoundPickup.Enable");
-        SOUND = UtilsManager.getString("SoundPickup.Sound");
-
-        EDITORE_ENABLE = UtilsManager.getStringColor("Messages.EditOre.Enable");
-        EDITORE_DISABLE = UtilsManager.getStringColor("Messages.EditOre.Disable");
-
-        TITLE_ENABLE = config.getBoolean("TitleOnPickup.Enable");
-        TITLE = UtilsManager.getStringColor("TitleOnPickup.Title");
-        SUBTITLE = UtilsManager.getStringColor("TitleOnPickup.Subtitle");
-        FADEIN = config.getInt("TitleOnPickup.FadeIn");
-        STAY = config.getInt("TitleOnPickup.Stay");
-        FADEOUT = config.getInt("TitleOnPickup.FadeOut");
-
-        ACTIONBAR_ENABLE = config.getBoolean("Actionbar.Enable");
-        ACTIONBAR = UtilsManager.getStringColor("Actionbar.Message");
-
-        CHAT_ENABLE = config.getBoolean("MessageToChat.Enable");
-        CHAT = String.valueOf(config.getStringList("MessageToChat.Message"));
+        } catch (IOException | InvalidConfigurationException ex) {
+            Logger.error("Не удалось перезагрузить конфигурации..");
+        }
     }
 }

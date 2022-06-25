@@ -4,15 +4,15 @@ import org.bukkit.Bukkit;
 
 public class Logger {
 
-    public static void empty(String m) {
-        Bukkit.getConsoleSender().sendMessage(UtilsManager.getColor(m));
+    public static void info(String message) {
+        Bukkit.getConsoleSender().sendMessage("§b[MiningBlock] §f" + message);
     }
 
-    public static void warn(String m) {
-        Bukkit.getConsoleSender().sendMessage("§e[MiningBlock] " + m);
+    public static void warn(String message) {
+        Bukkit.getConsoleSender().sendMessage("§e[MiningBlock] §e" + message);
     }
 
-    public static void error(String m) {
-        Bukkit.getConsoleSender().sendMessage("§c[MiningBlock] " + m);
+    public static void error(String message) {
+        Bukkit.getConsoleSender().sendMessage("§c[MiningBlock] §c" + message);
     }
 }

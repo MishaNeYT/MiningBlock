@@ -1,5 +1,4 @@
 MiningBlocks:
-  Enable: true
   # Айди блока.
   OBSIDIAN:
     # Задержка для ReplaceBlock.
@@ -9,48 +8,48 @@ MiningBlocks:
     # Айди блока, который будет появляться после добычи.
     ReplaceBlock: BEDROCK
     Drop:
-      DropItem: APPLE
+      Item: APPLE
       Amount: 2
     AutoPickup:
-      DropItem: COAL
+      Item: COAL
       Amount: 1
-    # Команда от имени сервера.
-    CommandBreak: 'say Вау, ты получил яблоко!'
+    # Команда от имени сервера. Работают все Placeholder-ы.
+    CommandBreak: 'tell %player% Вау, ты получил яблоко + уголь от деда мороза, хаха!'
 
-# Примеры
-  DIAMOND_BLOCK:
-    Delay: 10
-    ExpDrop: 20
-    ReplaceBlock: DIAMOND_ORE
+  # Примеры:
+  # Допустим если игрок сломает Железный блок, то что то случится..
+  IRON_BLOCK:
+    Delay: 5
+    ExpDrop: 5
+    ReplaceBlock: IRON_ORE
     Drop:
-      DropItem: DIAMOND
+      Item: IRON_INGOT
       Amount: 1
     CommandBreak: 'tell %player% Эй, хватит меня трогать!'
 
-  STONE:
-    Delay: 2
-    ReplaceBlock: COBBLESTONE
-  COBBLESTONE:
-    Delay: 2
-    ReplaceBlock: STONE
-  COAL_ORE:
-    Delay: 3
-    ReplaceBlock: STONE
-  IRON_ORE:
-    Delay: 4
-    ReplaceBlock: STONE
-  GOLD_ORE:
-    Delay: 5
-    ReplaceBlock: STONE
-  DIAMOND_ORE:
-    Delay: 6
-    ReplaceBlock: STONE
-  EMERALD_ORE:
-    Delay: 8
-    ReplaceBlock: STONE
-  REDSTONE_ORE:
+  GOLD_BLOCK:
     Delay: 10
-    ReplaceBlock: STONE
-  LAPIS_ORE:
-    Delay: 12
-    ReplaceBlock: STONE
+    ExpDrop: 10
+    ReplaceBlock: GOLD_ORE
+    Drop:
+      Item: GOLD_INGOT
+      Amount: 1
+    CommandBreak: 'tell %player% Эй, хватит меня трогать :c'
+
+  DIAMOND_BLOCK:
+    Delay: 20
+    ExpDrop: 15
+    ReplaceBlock: DIAMOND_ORE
+    AutoPickup:
+      Item: DIAMOND
+      Amount: 1
+    CommandBreak: 'tell %player% Вы получили алмаз, чекни инвентарь.'
+
+  EMERALD_BLOCK:
+    Delay: 30
+    ExpDrop: 20
+    ReplaceBlock: EMERALD_ORE
+    AutoPickup:
+      Item: EMERALD
+      Amount: 1
+    CommandBreak: 'tell %player% Вы получили изумруд, чекни инвентарь.'

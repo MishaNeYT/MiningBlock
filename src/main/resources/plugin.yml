@@ -1,13 +1,15 @@
 name: MiningBlock
 main: ru.mishaneyt.miningblock.Main
-version: 2.1.1
+version: 2.2.0
 
 authors: [ MishaNeYT ]
 website: https://discord.gg/Nz6tNVBN56
+
+depend: [ Vault ]
+softdepend: [ PlaceholderAPI ]
 
 api-version: 1.13
 
 commands:
   miningblock:
-    default: op
     aliases: [ mb ]
