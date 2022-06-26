@@ -4,10 +4,21 @@ import org.bukkit.entity.Player;
 import ru.mishaneyt.miningblock.config.ConfigManager;
 
 public class Sound {
+    private final Player player;
 
-    public static void play(Player p) {
+    public Sound(Player player) {
+        this.player = player;
+    }
+
+    public void play() {
         if (ConfigManager.getConfig().getBoolean("SoundPickup.Enabled")) {
-            p.playSound(p.getLocation(), org.bukkit.Sound.valueOf(ConfigManager.getConfig().getString("SoundPickup.Sound")), 1.0F, 1.0F);
+            this.player.playSound(this.player.getLocation(), org.bukkit.Sound.valueOf(ConfigManager.getConfig().getString("SoundPickup.Sound")), 1.0F, 1.0F);
+        }
+    }
+
+    public void errorPlay() {
+        if (ConfigManager.getConfig().getBoolean("SoundPickup.Enabled")) {
+            this.player.playSound(this.player.getLocation(), org.bukkit.Sound.valueOf(ConfigManager.getConfig().getString("SoundPickup.ErrorSound")), 1.0F, 1.0F);
         }
     }
 }

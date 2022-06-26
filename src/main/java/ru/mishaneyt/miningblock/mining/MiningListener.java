@@ -14,12 +14,10 @@ import ru.mishaneyt.miningblock.config.ConfigManager;
 import ru.mishaneyt.miningblock.mining.features.*;
 import ru.mishaneyt.miningblock.mining.features.Sound;
 import ru.mishaneyt.miningblock.utils.Logger;
-
-import java.util.ArrayList;
+import ru.mishaneyt.miningblock.utils.Utils;
 
 public class MiningListener implements Listener {
-    public final Main main;
-    private final ArrayList<Player> toggleEdit = new ArrayList<>();
+    private final Main main;
     
     public MiningListener(Main main) {
         this.main = main;
@@ -34,11 +32,11 @@ public class MiningListener implements Listener {
         if (material == null) return;
 
         if (!ConfigManager.getConfig().getStringList("Settings.Worlds").contains(p.getLocation().getWorld().getName())) return;
-        if (getToggleEdit().contains(p)) return;
 
         if (ConfigManager.getMining().getConfigurationSection("MiningBlocks").getKeys(false).contains(material.toString())) {
             ConfigurationSection section = ConfigManager.getMining().getConfigurationSection("MiningBlocks." + material);
             if (section == null) return;
+            if (this.main.getToggleEdit().contains(p)) return;
 
             // Delay check
             int delay = section.getInt("Delay");
@@ -69,11 +67,17 @@ public class MiningListener implements Listener {
 
             // Cancel event
             e.setCancelled(true);
+            Sound sound = new Sound(p);
 
             // Check creative mode
             if (!ConfigManager.getConfig().getBoolean("Settings.MineProtection.BreakCreative")) {
                 if (p.getGameMode() == GameMode.CREATIVE) {
-                    p.sendMessage("Запрещено копать блок в режиме креатив!");
+                    p.sendTitle(Utils.color(ConfigManager.getMessages().getString("Messages.MineProtection.Creative.Title")), Utils.color(ConfigManager.getMessages().getString("Messages.MineProtection.Creative.Subtitle")), 20, 60, 20);
+                    try {
+                        sound.errorPlay();
+                    } catch (Exception e1) {
+                        Logger.warn("Пожалуйста, проверьте звук ошибки в config.yml. Ваша версия ядра может его не поддерживать.");
+                    }
                     return;
                 }
             }
@@ -81,7 +85,12 @@ public class MiningListener implements Listener {
             // Check fly mode
             if (!ConfigManager.getConfig().getBoolean("Settings.MineProtection.BreakFly")) {
                 if (p.isFlying()) {
-                    p.sendMessage("Запрещено копать блок в полёте!");
+                    p.sendTitle(Utils.color(ConfigManager.getMessages().getString("Messages.MineProtection.Fly.Title")), Utils.color(ConfigManager.getMessages().getString("Messages.MineProtection.Fly.Subtitle")), 20, 60, 20);
+                    try {
+                        sound.errorPlay();
+                    } catch (Exception e1) {
+                        Logger.warn("Пожалуйста, проверьте звук ошибки в config.yml. Ваша версия ядра может его не поддерживать.");
+                    }
                     return;
                 }
             }
@@ -105,7 +114,7 @@ public class MiningListener implements Listener {
 
             // Send sound on pickup
             try {
-                Sound.play(p);
+                sound.play();
             } catch (Exception e1) {
                 Logger.warn("Пожалуйста, проверьте звук в config.yml. Ваша версия ядра может его не поддерживать.");
             }
@@ -128,9 +137,5 @@ public class MiningListener implements Listener {
             b.setType(Material.valueOf(replace));
             this.main.getServer().getScheduler().runTaskLater(this.main, () -> b.setType(material), delay * 20L);
         }
-    }
-
-    public ArrayList<Player> getToggleEdit() {
-        return this.toggleEdit;
     }
 }

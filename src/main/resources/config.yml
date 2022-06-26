@@ -2,11 +2,9 @@
 # Запрещено выдавать плагин за себя.
 
 Settings:
-  # Права для администрации. Используется для ввода основной
-  # команды. Может возникнуть тупая ошибки от bukkit. Поэтому рекомендую
-  # поставить любой другой плагин на permission (Например: LuckPerms)
+  # Права для администрации. Используется для ввода основной команды.
   # (Default: mb.admin)
-  Permission: mb.admin
+  Permission: 'mb.admin'
   # Если возникли проблемы с сохранением, используйте эту функцию.
   # (Default: true)
   AdvanceReload: true
@@ -41,6 +39,8 @@ SoundPickup:
   # Список звуков https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
   # Используйте только те звуки, которые поддерживаются в вашей версии сервера.
   Sound: 'ENTITY_EXPERIENCE_ORB_PICKUP'
+  # Звук для MineProtection.
+  ErrorSound: 'BLOCK_ANVIL_DESTROY'
 
 # Сообщение на экран (Title). Сообщение можно редактировать в
 # конфигурации messages.yml.

@@ -4,8 +4,6 @@ import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import ru.mishaneyt.miningblock.Main;
-import ru.mishaneyt.miningblock.commands.Commands;
-import ru.mishaneyt.miningblock.commands.CommandsTab;
 
 public class Loader {
     public final Main main;
@@ -31,10 +29,5 @@ public class Loader {
         if (rsp == null) return;
 
         this.main.economy = rsp.getProvider();
-    }
-
-    public void register() {
-        this.main.getCommand("miningblock").setExecutor(new Commands(this.main));
-        this.main.getCommand("miningblock").setTabCompleter(new CommandsTab());
     }
 }

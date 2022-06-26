@@ -2,16 +2,24 @@ package ru.mishaneyt.miningblock;
 
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import ru.mishaneyt.miningblock.commands.Commands;
+import ru.mishaneyt.miningblock.commands.CommandsTab;
 import ru.mishaneyt.miningblock.config.ConfigManager;
 import ru.mishaneyt.miningblock.mining.MiningListener;
 import ru.mishaneyt.miningblock.utils.Loader;
 import ru.mishaneyt.miningblock.utils.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main extends JavaPlugin {
     private static Main instance;
     public Economy economy = null;
+
+    public List<Player> toggleEdit = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -22,16 +30,17 @@ public class Main extends JavaPlugin {
         loader.setupEconomy();
         loader.setupPlaceholder();
 
-        // Check configurations
-        ConfigManager configManager = new ConfigManager(this);
-        configManager.checkConfigurations();
-
         // Register events
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new MiningListener(this), this);
 
-        // Register commands
-        loader.register();
+        // Check configurations and load
+        ConfigManager configManager = new ConfigManager(this);
+        configManager.reloadEnable();
+
+        // Register command and tab
+        getCommand("miningblock").setExecutor(new Commands(this));
+        getCommand("miningblock").setTabCompleter(new CommandsTab());
 
         // Info enable
         Logger.info("");
@@ -48,5 +57,9 @@ public class Main extends JavaPlugin {
 
     public Economy getEconomy() {
         return this.economy;
+    }
+
+    public List<Player> getToggleEdit() {
+        return this.toggleEdit;
     }
 }

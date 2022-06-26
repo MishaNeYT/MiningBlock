@@ -56,6 +56,31 @@ public class ConfigManager {
         }
     }
 
+    public void saveConfigs() {
+        try {
+            getConfig().save(config_file);
+            getMining().save(mining_file);
+            getMessages().save(messages_file);
+
+        } catch (IOException ex) {
+            Logger.error("Не удалось сохранить конфигурации..");
+        }
+    }
+
+    public void reloadEnable() {
+        this.checkConfigurations();
+
+        try {
+            getConfig().load(config_file);
+            getMining().load(mining_file);
+            getMessages().load(messages_file);
+            saveConfigs();
+
+        } catch (IOException | InvalidConfigurationException ex) {
+            Logger.error("Не удалось перезагрузить конфигурации..");
+        }
+    }
+
     public void reloadPlugin(Player p) {
         this.checkConfigurations();
 
@@ -63,12 +88,13 @@ public class ConfigManager {
             getConfig().load(config_file);
             getMining().load(mining_file);
             getMessages().load(messages_file);
+            saveConfigs();
 
             if (getConfig().getBoolean("Settings.AdvanceReload")) {
                 PluginManager pm = Bukkit.getPluginManager();
 
-                pm.disablePlugin(Main.getInstance());
-                pm.enablePlugin(Main.getInstance());
+                pm.disablePlugin(this.main);
+                pm.enablePlugin(this.main);
             }
 
             p.sendMessage(Utils.color(getMessages().getString("Messages.Command.Reload")));

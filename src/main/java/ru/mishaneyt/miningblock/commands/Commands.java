@@ -21,26 +21,28 @@ public class Commands implements CommandExecutor {
             sender.sendMessage(Utils.color(ConfigManager.getMessages().getString("Messages.Command.Player")));
             return true;
         }
-        if (!(sender.hasPermission(ConfigManager.getConfig().getString("Settings.Permission")))) {
-            sender.sendMessage(Utils.color(ConfigManager.getMessages().getString("Messages.Command.Permission")));
+
+        Player p = (Player) sender;
+        if (!p.hasPermission(ConfigManager.getConfig().getString("Settings.Permission"))) {
+            p.sendMessage(Utils.color(ConfigManager.getMessages().getString("Messages.Command.Permission")));
             return true;
         }
 
-        Player p = (Player) sender;
+        Utils utils = new Utils(this.main, p);
 
         if (args.length == 0) {
-            Utils.help(p);
+            utils.help();
             return true;
         }
 
         else if (args.length == 1) {
             if ("help".equalsIgnoreCase(args[0])) {
-                Utils.help(p);
+                utils.help();
                 return true;
             }
 
             else if ("editore".equalsIgnoreCase(args[0])) {
-                Utils.editOre(p);
+                utils.editOre();
                 return true;
             }
 
