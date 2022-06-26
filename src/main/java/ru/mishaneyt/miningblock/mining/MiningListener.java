@@ -35,6 +35,7 @@ public class MiningListener implements Listener {
 
         if (ConfigManager.getMining().getConfigurationSection("MiningBlocks").getKeys(false).contains(material.toString())) {
             ConfigurationSection section = ConfigManager.getMining().getConfigurationSection("MiningBlocks." + material);
+
             if (section == null) return;
             if (this.main.getToggleEdit().contains(p)) return;
 
